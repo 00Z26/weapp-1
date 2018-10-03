@@ -1,0 +1,19 @@
+<view class='header' >
+  <view class='button' bindtap='back' >
+    <image src='{{back_url}}'></image>
+    <text>{{communityName}}</text>
+  </view>
+  <text class='title' >
+    圈子成员
+  </text>
+</view>
+
+<view class='followers'>
+  <view class='follower' wx:for='{{memberList}}' wx:key='{{item.user_id}}'>
+    <image class='avatar' src='{{item.user_image}}'/>
+    <view class='ilb'>  
+      <text class='userName'>{{item.user_name}}</text>
+      <text class='tip'>问答{{item.answer_num}}·项目{{item.project_num}}·圈子{{item.community_num}}·粉丝{{item.fans_num}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,75 @@
+page{
+    background-color: #E9E9E9;
+    font-family: Microsoft Yahei,Arial, Helvetica, sans-serif;
+}
+.header{
+    background-color: #fff;
+    width:100%;
+    padding-bottom:20rpx;
+  }
+  .header image{
+    width: 22rpx;
+    height: 38rpx;
+    margin-top: 22rpx;
+    margin-left: 16rpx;
+    margin-right: 13rpx;
+    margin-bottom:-4rpx; 
+  
+  }
+  .header text{
+    color: rgba(0, 187, 221, 1);
+    line-height: 30rpx;
+    font-size: 40rpx;
+  }
+  .button{
+    width: 220rpx;
+    display: inline-block;
+  }
+  .title{
+    margin-left: 140rpx;
+    display: inline-block;
+  }
+
+  .comments{
+    margin-top:2rpx;
+  }
+  .comment{
+    background-color: #fff;
+    box-shadow: 0 2rpx 2rpx 0 rgba(0,0,0,0.3);
+}
+  .avatar{
+    width: 90rpx;
+    height: 90rpx;
+    vertical-align: top;
+  }
+  .praise{
+    float:right;
+    margin:10rpx 50rpx;
+    color: rgba(128, 128, 128, 1);
+    font-size: 26rpx;
+    line-height: 39rpx;    
+  }
+  .praiseIcon{
+    width: 25rpx;
+    height: 25rpx;
+  }
+  .commentInfo{
+    display: inline-block;
+    width: 660rpx;
+    border-bottom:2rpx solid rgba(193, 193, 193, 1);
+    padding: 18rpx 0;
+  }
+  .commentTime,.commentContent{
+      display: block;
+  }
+  .name,.commentContent{
+      font-size: 30rpx;
+      line-height: 45rpx;
+      text-align: left;
+  }
+  .commentTime{
+      font-size: 22rpx;
+      line-height: 33rpx;
+      color: rgba(153, 153, 153, 1);
+      text-align: left;
+  }

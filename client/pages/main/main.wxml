@@ -1,0 +1,67 @@
+<view>
+    <view class="mask" bindtap='closePubBox' style="opacity:{{maskOpacity}};z-index:{{mask_z_index}}" ></view>
+    <view class="header">
+        <view class="searchBox">
+            <image class="myInfo" src="{{myInfo_url}}" bindtap='jumpToSettings' ></image>
+            <image class="searchIcon" src="{{searchIcon_url}}"></image>
+            <input type="text" class="search"  placeholder="在这里搜索动态/项目/圈子" />
+            <image class="publish" src="{{publish_url}}" bindtap='openPubBox' ></image>
+        </view>
+
+
+        <view class="tags">
+            <ul>
+                <li class="tag" style="color:{{isActive1}};border-bottom:{{border1}}" bindtap='chooseTag1'>主页</li>
+                <li class="tag" style="color:{{isActive2}};border-bottom:{{border2}}" bindtap='chooseTag2'>关注动态</li>
+            </ul>
+            
+        </view>
+        <view id="community" style='max-height:{{communityHeight}}rpx' >       <!-- 最多三排 -->
+          <image src='{{pullDown_url}}' class='pullDownIcon' bindtap='moreCommunity' style='transform: rotate({{iconRotate}}deg)' />
+           <ul>
+            <li wx:for='{{communityList}}' wx:key='{{item.community_id}}' id='{{item.community_id}}' style="color:{{item.community_id}}" bindtap='chooseCommunity'>{{item.community_name}}</li>
+           </ul>
+            </view>
+    </view>
+    <view id="publishBox" style="top:{{pubBoxPosition}}">
+        <image class="close" bindtap='closePubBox' src="{{close}}"></image>
+        <view bindtap='pub_question'>
+          <image class="publishUpdates" src="{{pubquestion_url}}" />
+          <view class='pubType'>发布问题</view>
+        </view>
+        <view bindtap='pub_project' >
+          <image class="publishProject" src="{{pubProject_url}}" />
+          <view class='pubType'>发布项目</view>
+        </view>
+    </view>
+    <view class="main" style="opacity:{{opacity}}">
+        <view wx:for="{{allArray}}" bindtap='jumpToDetail' wx:key="{{question_id}}+{{project_id}}">
+            <view   wx:if="{{item.question_id}}"  wx:key="{{question_id}}}">
+            <question  id="{{item.question_id}}" data-type="1" >
+                <view slot="title" class="title">{{item.question_title}}</view>
+                <text slot="userName" class="userName">{{item.user_name}}</text>
+                <text slot="time" class="time">{{item.question_time}}</text>
+                <text slot="subTitle">
+                    {{item.question_info}}
+                </text>
+                <text slot="answerNumber">{{item.answernum}}</text>
+                <text slot="questionType">问题</text>
+                <text slot="privacy">所有人可见</text>
+            </question>
+            </view>
+            <view  wx:else wx:key="{{project_id}}">
+            <project id='{{item.project_id}}' data-type="0">
+                <view slot="title" class="title">{{item.project_title}}</view>
+                <text slot="userName" class="userName">{{item.user_name}}</text>
+                <text slot="time" class="time">{{item.project_time}}</text>
+                <text slot="projectType">{{item.project_type}}</text>
+                <text slot="projectState">有效</text>
+                <text slot="projectCity">沈阳</text>
+                <text slot="projectPeriod">{{item.project_finish}}</text>
+                <text slot="projectDemand">{{item.project_require}}</text>
+                <text slot="projectBudget">{{item.project_budget}}</text>
+            </project>
+            </view>
+        </view>
+    </view>
+</view>

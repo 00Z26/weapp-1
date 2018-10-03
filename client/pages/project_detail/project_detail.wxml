@@ -1,0 +1,94 @@
+<view class='mask' bindtap='closeComment' style="opacity:{{maskOpacity}};z-index:{{mask_z_index}}" ></view>
+<view class='header' >
+  <view class='button' bindtap='back' >
+    <image src='{{back_url}}'></image>
+    <text>动态</text>
+  </view>
+  <text class='title' >
+      项目详情
+  </text>
+  <text class='ansButton' bindtap='ansProject'>我要回答</text>
+</view>
+
+<view class="project"> 
+  <view class='projectBox'>
+    <view class="projectTitle" name="title">{{projectTitle}}</view>
+      <view class="userInfo">
+        <image src='{{avatar_url}}' class="avatar"  />
+        <view class="userName" name="userName">{{userName}}</view>
+        <view class="time" name="time">{{pubTime}}</view>
+      </view>
+      <view class="projectInfo">
+        <ul>
+          <view class="lb">
+            <li>
+                项目类别:
+              <text name="projectType">{{projectType}}</text>
+            </li>
+            <li>
+                项目状态:
+              <text name="projectState">{{projectState}}</text>
+            </li>
+            <li>
+                所在城市:
+              <text name="projectCity">{{projectCity}}</text>
+            </li>
+          </view>
+        
+          <view class="rb">
+              <li>
+              项目周期：
+              <text name="projectPeriod">{{projectPeriod}}</text>
+              </li>
+              <li>
+              地域要求：
+              <text name="locationDemand">{{locationDemand}}</text>
+              </li>
+              <li>
+              预算费用：
+              <text name="projectBudget">{{projectBudget}}</text>
+              </li>
+          </view>
+        </ul>
+      </view>
+      <view class='projectDetail'>
+        <text>项目介绍：</text>
+        <text class='projectRequire'>{{projectRequire}}</text>
+       </view>
+      <view class="socialInfo">
+        <ul>
+           <li>
+              <image src="{{answer_url}}"></image>
+                回答:<text name="answerNumber">{{answerNum}}</text>
+            </li>
+         </ul>
+       </view>
+
+    </view>
+  </view>
+
+
+<view class='commentBox' wx:for="{{answerList}}" wx:key="{{answer_id}}">
+  <view class='comment'>
+    <text style='display:inline-block;margin-left:20rpx;'>{{item.answer_info}}</text>
+  </view>
+  <view class='info'>
+    <ul>
+      <li class='mgl'>
+        <image src='{{avatar_icon}}' />
+        <text class='mgl'>{{item.user_id}}</text>
+      </li>
+      <li class='ml' bindtap='commentAws' data-userid='{{item.user_id}}' data-answerid='{{item.answer_id}}'>
+        <image src='{{comment_icon}}' />
+        <text>{{item.commentnum}}</text>
+      </li>
+    </ul>
+  </view>
+</view>   
+
+<view class='commentAws' style='bottom:{{commentAwsPos}}'>
+  <form bindsubmit='submitAns'>
+    <textarea auto-focus='true' placeholder='回答@{{userName}}' name='answerInfo'></textarea>
+    <button form-type='submit'>发送</button>
+  </form>
+</view>

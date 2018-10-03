@@ -1,0 +1,15 @@
+<view class="setAuthority" bindtap='set_power'>
+   设置权限
+</view>
+<view>
+    <input placeholder='标题' placeholder-class='placeholder' class='title' bindinput='question_title_input'></input>
+</view>
+<view>
+    <textarea placeholder='内容' class='content' placeholder-class='placeholder'bindinput='question_info_input' ></textarea>
+</view>
+<view class='uploadPic' bindtap='uploadPic'>
+
+</view>
+<view class='publish' bindtap='pub'>发布</view>
+
+

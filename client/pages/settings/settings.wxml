@@ -1,0 +1,32 @@
+<view class='myInfo' bindtap='individualInfo' >
+  <image class='avatar' src='{{avatarUrl}}'/>
+  <view class='ilb'>  
+    <text class='userName'>{{userName}}</text>
+    <text class='tip'>查看或编辑个人主页</text>
+  </view>
+</view>
+
+<view class='options'>
+  <ul>
+    <li bindtap='jumpToPublished' >
+      <image src='{{publishedUrl}}' class='icon' />
+      <text class='option'>已发布</text>
+    </li>
+    <li bindtap='jumpToFollowers' >
+       <image src='{{followerUrl}}' class='icon' />   
+       <text class='option'>  关注我的</text>
+    </li>
+    <li bindtap='jumpToFollowing' >
+      <image src='{{followingUrl}}' class='icon' />    
+      <text class='option'> 我的关注</text>     
+    </li>
+    <li bindtap='jumpToCommunity' >
+      <image src='{{communityUrl}}' class='icon' />   
+      <text class='option'> 我的圈子</text>      
+    </li>
+    <li bindtap='jumpToMessage' >
+       <image src='{{messageUrl}}' class='icon' />   
+       <text class='option'>  消息</text>      
+    </li>
+  </ul>
+</view>

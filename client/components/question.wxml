@@ -1,0 +1,28 @@
+<!--components/project.wxml-->
+<view class='questionBox'>
+    <slot class="title" name="title"></slot>
+    <view class="userInfo">
+        <image src='{{avatar_url}}' class="avatar"  />
+        <slot class="userName" name="userName"></slot>
+        <slot class="time" name="time"></slot>
+    </view>
+    <view class="subTitle">
+        <slot name="subTitle"></slot>
+    </view>
+    <view class="socialInfo">
+        <ul>
+            <li>
+                <image src="{{answer_url}}"></image>
+                回答:<slot name="answerNumber"></slot>
+            </li>
+            <li>
+                <image src="{{type_url}}" class="ml"></image>
+                <slot name="questionType"></slot>
+            </li>
+            <li>
+                <image src="{{privaty_url}}" class='ml'></image>
+                <slot name="privacy"></slot>
+            </li>
+        </ul>
+    </view>
+</view>

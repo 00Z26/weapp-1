@@ -1,0 +1,109 @@
+.header{
+  background-color: #fff;
+  width:100%;
+  padding-bottom:20rpx;
+}
+.header image{
+  width: 22rpx;
+  height: 38rpx;
+  margin-top: 22rpx;
+  margin-left: 16rpx;
+  margin-right: 13rpx;
+  margin-bottom:-4rpx; 
+
+}
+.header text{
+  color: rgba(0, 187, 221, 1);
+  line-height: 30rpx;
+  font-size: 40rpx;
+}
+.button{
+  width: 160rpx;
+  display: inline-block;
+}
+.title{
+  margin-left: 140rpx;
+  display: inline-block;
+}
+
+.myInfo{
+  width: 100%;
+  height: 170rpx;
+  background-color: #fff;
+  margin-bottom: 16rpx;
+  box-shadow: 0rpx 2rpx 2rpx 0rpx rgba(0, 0, 0, 0.5);
+}
+.avatar{
+
+  width: 104rpx;
+  height: 104rpx;
+  margin:32rpx 34rpx;
+  float: left;
+}
+.userName{
+  float: left;
+  line-height:54rpx;
+  font-size:36rpx;
+
+}
+.ilb{
+  display: inline-block;
+  margin-top:60rpx;
+}
+picker{
+  text-align: center;
+  display: inline-block;
+  font-size:36rpx;
+  width: 430rpx;
+  border: 2rpx solid #000;
+  border-radius: 16rpx;
+}
+.sex {
+  display: inline-block;
+}
+input{
+  display: inline-block;
+  border: rgba(0, 0, 0, 1) solid 2rpx;
+  border-radius: 16rpx;
+  padding-left:5px;
+  position:absolute;
+  top:10rpx;
+  height: 60rpx;
+  width: 430rpx;
+  line-height: 50rpx;
+}
+form text{
+  background-color:rgba(204, 204, 204, 1);
+  border-radius:16rpx;
+  margin-left:52rpx;
+  margin-bottom:18rpx;
+  margin-right:36rpx;
+  margin: 10rpx 36rpx 8rpx 52rpx;
+  width:190rpx;
+  height: 60rpx;
+  display:inline-block;
+  text-align:center;
+  font-size: 32rpx;
+  line-height: 60rpx;
+}
+.rl{
+  position: relative;
+}
+.corporationHolder{
+  color: #000;
+  text-align: center;
+  font-size: 36rpx;
+}
+textarea{
+  width: 636rpx;
+	height: 538rpx;
+  margin: 24rpx 52rpx;
+  border: rgba(0, 0, 0, 1) solid 2rpx;
+  border-radius: 16rpx;
+  padding: 10rpx;
+}
+
+button{
+  width: 50%;
+  margin-bottom: 20rpx;
+}

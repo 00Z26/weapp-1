@@ -1,0 +1,48 @@
+<view class='communityInfo'>
+  <image class='communityImage' src='{{communityImage}}'></image>
+  <view class='detail'>
+    <text class='comName'>{{communityName}}</text>
+    <text>问题{{questionNum}} 项目{{projectNum}} 圈友{{memberNum}}\n</text>
+    <text>圈友:</text>
+    <view class='members'>
+      <image src='{{communityMember[0]}}' />
+      <image src='{{communityMember[1]}}' />
+      <image src='{{communityMember[2]}}' />
+      <image src='{{communityMember[3]}}' />
+      <image src='{{communityMember[4]}}' />
+      <image src='{{communityMember[5]}}' />
+    </view>
+    <text>\n简介:{{communityIntroduce}}</text>
+  </view>
+</view>
+
+<view class="main" style="opacity:{{opacity}}">
+        <view wx:for="{{allArray}}" bindtap='jumpToDetail' wx:key="{{question_id}}+{{project_id}}">
+            <view   wx:if="{{item.question_id}}"  wx:key="{{question_id}}}">
+            <question  id="{{item.question_id}}" data-type="1" >
+                <view slot="title" class="title">{{item.question_title}}</view>
+                <text slot="userName" class="userName">{{item.user_name}}</text>
+                <text slot="time" class="time">{{item.question_time}}</text>
+                <text slot="subTitle">
+                    {{item.question_info}}
+                </text>
+                <text slot="answerNumber">{{item.answernum}}</text>
+                <text slot="questionType">问题</text>
+                <text slot="privacy">所有人可见</text>
+            </question>
+            </view>
+            <view  wx:else wx:key="{{project_id}}">
+            <project id='{{item.project_id}}' data-type="0">
+                <view slot="title" class="title">{{item.project_title}}</view>
+                <text slot="userName" class="userName">{{item.user_name}}</text>
+                <text slot="time" class="time">{{item.project_time}}</text>
+                <text slot="projectType">{{item.project_type}}</text>
+                <text slot="projectState">有效</text>
+                <text slot="projectCity">沈阳</text>
+                <text slot="projectPeriod">{{item.project_finish}}</text>
+                <text slot="projectDemand">{{item.project_require}}</text>
+                <text slot="projectBudget">{{item.project_budget}}</text>
+            </project>
+            </view>
+        </view>
+    </view>

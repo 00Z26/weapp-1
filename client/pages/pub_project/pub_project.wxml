@@ -1,0 +1,34 @@
+<view style="display:flex; flex-direction:row; margin-top:20px;margin-left:10px;height:30px">
+    <text class='title'>项目类型:</text>
+   <picker bindchange="bindtypeChange" value="{{index}}" range="{{select_type}}">
+    <view class="picker">{{select_type[index]}}
+    </view>
+  </picker>
+</view>
+<view style="display:flex; flex-direction:row; margin-top:10px;margin-left:10px;height:30px">
+    <text class='title' style="width:100px;">项目有效至:</text>
+     <picker mode="date" value="{{project_finish}}" start="2018-01-01" end="2050-01-01" bindchange="bindDateChange">
+    <view>{{project_finish}}
+    </view>
+  </picker>
+</view>
+<view style="display:flex; flex-direction:row; margin-top:10px;margin-left:10px;height:30px">
+    <text class='title'>项目名称:</text>
+    <input class='input' bindinput='title_put'  ></input>
+</view>
+<view style="display:flex; flex-direction:row; margin-top:10px;margin-left:10px;height:30px">
+    <text class='title'>项目预算:</text>
+    <input class='input' bindinput='budget_put' ></input>
+</view>
+<view style='margin-top:10px;'>
+    <text class='title' style='margin-left:10px;'>项目描述:</text>
+    <textarea class='input' style='margin-left:10px;margin-top:5px;width:330px;' bindinput='require_put'></textarea>
+</view>
+<view class='uploadPic'></view>
+<view class='publish' bindtap='pub'>发布</view>
+<view class="type">
+   <text class='type1' bindtap='set_power'>设置权限</text>
+</view>
+
+
+

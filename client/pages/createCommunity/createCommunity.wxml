@@ -1,0 +1,30 @@
+<view class='header' >
+  <view class='button' bindtap='back' >
+    <image src='https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538531908463-gb0Gt8Xys.png'></image>
+    <text>我的圈子</text>
+  </view>
+  <text class='title' >
+    建立圈子
+  </text>
+  <text class='inviteFriend'>邀请圈友</text>
+</view>
+
+<form bindsubmit='createCommunity'>
+  <view>
+    <label for='communityName'>圈子名称:</label>
+    <input name='communityName' />
+  </view>
+  <view>
+    <label>圈子类别:</label>
+    <picker range='{{communityType}}'  bindchange='typeChange'name='communityType' >{{communityType[index]}}</picker>
+  </view>
+  <view>
+    <label class='label' >圈子介绍:</label>
+    <textarea name='communityIntroduce' ></textarea>
+  </view>
+  <view class='uploadPic' style='background-image: url("https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538531671441-2Jzzfebl8.png")'><text>上传封面</text></view>
+  <button class='create' form-type='submit'>新建圈子</button>
+</form>
+
+
+

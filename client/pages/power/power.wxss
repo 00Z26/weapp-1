@@ -1,0 +1,85 @@
+/* pages/power/power.wxss */
+
+page{
+  background-color:#E9E9E9;
+}
+.header{
+  background-color: #fff;
+  width:100%;
+  padding-bottom:20rpx;
+}
+.header image{
+  width: 22rpx;
+  height: 38rpx;
+  margin-top: 22rpx;
+  margin-left: 16rpx;
+  margin-right: 13rpx;
+  margin-bottom:-4rpx;
+
+}
+.header text{
+  color: rgba(0, 187, 221, 1);
+  line-height: 30rpx;
+  font-size: 40rpx;
+}
+.button{
+  width: 220rpx;
+  display: inline-block;
+}
+.title{
+  margin-left: 75rpx;
+  display: inline-block;
+}
+.complete{
+ margin-left: 180rpx;
+}
+
+.select_power{
+  display:flex; 
+  flex-direction:row; 
+  margin-top:15px;
+  margin-left:30px;
+  width: 300px;
+  min-height: 60px;
+  height: auto;
+}
+.select{
+  position: absolute;
+  right: 40px;
+}
+.introduce{
+  font-size: 15px;
+  position: absolute;
+  margin-top: 30px;
+  left: 30px;
+  color:rgb(128, 128, 128);
+}
+.community_class1{
+ margin-top: 30px;
+  color: black;
+  line-height: 100%;
+  margin-left: 5px;
+}
+.community_class2{
+  margin-top: 30px;
+  color: black;
+  margin-left: 5px;
+  line-height: 100%;
+}
+.community_class3{
+  margin-top: 30px;
+  color: black;
+  line-height: 100%;
+  margin-left: 5px;
+}
+.line{
+  margin-top: 35px;
+  display: flex;
+  width: 300px;
+  height: 1px;
+  background-color: rgb(194, 190, 190);
+}
+
+label{
+  display: inline-block;
+}

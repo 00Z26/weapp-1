@@ -1,0 +1,225 @@
+page{
+    background-color: #E9E9E9;
+    font-family: Microsoft Yahei,Arial, Helvetica, sans-serif;
+}
+
+.header{
+
+  background-color: #fff;
+  width:100%;
+  padding-bottom:20rpx;
+}
+.header image{
+  width: 22rpx;
+  height: 38rpx;
+  margin-top: 22rpx;
+  margin-left: 16rpx;
+  margin-right: 13rpx;
+  margin-bottom:-4rpx;
+
+}
+.header text{
+  color: rgba(0, 187, 221, 1);
+  line-height: 36rpx;
+}
+.button{
+  width: 160rpx;
+  display: inline-block;
+}
+.project{
+  margin-bottom: 30rpx;
+}
+.title{
+  margin-left: 140rpx;
+  display: inline-block;
+}
+.ansButton{
+  margin-left: 125rpx;
+}
+
+.projectBox{
+	  width: 100%;
+    margin-top: -10rpx;
+    border-top: 2rpx solid rgba(166, 166, 166, 1);
+    padding-top: 30rpx;
+    padding-left: 20rpx;
+	  background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0rpx 2rpx 5rpx 0rpx rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+.projectTitle{
+    font-size: 36rpx;
+}
+.userInfo{
+    margin-top: 10rpx;
+    margin-bottom: 20rpx;
+    font-size: 25rpx;
+    height: 30rpx;
+}
+.avatar{
+    width: 50rpx;
+    height: 50rpx;
+    margin-top: 10rpx;
+    float: left;
+}
+.userName{
+   line-height: 70rpx;
+    margin-left: 10rpx;
+    float: left;
+}
+.time{
+    line-height: 70rpx;
+    float: right;
+    margin-right: 50rpx;
+    color: rgba(166, 166, 166, 1);
+}
+.subTitle{
+    margin-top: 60rpx;
+    margin-left: 20rpx;
+    margin-right: 30rpx;
+    font-size: 26rpx;
+    color: rgba(166, 166, 166, 1);
+    margin-bottom: 20rpx;
+}
+
+.projectInfo{
+    height: 120rpx;
+    margin-top: 50rpx;
+    margin-left: 20rpx;
+    margin-right: 30rpx;
+    font-size: 26rpx;
+    color: rgba(0, 187, 221, 1);
+    margin-bottom: 20rpx;
+}
+
+.projectInfo ul li{
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+.lb{
+    float: left;
+    width: 45%;
+    margin-right: 20rpx;
+    padding-right: 20rpx;
+    border-right: 2rpx solid rgba(170, 170, 170, 1);
+}
+.rb{
+    float: left;
+    margin-left: 20rpx;
+}
+.projectDetail{
+  margin-bottom: 30rpx;
+}
+.projectDetail text{
+  font-size: 32rpx;
+  display: block;
+}
+.projectRequire{
+  font-size: 30rpx;
+  margin-left: 30rpx;
+}
+
+.socialInfo{
+    margin-left: 20rpx; 
+    margin-bottom: 20rpx;
+    font-size: 21rpx;
+}
+.socialInfo ul li{
+    color: rgba(170, 170, 170, 1);
+    
+}
+.socialInfo ul li image{
+    width: 30rpx;
+    height: 30rpx;
+    vertical-align: middle;
+}
+.mask{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.3;
+    transition: 0.3s opacity;
+    overflow: hidden;
+}
+
+.commentBox{
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 2rpx 2rpx 2rpx 0 rgba(0, 0,0,0.3);
+  border-radius: 4rpx;
+}
+.comment{
+  margin-bottom: 10rpx;
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid rgba(0, 0,0,0.3);
+  font-size: 32rpx;
+}
+.info{
+  padding-bottom: 10rpx;
+  margin-bottom: 20rpx;
+}
+.info image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: -50rpx;
+}
+.info ul{
+  display: flex;
+
+}
+.info ul li{
+  display: inline-flex;
+  width: 33%;
+  justify-content: space-around;
+  font-size: 30rpx;
+}
+.mgl{
+  margin-left: 50rpx;
+}
+.ml{
+  margin-left:156rpx;
+}
+
+.commentAws{
+  height: 300rpx;
+  width: 100%;
+  position: fixed;
+  background-color:#fff;
+  z-index: 3;    
+  transition: bottom 0.3s;
+}
+.commentAws textarea{
+  border: 3rpx solid #E9E9E9;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  height: 250rpx;
+  width: 80%;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 2rp 0 rgba(0, 0, 0, 0.5);
+  background-color: #E9E9E9;
+  float: left;
+  margin-right: 10rpx;
+}
+.mask{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.3;
+    transition: 0.3s opacity;
+    overflow: hidden;
+}
+.commentAws button{
+  padding: 0 15rpx;
+  text-align: center;
+  float: left;
+  white-space: nowrap;
+  font-size: 28rpx;
+  margin-top: 216rpx;
+}

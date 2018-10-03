@@ -1,0 +1,27 @@
+<view class='header' >
+  <view class='button' bindtap='back' >
+    <image src='{{back_url}}'></image>
+    <text>问题详情</text>
+  </view>
+  <text class='title' >
+      评论{{}}
+  </text>
+</view>
+
+<view class="comments">
+    <view wx:for="{{commentList}}" wx:key="{{item.comment_id}}">
+        <view class="comment">
+            <image class="avatar" src="{{item.user_image}}" />
+            <view class="commentInfo">
+                <text class="name">{{item.user_name}}</text>
+                <view class="praise">
+                    <image class="praiseIcon" src="{{praise_url}}" />
+                    <text>{{item.praisenum}}</text>
+                </view>
+                <text class="commentTime">{{item.comment_time}}</text>
+                <text class="commentContent">{{item.comment_info}}</text>
+            </view>
+
+        </view>
+    </view>
+</view>

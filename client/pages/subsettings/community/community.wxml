@@ -1,0 +1,22 @@
+<view class='header' >
+  <view class='button' bindtap='back' >
+    <image src='{{back_url}}'></image>
+    <text>个人中心</text>
+  </view>
+  <text class='title' >
+    我的圈子
+  </text>
+</view>
+
+<view class='tabs'>
+  <ul>
+    <li style='color:{{isActive1}}; border-bottom:{{border1}}' bindtap='chooseTab1'>我加入的圈子</li>
+    <li style='color:{{isActive2}}; border-bottom:{{border2}}' bindtap='chooseTab2'>我创建的圈子</li>
+  </ul>
+</view>
+
+<view class='container'>
+  <view class='joinedCom' ></view>
+
+  <view class='establishedCom'></view>
+</view>

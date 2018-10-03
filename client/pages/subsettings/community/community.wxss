@@ -1,0 +1,103 @@
+page{
+  background-color:#E9E9E9;
+}
+.header{
+  background-color: #fff;
+  width:100%;
+  padding-bottom:20rpx;
+}
+.header image{
+  width: 22rpx;
+  height: 38rpx;
+  margin-top: 22rpx;
+  margin-left: 16rpx;
+  margin-right: 13rpx;
+  margin-bottom:-4rpx;
+
+}
+.header text{
+  color: rgba(0, 187, 221, 1);
+  line-height: 30rpx;
+  font-size: 40rpx;
+}
+.button{
+  width: 220rpx;
+  display: inline-block;
+}
+.title{
+  margin-left: 75rpx;
+  display: inline-block;
+}
+
+.tabs{
+  box-shadow: 0rpx 1rpx 1rpx 0rpx rgba(0, 0, 0, 0.5);
+}
+.tabs ul{
+  display: flex;
+}
+.tabs ul li{
+  flex: 1;
+  text-align: center;
+  background-color: #fff;
+  height:84rpx;
+  line-height:84rpx;
+  color: rgba(54, 142, 153, 1);
+  font-size: 30rpx;
+}
+
+#container{
+  position: relative;
+}
+#question{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.publishedQuestion{
+  background-color: #fff;
+  height: 154rpx;
+  transition: transform 0.2s;
+  border: rgba(217, 217, 217, 1) solid 2rpx;
+}
+.questionTitle{
+  padding:14rpx 30rpx;
+  padding-top: 26rpx;
+  display:block;  
+  font-size: 30rpx;
+  line-height: 45rpx;
+}
+.questionSocialInfo{
+  color: rgba(128, 128, 128, 1);
+	font-size: 26rpx;
+	line-height: 39rpx;
+  padding:0 30rpx;
+  display:block;  
+}
+
+#project{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.publishedProject{
+  background-color: #fff;
+  height: 154rpx;
+  transition: transform 0.2s;
+  border: rgba(217, 217, 217, 1) solid 2rpx;
+}
+.projectTitle{
+  padding:14rpx 30rpx;
+  padding-top: 26rpx;
+  display:block;  
+  font-size: 30rpx;
+  line-height: 45rpx;
+}
+.projectSocialInfo{
+  color: rgba(128, 128, 128, 1);
+	font-size: 26rpx;
+	line-height: 39rpx;
+  padding:0 30rpx;
+  display:block;  
+}

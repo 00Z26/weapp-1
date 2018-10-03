@@ -1,0 +1,37 @@
+<view class='header' >
+  <view class='button' bindtap='back' >
+    <image src='{{back_url}}'></image>
+    <text>动态</text>
+  </view>
+  <text class='title' >
+    个人资料
+  </text>
+</view>
+
+<view class='myInfo' bindtap='individualInfo' >
+  <image class='avatar' src='{{avatarUrl}}'/>
+  <view class='ilb'>  
+    <text class='userName'>{{userName}}</text>
+  </view>
+</view>
+<view>
+  <form bindsubmit='submitInfo'>
+    <view>
+      <text>性别</text>
+      <view class='sex'>{{sex}}</view>
+    </view>
+    <view>
+     <text>职业</text>
+      <picker range='{{jobRange}}' name='job' bindchange='jobChange'>{{jobRange[job]}}</picker>   
+    </view>
+    <view class='rl'>
+     <text>所属单位</text>
+      <input confirm-type='next' name='corporation' placeholder='{{corporation}}' placeholder-class='corporationHolder' bindinput='corporationInput'></input>   
+    </view>
+    <view>
+      <text>简介</text>
+      <textarea maxlength='240' placeholder='{{introduce}}' name='introduce'></textarea>
+    </view>
+    <button type='primary' form-type='submit' bindtap='checkInfo'>保存</button>
+  </form>
+</view>

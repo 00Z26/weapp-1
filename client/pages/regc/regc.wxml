@@ -1,0 +1,18 @@
+<view class="itemView">名字：
+    <input  name="userName" placeholder="请输入用户名"
+    bindinput ="userNameInput"/>
+  </view>
+<view class="itemView">工作：
+    <input name='job' placeholder="请输入工作"
+     bindinput="jobInput" />
+  </view>
+<view class="itemView">工作地点：
+    <input  name='corporation' placeholder="请输入工作地点"
+     bindinput="corporationInput" />
+  </view>
+<text>(以上所有请填写英文且不加入空格 如：lili,student,hust)</text>
+<view class="viewName" style="background-color:#fbf9fe">
+  <button  bindtap="loginBtnClick">登录</button>
+  <text>{{x}}</text>
+</view>
+<image src='{{imgUrl}}'></image>

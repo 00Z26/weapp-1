@@ -1,0 +1,7 @@
+<view>
+<checkbox-group bindchange="checkboxChange">
+    <label class="checkbox" wx:for-items="{{community}}">
+        <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+    </label>
+</checkbox-group>
+</view>

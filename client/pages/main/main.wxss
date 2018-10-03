@@ -1,0 +1,168 @@
+/* pages/main/main.wxss */
+page{
+    background-color: #E9E9E9;
+    font-family: Microsoft Yahei,Arial, Helvetica, sans-serif;
+}
+/* header */
+.header{
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    background-color:rgba(0, 187, 211, 1);
+    width: 100%;
+}
+.searchBox{
+  display: flex;
+  justify-content: center;
+}
+.search{
+    width: 480rpx;
+    height: 96rpx;
+    margin-top: 32rpx;
+    margin-bottom: 46rpx;
+    padding-left: 90rpx;
+    border-radius: 5rpx;
+	font-size: 32rpx;
+	line-height: 50rpx;
+    box-shadow: 0rpx 5rpx 5rpx 0rpx rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+}
+
+.myInfo{
+    margin-top: 45rpx;
+    margin-right: 20rpx;
+    display: flex;
+    width: 70rpx;
+    height: 70rpx;
+}
+.searchIcon{
+    position: absolute;
+    left: 110rpx;
+    top: 50rpx;
+    width: 60rpx;
+    height: 60rpx;
+    opacity: 0.54;
+}
+.publish{
+    margin-top: 51rpx;
+    margin-left: 10rpx;
+    display: flex;
+    width: 59rpx;
+    height: 56rpx;
+}
+.tags{
+    padding-bottom: 2rpx;
+}
+.tags ul{
+    list-style: none;
+    display: flex;
+}
+.tags ul li{
+    display: inline-flex;
+    justify-content: space-around;
+    width: 50%;
+    padding-bottom: 30rpx;
+    line-height: 32rpx;
+    color: rgba(255, 255, 255, 0.7);
+
+}
+
+#community{
+    background-color: #fff;
+    padding-left: 20rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+    box-shadow:  0rpx 5rpx 5rpx 0rpx rgba(37, 19, 19, 0.3);
+    transition: max-height 0.2s;
+    overflow: hidden;
+}
+.pullDownIcon{
+  width:50rpx;
+  height: 50rpx;
+  margin-right:10rpx;
+  float: right;
+  transition: transform 0.2s;
+}
+#community ul{
+    flex-wrap: nowrap;
+    flex: 1;
+}
+#community ul li{
+    display: inline-flex;
+    text-align: center;
+    border:2rpx solid #fff;
+    margin: 6rpx 10rpx;
+    border-radius: 20rpx;
+    padding:0 10rpx;
+    background-color: rgba(204, 204, 204, 1);
+    color: rgba(80, 80, 80, 1);
+    font-size: 28rpx;
+    line-height: 42rpx;
+}
+/* 发布动态/项目 */
+#publishBox{
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10rpx;
+    transition: 0.3s top;
+}
+#publishBox image{
+    margin-top: 54rpx;
+    margin-bottom: 17rpx;
+    width: 185rpx;
+    height: 167rpx;
+}
+#publishBox .close{
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 73rpx;
+    height: 75rpx;
+}
+.pubType{
+  margin-left:12rpx;
+  margin-bottom:27rpx;
+
+}
+
+/* 动态 */
+.main{
+    position: relative;
+    transition: 3s opacity;
+    opacity: 2;
+    margin-top: 320rpx;
+    vertical-align: middle;
+}
+.title{
+    margin-left: 18rpx;
+}
+.userName{
+    line-height: 70rpx;
+    margin-left: 10rpx;
+    float: left;
+}
+.time{
+    line-height: 70rpx;
+    float: right;
+    margin-right: 50rpx;
+}
+project text{
+    color: rgba(80, 80, 80, 1);
+}
+
+.mask{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.3;
+    transition: 0.3s opacity;
+    overflow: hidden;
+}

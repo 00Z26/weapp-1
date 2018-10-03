@@ -1,0 +1,21 @@
+<view class='commentBox'>
+  <view class='comment'>
+    <slot name='comment' />
+  </view>
+  <view class='info'>
+    <ul>
+      <li>
+        <image src='{{avatar_icon}}' />
+        <slot name='userName'  />
+      </li>
+      <li>
+        <image src='{{comment_icon}}' />
+        <slot name='commentNum' />
+      </li>
+      <li>
+        <image src='{{like_icon}}' />
+        <slot name='likeNum' />
+      </li>
+    </ul>
+  </view>
+</view>

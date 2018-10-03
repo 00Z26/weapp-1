@@ -1,0 +1,58 @@
+<!--components/project.wxml-->
+<view class="projectBox">
+    <slot class="title" name="title"></slot>
+    <view class="userInfo">
+        <image src='{{avatar_url}}' class="avatar" />
+        <slot class="userName" name="userName"></slot>
+        <slot class="time" name="time"></slot>
+    </view>
+    <view class="projectInfo">
+    <ul>
+        <view class="lb">
+            <li>
+            项目类别:
+            <slot name="projectType"></slot>
+            </li>
+            <li>
+            项目状态:
+            <slot name="projectState"></slot>
+            </li>
+            <li>
+            所在城市:
+            <slot name="projectCity"></slot>
+            </li>
+        </view>
+        
+        <view class="rb">
+            <li>
+            项目周期：
+            <slot name="projectPeriod"></slot>
+            </li>
+            <li>
+            地域要求：
+            <slot name="locationDemand"></slot>
+            </li>
+            <li>
+            预算费用：
+            <slot name="projectBudget"></slot>
+            </li>
+        </view>
+    </ul>
+    </view>
+    <view class="socialInfo">
+        <ul>
+            <li>
+                <image src="{{answer_url}}"></image>
+                回答:<slot name="answerNumber"></slot>
+            </li>
+            <li>
+                <image src="{{type_url}}" class="ml"></image>
+                <slot name="questionType"></slot>
+            </li>
+            <li>
+                <image src="{{privaty_url}}" class='ml'></image>
+                <slot name="privacy"></slot>
+            </li>
+        </ul>
+    </view>
+</view>
