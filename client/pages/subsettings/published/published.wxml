@@ -13,19 +13,29 @@
 </view>
 <view id='container'>
   <view id='question' style='z-index:{{z1}}'>
-    <view wx:for='{{questionArray}}' wx:key='{{item.question_id}}' class='publishedQuestion' style='transform:translateX({{transform1}})'bindtap='jumpToDetail' data-type = '1' id='{{item.question_id}}'>
+    <view wx:for='{{questionArray}}' wx:key='{{item.question_id}}' class='publishedQuestion' style='transform:translateX({{transform1}})'bindtap='jumpToQuestion' data-type = '1' id='{{item.question_id}}'>
       <text class='questionTitle'>{{item.question_title}}</text>
       <text class='questionSocialInfo'>{{item.answernum}}个回答· {{item.focus_num}}人关注</text>
   </view>
   </view>
   <view id='project' style='z-index:{{z2}}'>
-    <view wx:for='{{projectArray}}' wx:key='{{item.project_id}}' class='publishedProject' style='transform:translateX({{transform2}})'>
+    <view wx:for='{{projectArray}}' wx:key='{{item.project_id}}' class='publishedProject' style='transform:translateX({{transform2}})' bindtap='jumpToProject' id='{{item.project_id}}'>
     <text class='projectTitle'>{{item.project_title}}</text>
     <text class='projectSocialInfo'>{{item.answernum}}个回答· {{item.focus_num}}人关注</text>
   </view>
   </view>
   <view id='answer' style='z-index:{{z3}}'>
-    <view wx:for='{{answeredArray}}' wx:key='{{item.question_id}}+{{item.project_id}}' class='myAnswer' style='transform:translateX({{transform3}})'>
+    <view wx:for='{{answerList}}' wx:key='{{item.question_id}}{{item.project_id}}' class='myAnswer' style='transform:translateX({{transform3}})'>
+      <view wx:if='{{item.object_type == 0}}' bindtap='jumpToProject' id='{{item.object_id}}' class='answer'>
+        <text class='projectTitle'>{{item.object_title}}</text>
+        <text class='answerInfo'>{{item.answer_info}}</text>
+        <text class='time'>{{item.answer_time}}</text>
+      </view>
+      <view wx:if='{{item.object_type == 1}}' bindtap='jumpToQuestion' id='{{item.object_id}}' class='answer'>
+        <text class='questionTitle'>{{item.object_title}}</text>
+        <text class='answerInfo'>{{item.answer_info}}</text>
+        <text class='time'>{{item.answer_time}}</text>
+      </view>      
   </view>
   </view>
 </view>

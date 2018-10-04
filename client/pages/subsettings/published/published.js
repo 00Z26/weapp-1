@@ -1,5 +1,22 @@
 var config = require('../../../config');
 const app = getApp()
+function timeCalc(time) {
+  var now = new Date()
+  //var timeDiff = parseInt((now - time) / 1000) - 28800    //单位为秒
+  if (time.getFullYear() == now.getFullYear()) {
+    if (time.getMonth() == now.getMonth()) {
+      if (now.getDate() == time.getDate()) {
+        return (Array(2).join('0') + time.getHours()).slice(-2) + ":" + (Array(2).join('0') + time.getMinutes()).slice(-2)
+      } else {
+        return time.getMonth() + "-" + time.getDate()
+      }
+    } else {
+      return time.getMonth() + "-" + time.getDate()
+    }
+  } else {
+    return time.getFullYear() + "-" + time.getMonth() + "-" + time.getDate()
+  }
+}
 Page({
 
   /**
@@ -20,7 +37,8 @@ Page({
     z2: '1',
     z3: '1',
     questionArray: '',
-    projectArray: ''
+    projectArray: '',
+    answerList: ''
   },
 
   /**
@@ -33,13 +51,20 @@ Page({
       method: 'get',
       data: {
         user_type: 0,
-        user_id: 18211949725
+        user_id: 18211949726
       },
       success: function (res) {
         console.log(res)
+        if(res.data.answer){
+          for(var item of res.data.answer){
+            item.answer_time = new Date(item.answer_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.answer_time = timeCalc(item.answer_time)
+          }
+        }
         that.setData({
           projectArray: res.data.project,
-          questionArray: res.data.question
+          questionArray: res.data.question,
+          answerList: res.data.answer
         })
       }
     })
@@ -56,22 +81,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.request({
-      method: 'get',
-      url: config.service.change_message,
-      data: {
-        user_type: 0,
-        user_id: 18211949725,
-        individual_job: '本科生',
-        individual_corporation: '武汉大学',
-        individual_introduce: '我不知道怎么介绍'
-      },
-      success: function (res) {
-        console.log(res.data)
-      },
-      fail: function (res) {
-      }
-    }) 
+
   },
 
   /**
@@ -161,10 +171,19 @@ Page({
       delta: 1
     })
   },
-  jumpToDetail: function(e){
+  jumpToQuestion: function(e){
     console.log(e)
     wx.navigateTo({
-      url: './../../question_detail/question_detail?id=' + e.currentTarget.id + '&type=' + e.currentTarget.dataset.type,
+      url: './../../question_detail/question_detail?id=' + e.currentTarget.id,
+    })
+  },
+  jumpToProject: function (e) {
+    wx.navigateTo({
+      url: './../../project_detail/project_detail?id=' + e.currentTarget.id,
+    })
+  }, jumpToComment: function (e) {
+    wx.navigateTo({
+      url: './../../comment/comment?id=' + e.currentTarget.id,
     })
   }
 })

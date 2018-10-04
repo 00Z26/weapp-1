@@ -126,6 +126,7 @@ App({
       pullDown_url:'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538536595087-xJ4Gz745Y.png',
       me3_url:'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538537155439-CdcryyTYj.png',
       default_url:'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png',
+      rightArrow_url: 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538626553738-BxWoVORS-.png',
 
     }
 })

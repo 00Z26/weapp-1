@@ -1,15 +1,17 @@
 {
   "pages": [
-    "pages/notice/notice",
-    "pages/regc/regc",
-    "pages/main/main",
+        "pages/index/index",
+  "pages/main/main",
+
     "pages/community/community",
+    "pages/notice/notice",
+    "pages/comment/comment",
     "pages/member/member",
-    "pages/index/index",
+ 
+    "pages/regc/regc",
     "pages/home/home",
     "pages/project_detail/project_detail",
     "pages/createCommunity/createCommunity",
-    "pages/comment/comment",
     "pages/settings/settings",
     "pages/subsettings/individual_info/individual_info",
     "pages/subsettings/published/published",

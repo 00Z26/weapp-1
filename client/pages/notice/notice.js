@@ -213,13 +213,14 @@ Page({
     })
   },
   jumpToQuestion: function(e){
-    let id = e.target.dataset.id
+    console.log(e)
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: './../question_detail/question_detail?id=' + id,
     })
   },
   jumpToProject: function(e){
-    let id = e.target.dataset.id
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: './../project_detail/project_detail?id=' + id,
     })

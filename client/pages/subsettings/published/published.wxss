@@ -52,9 +52,9 @@ page{
 }
 .publishedQuestion{
   background-color: #fff;
-  height: 154rpx;
   transition: transform 0.2s;
   border: rgba(217, 217, 217, 1) solid 2rpx;
+  padding-bottom: 30rpx;
 }
 .questionTitle{
   padding:14rpx 30rpx;
@@ -79,9 +79,9 @@ page{
 }
 .publishedProject{
   background-color: #fff;
-  height: 154rpx;
   transition: transform 0.2s;
   border: rgba(217, 217, 217, 1) solid 2rpx;
+  padding-bottom: 30rpx;
 }
 .projectTitle{
   padding:14rpx 30rpx;
@@ -97,3 +97,30 @@ page{
   padding:0 30rpx;
   display:block;  
 } 
+
+#answer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.answer{
+  background-color: #fff;
+  padding-bottom: 30rpx;
+  transition: transform 0.2s;
+  border: rgba(217, 217, 217, 1) solid 2rpx;
+}
+.answerInfo{
+	font-size: 26rpx;
+	line-height: 39rpx;
+  padding:0 30rpx;
+  display:block;  
+}
+.myAnswer{
+  transition: transform 0.2s;
+}
+.time{
+  font-size: 26rpx;
+  color: rgba(191, 185, 185, 1);
+  padding:0 30rpx;
+}
