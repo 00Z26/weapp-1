@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/notice/notice",
     "pages/main/main",
-    "pages/member/member",
     "pages/community/community",
+    "pages/member/member",
     "pages/index/index",
     "pages/home/home",
     "pages/regc/regc",

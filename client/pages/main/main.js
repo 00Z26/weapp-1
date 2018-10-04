@@ -265,6 +265,7 @@ Page({
     })
   },
   chooseTag1: function(){
+    var that =this
     wx.request({
       url: config.service.home_page,
       method: 'get',

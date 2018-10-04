@@ -25,7 +25,7 @@ page{
   display: inline-block;
 }
 .title{
-  margin-left: 55rpx;
+  margin-left: 75rpx;
   display: inline-block;
 }
 

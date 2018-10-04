@@ -1,6 +1,5 @@
 page{
   background-color:#E9E9E9;
-  
 }
 .header{
   background-color: #fff;
@@ -8,7 +7,7 @@ page{
   padding-bottom:20rpx;
 }
 .header image{
-  width: 22rpx;
+  width: 40rpx;
   height: 38rpx;
   margin-top: 22rpx;
   margin-left: 16rpx;
@@ -22,9 +21,14 @@ page{
   font-size: 40rpx;
 }
 .button{
-  width: 200rpx;
+  width: 230rpx;
   display: inline-block;
 }
+.title{
+  margin-left: 105rpx;
+  display: inline-block;
+}
+
 .tabs{
   box-shadow: 0rpx 1rpx 1rpx 0rpx rgba(0, 0, 0, 0.5);
 }
@@ -96,4 +100,4 @@ page{
 	line-height: 39rpx;
   padding:0 30rpx;
   display:block;  
-} 
+}

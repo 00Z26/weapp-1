@@ -15,11 +15,12 @@ Page({
   onLoad: function (options) {
     var that = this
     wx.request({
-      url: config.service.community_member,
+      url: config.service.community_member, 
       data:{
-        community_id: options.communityId
+        community_id: 1   //options.communityId
       },
       success: function(res){
+        console.log(res)
         that.setData({
           memberList: res.data.result,
           communityName: options.communityName

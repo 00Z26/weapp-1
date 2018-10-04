@@ -13,14 +13,14 @@ const DB = require('knex')({
 })
 module.exports = async (ctx, next) => {
   var data = ctx.query;
-  var result = [];
+  var result = {};
   var user = await DB.select('user_type','user_id').from('community').where('community_id', data.community_id);
   var member = await DB.select('user_type','user_id').from('community_user').where('community_id', data.community_id).whereNot('user_id',user[0].user_id);
   if (member.length > 0) {
     for (var i = 0; i < member.length; i++) {
       if (member[i].user_type == 0) {
         var m = await DB.select('*').from('individual').where('individual_id', member[i].user_id);
-        result[i+1].user_type = 0;
+        result[i + 1].user_type = 0;
         result[i + 1].user_id = member[i].user_id;
         result[i + 1].user_name = m[0].individual_name;
         result[i + 1].user_image = m[0].image;

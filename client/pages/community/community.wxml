@@ -5,12 +5,13 @@
     <text>问题{{questionNum}} 项目{{projectNum}} 圈友{{memberNum}}\n</text>
     <text>圈友:</text>
     <view class='members'>
-      <image src='{{communityMember[0]}}' />
-      <image src='{{communityMember[1]}}' />
-      <image src='{{communityMember[2]}}' />
-      <image src='{{communityMember[3]}}' />
-      <image src='{{communityMember[4]}}' />
-      <image src='{{communityMember[5]}}' />
+      <image src='{{communityMember[0]}}' bindtap='checkMembers' />
+      <image src='{{communityMember[1]}}' bindtap='checkMembers' />
+      <image src='{{communityMember[2]}}' bindtap='checkMembers' />
+      <image src='{{communityMember[3]}}' bindtap='checkMembers' />
+      <image src='{{communityMember[4]}}' bindtap='checkMembers' />
+      <image src='{{communityMember[5]}}' bindtap='checkMembers' />
+      <image src='{{rightArrow}}' bindtap='checkMembers' />
     </view>
     <text>\n简介:{{communityIntroduce}}</text>
   </view>
