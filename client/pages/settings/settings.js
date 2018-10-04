@@ -11,7 +11,7 @@ Page({
     followingUrl: app.globalData.focus_url,
     communityUrl: app.globalData.community_url,
     messageUrl: app.globalData.information_url,
-    userName: '李清荷'
+    userName: app.globalData.userInfo.user_name
   },
 
   /**

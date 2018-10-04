@@ -25,17 +25,19 @@ function quickSort(arr,standard) {
 
 function timeCalc(time) {
   var now = new Date()
-  var timeDiff = parseInt((now - time) / 1000) - 28800    //单位为秒
-  if (timeDiff > 604800) {
-    if (time.getFullYear() != now.getFullYear()) {
-      return time.getFullYear() + time.getMonth() + time.getDate()
-    } else {
-      return time.getMonth() + 1 + '-' + time.getDate()
+  //var timeDiff = parseInt((now - time) / 1000) - 28800    //单位为秒
+  if (time.getFullYear() == now.getFullYear()){
+    if(time.getMonth() == now.getMonth()){
+      if (now.getDate() == time.getDate()) {
+        return (Array(2).join('0') + time.getHours()).slice(-2) + ":" + (Array(2).join('0') + time.getMinutes()).slice(-2)
+      }else{
+        return time.getMonth() + "-" + time.getDate()
+      }
+    }else{
+      return time.getMonth() + "-" + time.getDate()
     }
-  } else if (timeDiff >= 86400) {
-    return time.getMonth() + time.getDate()
-  } else if (timeDiff >= 3600) {
-    return time.getHours() + time.getMiniutes()
+  }else{
+    return time.getFullYear() + "-" + time.getMonth() + "-" + time.getDate()
   }
 }
 Page({
@@ -63,6 +65,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     wx.request({
       url: config.service.news,
       data:{
@@ -72,12 +75,21 @@ Page({
       success: function(res){
         console.log(res)
         var praise = res.data.praise.praise_answer.concat(res.data.praise.praise_comment)
+        for(var i = 0;i < res.data.invite.apply_community.length; i++){
+          res.data.invite.apply_community[i].apply_id = res.data.invite.apply_community[i].community_id
+        }
         var invite = res.data.invite.invite_question.concat(res.data.invite.invite_project).concat(res.data.invite.invite_community).concat(res.data.invite.apply_community)
-        var reply = res.data.reply.reply_question.concat(res.data.reply.reply_project).concat(res.data.reply.comment)
+        var reply = res.data.comment.reply_question.concat(res.data.comment.reply_project).concat(res.data.comment.comment)
         /**按时间排序**/
-        praise = quickSort(praise,'praise_time')
-        invite = quickSort(invite,'time')
-        reply = quickSort(reply,'answer_time')
+        if(praise){
+          praise = quickSort(praise, 'praise_time')
+        }
+        if (invite) {
+          invite = quickSort(invite, 'time')
+        }
+        if (reply) {
+          reply = quickSort(reply, 'time')
+        }
         for (var item of praise) {
           item.praise_time = new Date(item.praise_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
           item.praise_time = timeCalc(item.praise_time)
@@ -86,9 +98,9 @@ Page({
           item.time = new Date(item.time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
           item.time = timeCalc(item.time)
         }
-        for (var item of praise) {
-          item.answer_time = new Date(item.answer_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
-          item.answer_time = timeCalc(item.answer_time)
+        for (var item of reply) {
+          item.time = new Date(item.time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+          item.time = timeCalc(item.time)
         }
         that.setData({
           praiseList: praise,
@@ -200,4 +212,65 @@ Page({
       delta: 1
     })
   },
+  jumpToQuestion: function(e){
+    let id = e.target.dataset.id
+    wx.navigateTo({
+      url: './../question_detail/question_detail?id=' + id,
+    })
+  },
+  jumpToProject: function(e){
+    let id = e.target.dataset.id
+    wx.navigateTo({
+      url: './../project_detail/project_detail?id=' + id,
+    })
+  },
+  jumpToComment: function(e){
+    let id = e.target.dataset.id
+    wx.navigateTo({
+      url: './../comment/comment?answer_id=' + id,
+    })
+  },
+  jumpToCommunity: function(e){
+    let id = e.target.dataset.id
+    wx.navigateTo({
+      url: './../community/community?community_id=' + id,
+    })
+  },
+  agreeInvite: function(e){
+    let communityId = e.target.dataset.id
+    let userId = e.target.dataset.userId
+    wx.request({
+      url: config.service.join_community,
+      data:{
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
+        community_id: communityId
+      },
+      success: function(){
+        wx.showToast({
+          title: '加圈成功',
+          icon: 'none'
+        })
+      }
+    })
+  },
+  agreeJoin: function (e) {
+    let communityId = e.target.dataset.id
+    let userId = e.target.dataset.userId
+    let userType = e.target.dataset.userType
+    wx.request({
+      url: config.service.join_community,
+      data: {
+        user_type: userType,
+        user_id: userId,
+        community_id: communityId
+      },
+      success: function () {
+        wx.showToast({
+          title: '已同意',
+          icon: 'none'
+        })
+      }
+    })
+  }
 })

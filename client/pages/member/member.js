@@ -17,7 +17,7 @@ Page({
     wx.request({
       url: config.service.community_member, 
       data:{
-        community_id: 1   //options.communityId
+        community_id: options.community_id   //options.communityId
       },
       success: function(res){
         console.log(res)

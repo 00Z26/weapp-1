@@ -29,8 +29,8 @@ Page({
     wx.request({
       url: config.service.home,
       data: {
-        user_type: 0,
-        user_id: "15827576787"
+        user_type: userType,
+        user_id: userId
       },
       success: function(res){
         console.log(res.data)

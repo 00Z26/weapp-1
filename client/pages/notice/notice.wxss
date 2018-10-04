@@ -1,5 +1,6 @@
 page{
   background-color:#E9E9E9;
+  transition: transform 0.2s;
 }
 .header{
   background-color: #fff;
@@ -48,56 +49,86 @@ page{
 #container{
   position: relative;
 }
-#question{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+#container image{
+  margin: 20rpx 40rpx;
+  width: 80rpx;
+  height: 80rpx;
+  vertical-align: top;
+  float: left;
 }
-.publishedQuestion{
-  background-color: #fff;
-  height: 154rpx;
-  transition: transform 0.2s;
-  border: rgba(217, 217, 217, 1) solid 2rpx;
+.userName{
+  font-size: 32rpx;
+  line-height: 48rpx;
+  margin-top:20rpx;
+  display:inline-block;
+  width: 440rpx;
+  margin-right:20rpx;
 }
-.questionTitle{
-  padding:14rpx 30rpx;
-  padding-top: 26rpx;
-  display:block;  
+.time{
+  font-size: 28rpx;
+  line-height: 42rpx;
+  color: rgba(102, 102, 102, 1);
+  margin-left:170rpx;
+}
+.praiseDetail,.inviteDetail,.replyDetail{
+  background-color: rgba(221, 221, 218, 1);
+  color: rgba(102, 102, 102, 1);
+  width: 550rpx;
   font-size: 30rpx;
-  line-height: 45rpx;
-}
-.questionSocialInfo{
-  color: rgba(128, 128, 128, 1);
-	font-size: 26rpx;
-	line-height: 39rpx;
-  padding:0 30rpx;
-  display:block;  
+  line-height: 48rpx;
+  margin-left: 160rpx;
+  margin-bottom: 26rpx;
 }
 
-#project{
+
+#praise{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
-.publishedProject{
+
+
+#invite{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.agree{
+  border-radius: 20rpx;
+  width:100rpx;
+  height:50rpx;
+  display:inline-block;
+  font-size:28rpx;
+  padding:2rpx 2rpx;
+  background-color: rgba(0, 187, 221, 1);
+  color: #fff;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+#reply{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+.praise,.invite,.reply{
   background-color: #fff;
-  height: 154rpx;
+  margin-bottom: 3rpx;
+  border: rgba(204, 204, 204, 1) solid 2rpx;
   transition: transform 0.2s;
-  border: rgba(217, 217, 217, 1) solid 2rpx;
 }
-.projectTitle{
-  padding:14rpx 30rpx;
-  padding-top: 26rpx;
-  display:block;  
-  font-size: 30rpx;
-  line-height: 45rpx;
-}
-.projectSocialInfo{
-  color: rgba(128, 128, 128, 1);
-	font-size: 26rpx;
-	line-height: 39rpx;
-  padding:0 30rpx;
-  display:block;  
+
+.noNewPraise,.noNewInvite,.noNewReply{
+  margin: 0 auto;
+  padding: 20rpx;
+  margin-bottom: -66rpx;
+  z-index: -1;
+  text-align:center;
+  color:rgba(0,0,0,0.3);
+  font-size:26rpx;
 }

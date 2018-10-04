@@ -46,9 +46,17 @@ module.exports = async (ctx, next) => {
         other_information[j].user_name =information[0].company_name;
         other_information[j].user_image = information[0].image;
       }
-      praise_answer[count] = {};
-      praise_answer[count].answer = answer[i];
-      praise_answer[count].other_user = other_information[j];
+      praise_answer[count]={
+        answer_id:answer[i].answer_id,
+        answer_info:answer[i].answer_info,
+        object_type: answer[i].object_type,
+        object_id:answer[i].object_id,
+        user_type: other_information[j].user_type,
+        user_id: other_information[j].user_id,
+        user_name: other_information[j].user_name,
+        user_image: other_information[j].user_image,
+        praise_time: other_information[j].praise_time,
+      }
       count = count + 1;
     }
   }
@@ -70,9 +78,16 @@ module.exports = async (ctx, next) => {
         other_information[j].user_name = information[0].company_name;
         other_information[j].user_image = information[0].image;
       }
-      praise_comment[count] = {};
-      praise_comment[count].comment = comment[i];
-      praise_comment[count].other_user = other_information[j];
+      praise_comment[count] = {
+        comment_id: comment[i].comment_id,
+        comment_info: comment[i].comment_info,
+        answer_id: comment[i].answer_id,
+        user_type: other_information[j].user_type,
+        user_id: other_information[j].user_id,
+        user_name: other_information[j].user_name,
+        user_image: other_information[j].user_image,
+        praise_time: other_information[j].praise_time
+      };
       count = count + 1;
     }
   }
@@ -98,9 +113,15 @@ var praise={
       tem[i].user_name = information[0].company_name;
       tem[i].user_image = information[0].image;
     }
-    invite_project[i]={};
-    invite_project[i].project=p[0];
-    invite_project[i].other_information=tem[i];
+    invite_project[i]={
+      project_id: p[0].invite_id,
+      project_title:p[0].project_title,
+      user_type:tem[i].host_type,
+      user_id:tem[i].host_id,
+      user_name:tem[i].user_name,
+      user_image:tem[i].user_image,
+      time:tem[i].time
+    };
     i = i + 1;
   }
 
@@ -119,9 +140,15 @@ var praise={
       tem[i].user_name = information[0].company_name;
       tem[i].user_image = information[0].image;
     }
-    invite_question[i] = {};
-    invite_question[i].question = q[0];
-    invite_question[i].other_information = tem[i];
+    invite_question[i] = {
+      question_id: p[0].invite_id,
+      question_title: p[0].question_title,
+      user_type: tem[i].host_type,
+      user_id: tem[i].host_id,
+      user_name: tem[i].user_name,
+      user_image: tem[i].user_image,
+      time: tem[i].time
+    };
     i = i + 1;
   }
   //获取邀请的圈子
@@ -139,9 +166,15 @@ var praise={
       tem[i].user_name = information[0].company_name;
       tem[i].user_image = information[0].image;
     }
-    invite_community[i] = {};
-    invite_community[i].question = c[0];
-    invite_community[i].other_information = tem[i];
+    invite_community[i] = {
+      community_id: p[0].invite_id,
+      community_name: p[0].community_name,
+      user_type: tem[i].host_type,
+      user_id: tem[i].host_id,
+      user_name: tem[i].user_name,
+      user_image: tem[i].user_image,
+      time: tem[i].time
+    };
     i = i + 1;
   }
 
@@ -162,9 +195,15 @@ var praise={
         user[j].user_name = information[0].company_name;
         user[j].user_image = information[0].image;
       }
-      apply_community[count] = {};
-      apply_community[count].community = community[i];
-      apply_community[count].other_information = user[j];
+      apply_community[count] = {
+        community_id: community[i].community_id,
+        community_name: community[i].community_name,
+        user_type: user[j].user_type,
+        user_id: user[j].user_id,
+        user_name: user[j].user_name,
+        user_image: user[j].user_image,
+        time: user[j].time
+      };
       count = count + 1;
     }
 }
@@ -194,9 +233,15 @@ var  invite = {
         user[j].user_name = information[0].company_name;
         user[j].user_image = information[0].image;
       }
-      reply_project[count] = {};
-      reply_project[count].answer = project[i];
-      reply_project[count].other_information = user[j];
+      reply_project[count] = {
+        project_id:project[i].project_id,
+        project_title:project[i].project_title,
+        user_type:user[j].user_type,
+        user_id:user[j].user_id,
+        user_name:user[j].user_name,
+        user_image:user[j].user_image,
+        time:user[j].answer_time
+      };
       count = count + 1;
     }
     }
@@ -217,9 +262,15 @@ var  invite = {
         user[j].user_name = information[0].company_name;
         user[j].user_image = information[0].image;
       }
-      reply_question[count] = {};
-      reply_question[count].answer = question[i];
-      reply_question[count].other_information = user[j];
+      reply_question[count] = {
+        question_id: question[i].question_id,
+        question_title: question[i].question_title,
+        user_type: user[j].user_type,
+        user_id: user[j].user_id,
+        user_name: user[j].user_name,
+        user_image: user[j].user_image,
+        time: user[j].answer_time
+      };
       count = count + 1;
     }
   }
@@ -242,9 +293,15 @@ var  invite = {
         user[j].user_name = information[0].company_name;
         user[j].user_image = information[0].image;
       }
-      comment[count] = {};
-      comment[count].answer = answer[i];
-      comment[count].other_information = user[j];
+      comment[count] = {
+        answer_id:answer[i].answer_id,
+        answer_info:answer[i].answer_info,
+        user_type: user[j].user_type,
+        user_id: user[j].user_id,
+        user_name: user[j].user_name,
+        user_image: user[j].user_image,
+        time: user[j].comment_time
+      };
       count = count + 1;
     }
   } 

@@ -144,7 +144,7 @@ Page({
           }
           var result = res.data.result1.concat(res.data.result2)
           /**按热度排序**/
-          result = quickSort(result)
+          if (result) result = quickSort(result)
           console.log(result)
           that.setData({
             //projectArray: projectArray,

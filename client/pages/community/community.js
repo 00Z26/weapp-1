@@ -77,7 +77,7 @@ Page({
     wx.request({
       url: config.service.community_PQ,
       data:{
-        community_id: 1
+        community_id: id
       },
       success: function(res){
         if (res.data) {
@@ -165,7 +165,7 @@ Page({
   },
   checkMembers: function(){
     wx.navigateTo({
-      url: './../member/member?communityId=' + this.data.communityId + "&communityName=" + this.data.communityName
+      url: './../member/member?community_id=' + this.data.communityId + "&communityName=" + this.data.communityName
     })
   }
 })
