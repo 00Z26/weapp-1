@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/notice/notice",
+    "pages/regc/regc",
     "pages/main/main",
     "pages/community/community",
     "pages/member/member",
     "pages/index/index",
     "pages/home/home",
-    "pages/regc/regc",
     "pages/project_detail/project_detail",
     "pages/createCommunity/createCommunity",
     "pages/comment/comment",

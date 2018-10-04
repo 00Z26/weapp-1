@@ -27,15 +27,16 @@ Page({
     var that = this
     wx.request({
       url: config.service.news,
-      data:{
+      data:{ 
         user_type:0,
-        user_id:'15827576787'
+        user_id:'18211949726'
       },
       success:function(res){
         console.log(res.data)
       }
     })
-  },
+    },
+    
     /*
     // 选择图片
     wx.chooseImage({

@@ -131,6 +131,12 @@ router.get('/news', controllers.news);
 //上传图片
 router.post('/uploadimage', controllers.uploadimage)
 
+//邀请回答问题/项目/参加圈子
+router.get('/invite', controllers.invite)
+
+//申请加圈
+router.get('/apply', controllers.apply)
+
 
 
 

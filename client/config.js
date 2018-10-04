@@ -127,6 +127,12 @@ var config = {
 
       //返回消息
       news: `${host}/weapp/news`,
+
+      //邀请回答项目/问题、圈子,传递数据举例{host_type: 0, host_id: '18211949725', invite_type: 'P'/'Q'/'C', invite_id: 圈子id/项目id/问题id,guest:[{guest_type:0,guest_id:'18211949725'},{}]}
+      invite: `${host}/weapp/invite`,
+
+      //申请加圈，传递数据举例{user_type: 0, user_id: '18211949725', community_id:1 }
+      apply: `${host}/weapp/apply`
         
     }
 };

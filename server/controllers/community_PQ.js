@@ -17,6 +17,21 @@ module.exports = async (ctx, next) => {
   var result2=[];
   var count1=0;
   var count2=0;
+
+  //获取圈子信息
+  var community = await DB.select('*').from('community').where('community_id', data.community_id);
+  if (community[0].user_type == 0) {
+    var information = await DB.select('individual_name', 'image').from('individual').where('individual_id', community[0].user_id);
+    community[0].user_name = information[0].individual_name;
+    community[0].user_image = information[0].image;
+  }
+  if (community[0].user_type == 1) {
+    var information = await DB.select('company_name', 'image').from('company').where('company_id', community[0].user_id);
+    community[0].user_name = information[0].company_name;
+    community[0].user_image = information[0].image;
+  }
+
+//获取圈子内容
   var obj = await DB.select('object_type','object_id').from('PQ_community').orderBy('time','desc').where('community_id',data.community_id);
   for(var i=0;i<obj.length;i++)
     {
@@ -39,7 +54,7 @@ module.exports = async (ctx, next) => {
     }
     if (result1[i].user_type == 1) {
       var information = await DB.select('company_name', 'image').from('company').where('company_id', result1[i].user_id);
-      result1[i].user_info = information[0].company_name;
+      result1[i].user_name = information[0].company_name;
       result1[i].user_image = information[0].image;
     }
   }
@@ -52,12 +67,13 @@ module.exports = async (ctx, next) => {
     }
     if (result2[i].user_type == 1) {
       var information = await DB.select('company_name', 'image').from('company').where('company_id', result2[i].user_id);
-      result2[i].user_info = information[0].company_name;
+      result2[i].user_name = information[0].company_name;
       result2[i].user_image = information[0].image;
     }
   }
   ctx.body = {
     code: 1,
+    community:community[0],
     result1:result1,     //返回id所在圈子的问题、项目（按时间倒序）
     result2: result2,
   }

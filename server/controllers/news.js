@@ -17,11 +17,11 @@ module.exports = async (ctx, next) => {
   var last_time='';
   if(data.user_type==0){
    last_time = await DB.select('last_check_time').from('individual').where('individual_id',data.user_id);
-  //  update = await DB.where('individual_id', data.user_id).update('last_check_time',date);
+    var update = await DB('individual').update({ 'last_check_time': date }).where('individual_id', data.user_id);
   }
   else{
     last_time = await DB.select('last_check_time').from('company').where('company_id', data.user_id);
-  //  update = await DB.where('company_id', data.user_id).update('last_check_time', date);
+    var update = await DB('company').update({ 'last_check_time': date }).where('company_id', data.user_id);
   }
   var praise='';
   var invite='';
@@ -99,7 +99,7 @@ var praise={
       tem[i].user_image = information[0].image;
     }
     invite_project[i]={};
-    invite_project[i].project=p;
+    invite_project[i].project=p[0];
     invite_project[i].other_information=tem[i];
     i = i + 1;
   }
@@ -120,7 +120,7 @@ var praise={
       tem[i].user_image = information[0].image;
     }
     invite_question[i] = {};
-    invite_question[i].question = q;
+    invite_question[i].question = q[0];
     invite_question[i].other_information = tem[i];
     i = i + 1;
   }
@@ -140,7 +140,7 @@ var praise={
       tem[i].user_image = information[0].image;
     }
     invite_community[i] = {};
-    invite_community[i].question = c;
+    invite_community[i].question = c[0];
     invite_community[i].other_information = tem[i];
     i = i + 1;
   }
@@ -232,11 +232,13 @@ var  invite = {
     for (var j = 0; j < user.length; j++) {
       if (user[j].user_type == 0) {
         var information = await DB.select('individual_name', 'image').from('individual').where('individual_id', user[j].user_id);
+        user[j].answer_time=user[j].comment_time;
         user[j].user_name = information[0].individual_name;
         user[j].user_image = information[0].image;
       }
       else {
         var information = await DB.select('company_name', 'image').from('company').where('company_id', user[j].user_id);
+        user[j].answer_time = user[j].comment_time;
         user[j].user_name = information[0].company_name;
         user[j].user_image = information[0].image;
       }
@@ -255,6 +257,7 @@ var  invite = {
   ctx.body = {
     praise: praise,
     invite: invite,
-    comment:reply
+    comment:reply,
+    last_time: last_time[0].last_check_time
   }
 }
