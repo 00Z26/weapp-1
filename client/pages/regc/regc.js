@@ -26,10 +26,10 @@ Page({
   loginBtnClick: function (e) {
     var that = this
     wx.request({
-      url: config.service.home,
+      url: config.service.news,
       data:{
         user_type:0,
-        user_id:'18211949725'
+        user_id:'15827576787'
       },
       success:function(res){
         console.log(res.data)

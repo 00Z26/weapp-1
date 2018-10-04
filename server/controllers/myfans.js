@@ -18,22 +18,26 @@ module.exports = async (ctx, next) => {
   if (myfans.length > 0) {
     for (var i = 0; i < myfans.length; i++) {
       if (myfans[i].fans_type == 0) {
-        var result = await DB.select('*').from('individual').where('individual_id', myfans[i].fans_id);
+        var r = await DB.select('*').from('individual').where('individual_id', myfans[i].fans_id);
         result[i].fans_type = 0;
         result[i].fans_id = myfans[i].fans_id;
-        result[i].fans_name = result[i].individual_name;
-        result[i].fans_image = result[i].image;
-        result[i].answer_num = result[i].answer_num;
-        result[i].project_num = result[i].project_num;
-        result[i].community_num = result[i].setcommunity_num + result[i].joincommunity_num;
-        result[i].fans_num = result[i].fans_num;
+        result[i].fans_name = r[0].individual_name;
+        result[i].fans_image = r[0].image;
+        result[i].answer_num = r[0].answer_num;
+        result[i].project_num = r[0].project_num;
+        result[i].community_num = r[0].setcommunity_num + r[0].joincommunity_num;
+        result[i].fans_num = r[0].fans_num;
       }
       else {
-        var fans = await DB.select('*').from('company').where('company_id', myfans[i].fans_id);
+        var r = await DB.select('*').from('company').where('company_id', myfans[i].fans_id);
         result[i].fans_type = 1;
         result[i].fans_id = myfans[i].fans_id;
-        result[i].fans_name = fans.company_name;
-        result[i].fans_image = fans.image;
+        result[i].fans_name = r[0].company_name;
+        result[i].fans_image = r[0].image;
+        result[i].answer_num = r[0].answer_num;
+        result[i].project_num = r[0].project_num;
+        result[i].community_num = r[0].setcommunity_num + r[0].joincommunity_num;
+        result[i].fans_num = r[0].fans_num;
       }
     }
   }

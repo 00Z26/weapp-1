@@ -121,6 +121,12 @@ var config = {
 
       //查看他人信息
       home: `${host}/weapp/home`,
+
+      //返回圈子成员
+      community_member: `${host}/weapp/community_member`,
+
+      //返回消息
+      news: `${host}/weapp/news`,
         
     }
 };

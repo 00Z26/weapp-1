@@ -121,9 +121,11 @@ router.get('/pubed', controllers.pubed);
 
 //查看他人信息
 router.get('/home', controllers.home);
+//返回圈子成员
+router.get('/community_member', controllers.community_member);
 
-
-
+//获取消息
+router.get('/news', controllers.news);
 
 
 //上传图片
