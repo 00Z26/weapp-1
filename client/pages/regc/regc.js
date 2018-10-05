@@ -109,16 +109,10 @@ Page({
             image: that.data.imgUrl
           },
           */
-          url: config.service.regs_individual, //接口地址         
+          url: config.service.home_page, //接口地址         
           data: { 
-            code: res.code,
-            individual_id: '15137972256',
-            individual_name: 'KFC', 
-            individual_sex:'男',
-            individual_job: '餐饮', 
-            individual_corporation: '华科喻园店', 
-            individual_introduce: '你好呀',
-            image: that.data.imgUrl
+            user_type:0,
+            user_id:'18211949725'
            },
           header: {
             'content-type': 'application/json' //默认值

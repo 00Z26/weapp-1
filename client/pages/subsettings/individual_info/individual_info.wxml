@@ -16,17 +16,25 @@
 </view>
 <view>
   <form bindsubmit='submitInfo'>
-    <view>
+    <view wx:if='{{individual}}'>
       <text>性别</text>
       <view class='sex'>{{sex}}</view>
     </view>
-    <view>
+    <view wx:if='{{individual}}'>
      <text>职业</text>
       <picker range='{{jobRange}}' name='job' bindchange='jobChange'>{{jobRange[job]}}</picker>   
     </view>
-    <view class='rl'>
+    <view wx:if='{{corporation}}'>
+     <text>行业</text>
+      <picker range='{{typeRange}}' name='type' bindchange='typeChange'>{{typeRange[type]}}</picker>   
+    </view>
+    <view class='rl' wx:if='{{individual}}'>
      <text>所属单位</text>
-      <input confirm-type='next' name='corporation' placeholder='{{corporation}}' placeholder-class='corporationHolder' bindinput='corporationInput'></input>   
+      <input confirm-type='next' name='corporation' placeholder='{{company}}' placeholder-class='corporationHolder' bindinput='corporationInput'></input>   
+    </view>
+    <view class='rl' wx:if='{{corporation}}'>
+     <text>通信地址</text>
+      <input confirm-type='next' name='corporation' placeholder='{{company}}' placeholder-class='corporationHolder' bindinput='corporationInput'></input>   
     </view>
     <view>
       <text>简介</text>

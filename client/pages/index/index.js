@@ -19,11 +19,12 @@ Page({
     type_icon: app.globalData.company_type_url,
     location_icon: app.globalData.address_url,
     userInfo: {},
-    jobList: ['职业','学生','自由职业者','其他'],
-    companyList: ['公司类别','互联网公司','制造业公司','餐饮公司','咨询公司'],
+    jobList: app.globalData.jobList,
+    companyList: app.globalData.typeList,
     index1: 0,
     index2: 0,
-    state: false,
+    state1: false,
+    state2: false,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     individualName: '',
@@ -83,17 +84,18 @@ Page({
     })
     this.data.enterpriseType = e.detail.value
   },
-  // getUserInfo: function(e) {
-  //   console.log(e)
-  //   app.globalData.userInfo = e.detail.userInfo
-  //   this.setData({
-  //     userInfo: e.detail.userInfo,
-  //     hasUserInfo: true
-  //   })
-  //   wx.navigateTo({
-  //     url: './../main/main',
-  //   })
-  // },
+  getUserInfo: function(e) {
+    var gender
+    if (e.detail.rawData.gender == 0){
+      gender = '未知'
+    } else if (e.detail.rawData.gender == 1){
+      gender = '男'
+    } else{
+      gender = '女'
+    } 
+    console.log(e)
+    app.globalData.userInfo.user_sex = gender
+  },
   translateRight: function(){
     this.setData({
       translateLeft: '',
@@ -112,26 +114,23 @@ Page({
             },
           success: function (res) {
             console.log(res.data)
-            if(res.data.result){
+            if(res.data.result.user_id){
               app.globalData.userInfo.user_type = res.data.result.user_type;
               app.globalData.userInfo.user_id = res.data.result.user_id;
-              app.globalData.userInfo.user_name=res.data.result.user_name;
-              app.globalData.userInfo.user_image=res.data.result.user_image;
+              app.globalData.userInfo.user_name = res.data.result.user_name;
+              app.globalData.userInfo.user_image = res.data.result.user_image;
               wx.setStorage({
                 key: 'user',
                 data: {
                   user_type: res.data.result.user_type,
-                  user_id : res.data.result.user_id,
-                  user_name : res.data.result.user_name,
-                  user_image : res.data.result.user_image,
-                },
-                
+                  user_id: res.data.result.user_id,
+                  user_name: res.data.result.user_name,
+                  user_image: res.data.result.user_image
+                },               
               })
-              if(app.globalData.user_id){
-                wx.navigateTo({
-                  url: './../main/main'
-                })
-              }
+              wx.redirectTo({
+                url: './../main/main'
+              })
             }
           }
         })
@@ -156,7 +155,7 @@ Page({
             },
             success: function (res) {
               console.log(res.data)
-              if (res.data.result) {
+              if (res.data.result.user_id) {
                 app.globalData.userInfo.user_type = res.data.result.user_type;
                 app.globalData.userInfo.user_id = res.data.result.user_id;
                 app.globalData.userInfo.user_name = res.data.result.user_name;
@@ -167,12 +166,11 @@ Page({
                     user_type: res.data.result.user_type,
                     user_id: res.data.result.user_id,
                     user_name: res.data.result.user_name,
-                    user_image: res.data.result.user_image,
+                    user_image: res.data.result.user_image
                   },
                 })
-                console.log(app.globalData.userInfo)
                 wx.redirectTo({
-                  url: './../main/main',
+                  url: './../main/main'
                 })
               }
             }
@@ -194,82 +192,67 @@ Page({
   },
   nameInput: function(e){
     this.data.individualName = e.detail.value
+    app.globalData.userInfo.user_name = e.detail.value
   },
-  phoneInput: function(e){
+  individualPhoneInput: function(e){
     this.data.individualPhone = e.detail.value
+    app.globalData.userInfo.user_id = e.detail.value
   },
   corporationInput: function(e){
     this.data.individualCompany = e.detail.value
   },
   companyNameInput: function(e){
     this.data.enterpriseName = e.detail.value
+    app.globalData.userInfo.user_name = e.detail.value
   },
   companyTypePick: function(e){
     this.data.enterpriseType = e.detail.value
   },
   companyPhoneInput: function(e){
     this.data.enterprisePhone = e.detail.value
+    app.globalData.userInfo.user_id = e.detail.value
   },
   companyAddressInput: function(e){
     this.data.enterpriseAddress = e.detail.value
   },
-  checkIndividualInfo: function(){
+  submitIndividualInfo: function(e){
+    var that = this;
+    var image='';
     var that = this
     var individualInfo = this.data.individualInfo
-    if(!this.data.individualName){
+    if (!this.data.individualName) {
       wx.showToast({
         title: '请输入姓名',
         icon: 'none'
       })
-    }else if(this.data.individualJob==0){
+    } else if (this.data.individualJob == 0) {
       wx.showToast({
         title: '请选择职业',
         icon: 'none'
       })
-    }else if(!this.data.individualCompany){
+    } else if (!this.data.individualCompany) {
       wx.showToast({
         title: '请输入单位',
         icon: 'none'
       })
-    }else if(!this.data.individualPhone){
+    } else if (!this.data.individualPhone) {
       wx.showToast({
         title: '请输入电话',
         icon: 'none'
       })
     } else {
       this.setData({
-        state: true
+        state1: true
       })
     }
-  },
-  checkEnterpriseInfo: function () {
-    //var enterpriseInfo = this.data.enterpriseInfo
-    if (!enterpriseName) {
-      wx.showToast({
-        title: '请输入公司名称',
-        icon: 'none'
-      })
-    } else if (enterpriseType == 0) {
-      this.data.state = false;
-      wx.showToast({
-        title: '请选择公司类别',
-        icon: 'none'
-      })
-    }else{
-      this.setData({
-        state : true
-      })
-    }
-  },
-  submitIndividualInfo: function(e){
-    var that = this;
-    var image='';
-    if(this.data.state)
+    if(this.data.state1)
     {
       console.log(e.detail.value);
       wx.getUserInfo({
-        success: res => {
+        success: function(res){
+          console.log(res.data)
           image=res.userInfo.avatar_img;
+          //app.globalData.userInfo.user_sex = res.userInfo.gender
         }
       }),
       wx.login({
@@ -284,14 +267,33 @@ Page({
               individual_job: e.detail.value.individualJob,
               individual_corporation: e.detail.value.individualCompany,
               individual_id: e.detail.value.individualPhone,
-              image:app.globalData.userInfo.image
+              image:app.globalData.userInfo.image,
+              individual_sex: app.globalData.userInfo.user_sex
             },
             header: {
               'content-type': 'application/json'
             },
             success: function (res) {
+              console.log(res)
+              if(res.data.code == 1){
+                wx.showToast({
+                  title: '注册成功',
+                  icon: 'none'
+                })
+                wx.redirectTo({
+                  url: './../main/main',
+                })
+              }else{
+                wx.showToast({
+                  title: res.data.result,
+                  icon: 'none'
+                })
+              }
+            },
+            fail: function(){
               wx.showToast({
-                title: res.data.result,
+                title: '网络错误',
+                icon: 'none'
               })
             }
           })
@@ -301,7 +303,34 @@ Page({
   },
   submitEnterpriseInfo: function(e){
     var that = this
-    if(this.data.state)
+    var image = ''
+    if (!this.data.enterpriseName) {
+      wx.showToast({
+        title: '请输入公司名称',
+        icon: 'none'
+      })
+    } else if (this.data.enterpriseType == 0) {
+      this.data.state = false;
+      wx.showToast({
+        title: '请选择公司类别',
+        icon: 'none'
+      })
+    } else if(!this.data.enterprisePhone){
+      wx.showToast({
+        title: '请输入联系电话',
+        icon: 'none'
+      })
+    }else if(!this.data.enterpriseAddress){
+      wx.showToast({
+        title: '请输入通信地址',
+        icon: 'none'
+      })
+    }else{
+      this.setData({
+        state2: true
+      })
+    }
+    if(this.data.state2)
     {
       console.log(e.detail.value)
       wx.getUserInfo({
@@ -317,17 +346,43 @@ Page({
               method: 'get',
               data: {
                 code: res.code,
-                company_name: e.detail.value.enterpriseName,
-                company_type: e.detail.value.enterpriseType,
-                company_id: e.detail.value.enterprisePhone,
-                company_address: e.detail.value.enterpriseAddress,
-                image: image
+                company_name: e.detail.value.companyName,
+                company_type: e.detail.value.companyType,
+                company_id: e.detail.value.companyPhone,
+                company_address: e.detail.value.companyAddress,
+                image: app.globalData.userInfo.image
               },
               header: {
                 'content-type': 'application/json'
               },
               success: function (res) {
-                console.log(res.data)
+                console.log(res)
+                if(res.data.result){
+                  wx.redirectTo({
+                    url: './../main/main',
+                  })
+                }
+                if (res.data.code == 1) {
+                  wx.showToast({
+                    title: '注册成功',
+                    icon: 'none'
+                  })
+                  wx.redirectTo({
+                    url: './../main/main',
+                  })
+                } else {
+
+                  wx.showToast({
+                    title: res.data.result,
+                    icon: 'none'
+                  })
+                }
+              },
+              fail: function () {
+                wx.showToast({
+                  title: '网络错误',
+                  icon: 'none'
+                })
               }
             })
           }

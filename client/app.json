@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/regc/regc",
     "pages/index/index",
-    "pages/main/main",
     "pages/community/community",
+    "pages/regc/regc",
+    "pages/main/main",
     "pages/notice/notice",
     "pages/comment/comment",
     "pages/member/member",

@@ -10,11 +10,15 @@ Page({
     back_url: app.globalData.back_url,
     userName: app.globalData.userInfo.user_name,
     sex: '男',
-    corporation: '',
+    company: '',
     jobRange: [],
-    job: '0',
+    typeRange: [],
+    job: 0,
+    type: 0,
     introduce: '',
-    flag: false
+    flag: false,
+    individual: true,
+    corporation: false
   },
 
   /**
@@ -44,15 +48,31 @@ Page({
         user_id: app.globalData.userInfo.user_id
       },
       success: function(res){
-        var info = res.data.result[0]
+        var info = res.data.result
         console.log(res.data)
-        that.setData({
-          sex: info.individual_sex,
-          job: info.individual_job,
-          corporation: info.individual_corporation,
-          introduce: info.individual_introduce,
-          jobRange: app.globalData.jobList,
-        })
+        if(info.individual_name){
+          that.setData({
+            individual: true,
+            corporation: false,
+            sex: info.individual_sex,
+            job: info.individual_job,
+            company: info.individual_corporation,
+            introduce: info.individual_introduce,
+            jobRange: app.globalData.jobList,
+            userName: app.globalData.userInfo.user_name
+          })
+        }else{
+          that.setData({
+            individual: false,
+            corporation: true,
+            introduce: info.company_introduce,
+            typeRange: app.globalData.typeList,
+            type: info.company_type,
+            company: info.company_address,
+            userName: app.globalData.userInfo.user_name
+          })
+        }
+
       }
     })
   },
@@ -100,6 +120,12 @@ Page({
     
     this.setData({
       job: e.detail.value
+    })
+  },
+  typeChange: function (e) {
+
+    this.setData({
+      type: e.detail.value
     })
   },
   // corporationInput: function(e){

@@ -1,9 +1,45 @@
 page{
-  background-color: #E9E9E9;
+  background-color:#E9E9E9;
+  height: 100%;
 }
+#container{
+  height: 100%;
+}
+.header{
+  background-color: #fff;
+  width:100%;
+  padding-bottom:20rpx;
+  border-bottom:2rpx solid rgba(0,0,0,0.3);
+}
+.header image{
+  width: 46rpx;
+  height: 38rpx;
+  margin-top: 22rpx;
+  margin-left: 16rpx;
+  margin-right: 13rpx;
+  margin-bottom:-4rpx;
+
+}
+.header text{
+  color: rgba(0, 187, 221, 1);
+  line-height: 30rpx;
+  font-size: 40rpx;
+}
+.button{
+  display: inline-block;
+}
+.Title{
+  margin-left: 249rpx;
+  display: inline-block;
+}
+.invite{
+  margin-left:160rpx;
+}
+
 .communityInfo{
   background-color: #fff;
   height: 300rpx;
+  padding-top: 10rpx;
 }
 .communityImage{
   width: 230rpx;
@@ -45,4 +81,30 @@ page{
 }
 project text{
     color: rgba(80, 80, 80, 1);
+}
+
+#inviteList{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  height: 100%;
+  transition: transform 0.3s;
+}
+.inviteHeader{
+  height: 46rpx;
+  padding-bottom:20rpx;
+  border-bottom:2rpx solid rgba(0,0,0,0.3);
+}
+.inviteHeader text{
+  color: rgba(0, 187, 221, 1);
+  line-height: 30rpx;
+  font-size: 40rpx;
+}
+.cancel{
+  padding-left: 10rpx;
+}
+.inviteTitle{
+  margin-left: 185rpx;
 }

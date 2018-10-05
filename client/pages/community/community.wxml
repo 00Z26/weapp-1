@@ -1,3 +1,13 @@
+<view id='container'>
+<view class='header' >
+  <view class='button' bindtap='back' >
+    <image src='{{back_url}}'></image>
+  </view>
+  <text class='Title' >
+    我的圈子
+  </text>
+  <text class='invite' bindtap='invite'>邀请</text>
+</view>
 <view class='communityInfo'>
   <image class='communityImage' src='{{communityImage}}'></image>
   <view class='detail'>
@@ -47,3 +57,19 @@
             </view>
         </view>
     </view>
+
+    <view id='inviteList' style='transform: translateY({{translateY}})'>
+      <view class='inviteHeader'>
+        <text class='cancel' bindtap='cancel'>取消</text>
+        <text class='inviteTitle'>邀请新成员</text>
+      </view>
+      <view class='memberList'>
+        <checkbox-group bindchange='checkboxChange'>
+          <checkbox wx:for='{{inviteList}}' wx:key='{{item.user_id}}'>
+            <image src='{{item.user_image}}' />
+            <text class='inviteUserName'>{{item.user_name}}</text>
+          </checkbox>
+        </checkbox-group>
+      </view>
+    </view>
+  </view>

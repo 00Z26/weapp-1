@@ -417,6 +417,45 @@ Page({
       }
     })
   },
+  chooseAllCommunity: function(){
+    var that = this
+    wx.request({
+      url: config.service.home_page,
+      method: 'get',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //console.log(res.data)
+        /*加载问题*/
+        if (res.data) {
+          for (var item of res.data.result1) {
+            item.project_time = new Date(item.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.project_time = timeCalc(item.project_time)
+            item.project_finish = item.project_finish.slice(0, 10)
+          }
+          for (var item of res.data.result2) {
+            item.question_time = new Date(item.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.question_time = timeCalc(item.question_time)
+          }
+          var result = res.data.result1.concat(res.data.result2)
+          /**按热度排序**/
+          result = quickSort(result)
+          console.log(result)
+          that.setData({
+            //projectArray: projectArray,
+            // questionArray: questionArray,
+            allArray: result
+          })
+        } else {
+          wx.showToast({
+            title: '获取动态失败',
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
   jumpToDetail: function(e){
     let id = e.target.id //获得question_id或project_id
     let dataType = e.target.dataset.type

@@ -20,10 +20,10 @@
           <image src='{{corporation_icon}}' ></image>
         </view>
         <view class='inputArea'>          
-          <input type='number' placeholder=' 电话' bindinput='phoneInput' placeholder-class='placeholder' name='individualPhone' ></input>
+          <input type='number' placeholder=' 电话' bindinput='individualPhoneInput' placeholder-class='placeholder' name='individualPhone' ></input>
           <image src='{{phone_icon}}' ></image>
         </view>
-      <button bindtap='checkIndividualInfo'  form-type='submit'> 注册 </button>
+      <button form-type='submit'> 注册 </button>
       </form>
     </view>
     <view id='choosetype' style='{{translateLeft}}{{translateRight}}'>
@@ -32,7 +32,7 @@
       </view>
       <view id='types'>
         <view>
-          <button id='chooseIndividual' open-type='getUserInfo' style='background-image:url({{avatar_img}})' bindtap='translateRight' ></button>
+          <button id='chooseIndividual' open-type='getUserInfo' style='background-image:url({{avatar_img}})' bindtap='translateRight'  bindgetuserinfo='getUserInfo'></button>
           <!-- <image  src='{{avatar_img}}' bindtap='translateRight' /> -->
           <!-- <image id='chooseEnterprise' src='{{enterprise_url}}' bindtap='translateLeft' /> -->
           <button id='chooseEnterprise' open-type='getUserInfo' style='background-image:url({{enterprise_url}})' bindtap='translateLeft'></button>
@@ -65,7 +65,7 @@
             <input placeholder=' 通信地址' name='companyAddress' placeholder-class='placeholder' class='input2' maxlength='50' bindinput='companyAddressInput' />
             <image src='{{location_icon}}' />
           </view>
-          <button bindtap='checkEnterpriseInfo' open-type='getUserInfo'  form-type='submit'> 注册 </button>
+          <button open-type='getUserInfo'  form-type='submit'> 注册 </button>
         </form>
       </view>
   </view>

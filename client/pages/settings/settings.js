@@ -11,7 +11,7 @@ Page({
     followingUrl: app.globalData.focus_url,
     communityUrl: app.globalData.community_url,
     messageUrl: app.globalData.information_url,
-    userName: app.globalData.userInfo.user_name,
+    userName: app.globalData.userInfo.user_name
   },
 
   /**
@@ -32,7 +32,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.setData({
+      userName: app.globalData.userInfo.user_name
+    })
   },
 
   /**

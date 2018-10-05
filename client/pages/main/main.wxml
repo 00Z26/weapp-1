@@ -19,6 +19,7 @@
         <view id="community" style='max-height:{{communityHeight}}rpx' >       <!-- 最多三排 -->
           <image src='{{pullDown_url}}' class='pullDownIcon' bindtap='moreCommunity' style='transform: rotate({{iconRotate}}deg)' />
            <ul>
+           <li bindtap='chooseAllCommunity'>全部</li>
             <li wx:for='{{communityList}}' wx:key='{{item.community_id}}' id='{{item.community_id}}' style="color:{{item.community_id}}" bindtap='chooseCommunity'>{{item.community_name}}</li>
            </ul>
             </view>

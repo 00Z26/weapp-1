@@ -32,7 +32,7 @@ module.exports = async (ctx, next) => {
   }
 
 //获取圈子内容
-  var obj = await DB.select('object_type','object_id').from('PQ_community').orderBy('time','desc').where('community_id',data.community_id);
+  var obj = await DB.select('object_type','object_id').from('PQ_community').orderBy('time','desc').where('community_id',data.community_id).andWhere('power',1);
   for(var i=0;i<obj.length;i++)
     {
       if (obj[i].object_type == 0) {

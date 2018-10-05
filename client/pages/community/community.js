@@ -1,6 +1,6 @@
 var config = require("./../../config.js")
 const app=getApp();
-
+var list
 function quickSort(arr) {
   //如果数组<=1,则直接返回
   if (arr.length <= 1) { return arr; }
@@ -61,11 +61,14 @@ Page({
     projectNum: 0,
     memberNum: 0,
     rightArrow: app.globalData.rightArrow_url,
+    back_url: app.globalData.back_url,
     communityMember: ['https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png'],
     communityIntroduce: '',
     communityImage: 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png',
     allArray: {},
-    communityId: ''
+    communityId: '',
+    inviteList: '',
+    translateY: '100%'
   },
 
   /**
@@ -167,6 +170,55 @@ Page({
   checkMembers: function(){
     wx.navigateTo({
       url: './../member/member?community_id=' + this.data.communityId + "&communityName=" + this.data.communityName
+    })
+  },
+  invite: function(){
+    var that = this
+    var list
+    wx.request({
+      url: config.service.myfans,
+      data:{
+        user_type: 0, //app.globalData.userInfo.user_type,
+        user_id: '18211949725'  // app.globalData.userInfo.user_id
+      },
+      success: function(res){
+        console.log(res.data)
+        that.setData({
+          inviteLlist : res.data.result
+        })
+      }
+    })
+    wx.request({
+      url: config.service.myidols,
+      data: {
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
+      },
+      success: function (res) {
+        console.log(res.data)
+        list = res.data.result
+        if(list){
+          list = that.data.inviteList.concat(list)
+          that.setData({
+            inviteList: list
+          })
+        }
+      }
+    })
+    if(!that.data.inviteList){
+      wx.showToast({
+        title: '暂无可邀请用户',
+        icon: 'none'
+      })
+    }else{
+      that.setData({
+        translateY: 0,
+      })
+    }
+  },
+  cancel: function(){
+    this.setData({
+      translateY: 0
     })
   }
 })
