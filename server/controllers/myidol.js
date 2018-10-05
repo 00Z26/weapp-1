@@ -19,17 +19,29 @@ module.exports = async (ctx, next) => {
     for (var i = 0; i < myidol.length; i++) {
       if (myidol[i].idol_type==0){
         var idol = await DB.select('*').from('individual').where('individual_id', myidol[i].idol_id);
-        result[i].idol_type=0;
-        result[i].idol_id = myidol[i].idol_id;
-        result[i].idol_name = idol.individual_name;
-        result[i].idol_image=idol.image;
+        result[i] = {
+          idol_type: 0,
+          idol_id: myidol[i].individual_id,
+          idol_name: idol[0].individual_name,
+          idol_image: idol[0].image,
+          answer_num: idol[0].answer_num,
+          project_num: idol[0].project_num,
+          community_num: idol[0].setcommunity_num + idol[0].joincommunity_num,
+          fans_num: idol[0].fans_num,
+        }
      }
      else{
         var idol = await DB.select('*').from('company').where('company_id', myidol[i].idol_id);
-        result[i].idol_type = 1;
-        result[i].idol_id = myidol[i].idol_id;
-        result[i].idol_name = idol.company_name;
-        result[i].idol_image = idol.image;
+        result[i] = {
+          idol_type: 1,
+          idol_id: myidol[i].company_id,
+          idol_name: idol[0].company_name,
+          idol_image: idol[0].image,
+          answer_num: idol[0].answer_num,
+          project_num: idol[0].project_num,
+          community_num: idol[0].setcommunity_num + idol[0].joincommunity_num,
+          fans_num: idol[0].fans_num,
+        }
      }
     }
   }

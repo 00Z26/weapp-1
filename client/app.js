@@ -43,19 +43,26 @@
 //app.js
 var qcloud = require('./vendor/wafer2-client-sdk/index')
 var config = require('./config')
+const app=getApp();
 
 App({
     onLaunch: function () {
-      var user = wx.getStorageSync("user")
-      if (user) {
-        this.globalData.userInfo.user_type = user.user_type;
-        this.globalData.userInfo.user_id = user.user_id;
-        this.globalData.user_name = user.user_name;
-        this.globalData.user_image = user.user_image;
-        wx.redirectTo({
+      var that=this;
+      wx.getStorage({
+        key: 'user',
+        success: function (res) {
+          console.log('yaoshuchu')
+          console.log(res.data);
+          var user=res.data;
+          that.globalData.userInfo.user_type = user.user_type;
+          that.globalData.userInfo.user_id = user.user_id;
+          that.globalData.userInfo.user_name = user.user_name;
+          that.globalData.userInfo.user_image = user.user_image;
+          wx.redirectTo({
             url: '/pages/main/main',
           })
         }
+      })
         qcloud.setLoginUrl(config.service.loginUrl)
         //登录
     wx.login({
@@ -65,6 +72,8 @@ App({
     })
     // 获取用户信息
     
+
+    /*
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -72,9 +81,10 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
+              console.log(res.userInfo)
               this.globalData.userInfo = res.userInfo
-              wx.navigateTo({
-                url: 'main/main',
+              wx.redirectTo({
+                url: '/pages/main/main',
               })
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -86,6 +96,7 @@ App({
         }
       }
     })
+    */
     },
     globalData:{
       userInfo: {
@@ -127,6 +138,6 @@ App({
       me3_url:'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538537155439-CdcryyTYj.png',
       default_url:'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png',
       rightArrow_url: 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538626553738-BxWoVORS-.png',
-
+      background_url:'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538668823965-NS_FEAa-H.jpg',
     }
 })

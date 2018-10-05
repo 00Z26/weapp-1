@@ -1,5 +1,6 @@
 // pages/pub_question/pub_question.js
 var config = require('../../config')
+const app=getApp();
 Page({
 
   /**
@@ -7,8 +8,8 @@ Page({
    */
   data: {
     user: {
-      user_type: 0,
-      user_id: 18211949725,
+      user_type: app.globalData.userInfo.user_type,
+      user_id: app.globalData.userInfo.user_id,
     },
     upload_icon:'upload.png',
     question_title:'',
@@ -45,8 +46,8 @@ Page({
       method: 'get',
       url: config.service.pub_question,
       data: {
-        user_type: that.data.user.user_type,
-        user_id: that.data.user.user_id,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
         power: that.data.power,
         question_title: that.data.question_title,
         question_info: that.data.question_info

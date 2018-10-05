@@ -24,11 +24,11 @@ module.exports = async (ctx, next) => {
     } else if (individual[0].individual_job == '博士') {
       individual[0].individual_job = 2;
     }
-    result=individual;
+    result=individual[0];
   }
   else{
     var company = await DB.select('*').from('company').where('company_id', data.user_id);
-    result = company;
+    result = company[0];
   }
   ctx.body = {
     code: 1,

@@ -35,7 +35,7 @@ module.exports = async (ctx, next) => {
         answer_time: answer[i].answer_time,
         object_type: 0,
         object_id: answer[i].object_id,
-        object_title: question[0].question_title
+        object_title: question[0].object_title
       };
     }
   }

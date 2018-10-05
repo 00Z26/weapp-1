@@ -18,13 +18,14 @@ Page({
     wx.request({
       url: config.service.myfans,
       data: {
-        user_type: 0,
-        user_id: 18211949725
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
       },
       success: function(res){
         that.setData({
           followerList: res.data.result
         })
+        console.log(res.data)
       }
     })
   },

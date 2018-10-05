@@ -15,4 +15,4 @@
   <button  bindtap="loginBtnClick">登录</button>
   <text>{{x}}</text>
 </view>
-<image src='{{imgUrl}}'></image>
+<image url='https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqAgkLGWoHVTiaBqk4gnhibhuVdBFsvAOCYj0ahcWliaPNCKBwlkicm9Y9nKe48iak1IJHAqW0dGsEvbicg/132'></image>

@@ -171,8 +171,8 @@ Page({
     wx.request({
       url: config.service.answer,
       data: {
-        user_type: 0,      //app.globalData.user_type,
-        user_id: "15827576787",   //app.globalData.user_id,
+        user_type: app.globalData.userInofo.user_type,
+        user_id: app.globalData.userInofo.user_id,  
         answer_info: e.detail.value.answerInfo,
         object_type: 0,
         object_id: this.data.objectId

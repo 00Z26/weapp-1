@@ -1,17 +1,17 @@
-const app=getApp()
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    avatarUrl: app.globalData.default_url,
+    avatarUrl: app.globalData.userInfo.user_image,
     publishedUrl: app.globalData.pubed_url,
     followerUrl: app.globalData.befocused_url,
     followingUrl: app.globalData.focus_url,
     communityUrl: app.globalData.community_url,
     messageUrl: app.globalData.information_url,
-    userName: app.globalData.userInfo.user_name
+    userName: app.globalData.userInfo.user_name,
   },
 
   /**
@@ -92,6 +92,11 @@ Page({
   jumpToCommunity: function(){
     wx.navigateTo({
       url: './../subsettings/community/community',
+    })
+  },
+  jumpToMessage:function () {
+    wx.navigateTo({
+      url: './../notice/notice',
     })
   }
 })

@@ -92,18 +92,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    /*
     wx.getUserInfo({
       success: function(res){
         console.log(res)
       }
     })
+    */
     var that = this;
     wx.request({
       method: 'get',
       url: config.service.user_community,
       data: {
-        user_type:this.data.user_type,
-        user_id: "18211949725",
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
         need: 'name'
       },
       success: function(res){

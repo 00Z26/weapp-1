@@ -69,8 +69,8 @@ Page({
     wx.request({
       url: config.service.news,
       data:{
-        user_type: 0,  //app.globalData.userInfo.user_type,
-        user_id: '18211949726' //app.globalData.userInfo.user_id
+        user_type: app.globalData.userInfo.user_type, 
+        user_id: app.globalData.userInfo.user_id
       },
       success: function(res){
         console.log(res)

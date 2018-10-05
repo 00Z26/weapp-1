@@ -41,7 +41,7 @@
     <ul>
       <li>
         <image src='{{avatar_icon}}' />
-        <text class='mgl'>{{item.user_id}}</text>
+        <text class='mgl'>{{item.user_name}}</text>
       </li>
       <li bindtap='commentAws' data-userid='{{item.user_id}}' data-answerid='{{item.answer_id}}'>
         <image src='{{comment_icon}}' />

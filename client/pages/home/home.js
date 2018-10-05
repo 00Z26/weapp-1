@@ -1,5 +1,5 @@
 var config = require("./../../config.js")
-var userType,userId
+var app=getApp()
 Page({
 
   /**
@@ -29,8 +29,8 @@ Page({
     wx.request({
       url: config.service.home,
       data: {
-        user_type: userType,
-        user_id: userId
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
       },
       success: function(res){
         console.log(res.data)

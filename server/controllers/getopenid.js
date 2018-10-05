@@ -29,29 +29,39 @@ module.exports =async (ctx,next) => {
     });
   })
   information = JSON.parse(information);
-  var result = {};
-  if(data.user_type=0)
+  
+  let result='';
+  if(data.user_type == "0")
   {
-    var result1 = await DB.select('individual_id').from('individual').where('openid', information.openid);
-    if (result.length) {
-      result.user_type = 0;
-      result.user_id = result1[0].individual_id;
-      result.user_name = result1[0].individual_name;
-      result.user_image = result1[0].image;
-
+    var result1 = await DB.select('individual_id','individual_name','image').from('individual').where('openid', information.openid);
+    if(result1.length==0){
+      result=''
+    }
+    else{
+      result = {
+        user_type: 0,
+        user_id: result1[0].individual_id,
+        user_name: result1[0].individual_name,
+        user_image: result1[0].image,
+      }
     }
   }
   else{
-    var result2 = await DB.select('company_id').from('company').where('openid', information.openid);
-    if (result2.length) {
-      result.user_type = 1;
-      result.user_id = result2[0].company_id;
-      result.user_name = result2[0].company_name;
-      result.user_image = result2[0].image;
+    var result2 = await DB.select('company_id','company_name','image').from('company').where('openid', information.openid);
+    if (result2.length==0) {
+      result = '';
+    }
+    else{
+      result= {
+        user_type: 1,
+        user_id: result2[0].company_id,
+        user_name: result2[0].company_name,
+        user_image: result2[0].image,
+      }
     }
   }
   ctx.body = {
     code: 1,
-    result: result,
+    result:result
   }
 }

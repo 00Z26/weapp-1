@@ -65,8 +65,8 @@ Page({
       method: 'get',
       url: config.service.user_community,
       data: {
-        user_id:user.user_id,
-        user_type:user.user_type,
+        user_id: app.globalData.userInfo.user_id,
+        user_type: app.globalData.userInfo.user_type,
         need:'name'
       },
       success: function (res) {

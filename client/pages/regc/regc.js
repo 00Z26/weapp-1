@@ -25,8 +25,9 @@ Page({
   //获取用户输入的密码
   loginBtnClick: function (e) {
     var that = this
+    /*
     wx.request({
-      url: config.service.news,
+      url: config.service.pubed,
       data:{ 
         user_type:0,
         user_id:'18211949726'
@@ -74,9 +75,9 @@ Page({
       }
     })
   },
+  */
     //index.js
     //获取应用实例
-    /*
     var that=this
     wx.getUserInfo({
       success: function (res) {
@@ -84,13 +85,11 @@ Page({
         var src=res.userInfo.avatarUrl;
         console.log(src);
         that.setData({
-          src:src
+          imgUrl:src
     })
   }
   })
-  */
-
-        /*
+       
     wx.login({
       success: function (res) {
         console.log(res.code)
@@ -98,19 +97,33 @@ Page({
         //发送请求
         wx.request({
           method:'get',
-          url: config.service.regs_company, //接口地址
+          /*
+          url: config.service.regs_company, //接口地址         
+          data: {
+            code: res.code,
+            company_id: '15137972256',
+            company_name: 'KFCLL',
+            company_type: '餐饮',
+            company_address: '华科喻园店',
+            company_introduce: '你好呀',
+            image: that.data.imgUrl
+          },
+          */
+          url: config.service.regs_individual, //接口地址         
           data: { 
             code: res.code,
-            company_id: '18367722588',
-            company_name: 'KFC', 
-            company_type: '餐饮', 
-            company_address: '华科喻园店', 
-            company_introduce: '你好呀',
-            image:that.data.src
+            individual_id: '15137972256',
+            individual_name: 'KFC', 
+            individual_sex:'男',
+            individual_job: '餐饮', 
+            individual_corporation: '华科喻园店', 
+            individual_introduce: '你好呀',
+            image: that.data.imgUrl
            },
           header: {
             'content-type': 'application/json' //默认值
           },
+          
           success: function (res) {
             console.log('结果输出')
             console.log(res.data)
@@ -118,7 +131,7 @@ Page({
         })
       }
     })
-    */
+  },
   // 用户点击右上角分享
   onShareAppMessage: function () {
 

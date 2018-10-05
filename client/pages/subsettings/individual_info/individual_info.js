@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl:app.globalData.default_url,
+    avatarUrl:app.globalData.userInfo.user_image,
     back_url: app.globalData.back_url,
-    userName: '',
+    userName: app.globalData.userInfo.user_name,
     sex: '男',
     corporation: '',
     jobRange: [],
@@ -40,8 +40,8 @@ Page({
       url: config.service.my_message,
       method: 'get',
       data: {
-        user_type: 0,
-        user_id: 18211949726
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
       },
       success: function(res){
         var info = res.data.result[0]
@@ -52,7 +52,6 @@ Page({
           corporation: info.individual_corporation,
           introduce: info.individual_introduce,
           jobRange: app.globalData.jobList,
-          userName: info.individual_name
         })
       }
     })

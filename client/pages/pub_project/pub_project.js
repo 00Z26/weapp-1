@@ -1,13 +1,14 @@
 // pages/pub_project/pub_project.js
 var config = require('../../config')
+const app=getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     user: {
-      user_type: 0,
-      user_id: 18211949725,
+      user_type: app.globalData.userInfo.user_type,
+      user_id: app.globalData.userInfo.user_id,
     },
     select_type: ['网站开发', '微信小程序开发', 'app开发', '数据采集与分析', '管理系统', 'UI设计', '嵌入式与智能硬件', '其他'],
     index: 0,
@@ -70,8 +71,8 @@ Page({
       method: 'get',
       url: config.service.pub_project,
       data: {
-        user_type: that.data.user.user_type,
-        user_id: that.data.user.user_id,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
         power:that.data.power,
         project_type: that.data.project_type,
         project_title: that.data.project_title,

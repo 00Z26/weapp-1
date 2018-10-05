@@ -20,7 +20,8 @@ Page({
     z2: '1',
     z3: '1',
     questionArray: '',
-    projectArray: ''
+    projectArray: '',
+    idolArray: '',
   },
 
   /**
@@ -32,8 +33,8 @@ Page({
       url: config.service.myfocus,
       method: 'get',
       data: {
-        user_type: 0,
-        user_id: 18211949725
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
       },
       success: function (res) {
         console.log(res)

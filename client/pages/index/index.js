@@ -5,7 +5,8 @@ var config = require('./../../config.js')
 //var CONF = require('./../../../server/config.js')
 Page({
   data: {
-    background_url: './../images/background.jpg',
+    background_url: app.globalData.background_url,
+    //'./../images/background.jpg',
     logo_url: './..images/logo.jpg',
     avatar_img: app.globalData.me1_url,
     enterprise_url: app.globalData.company_url,
@@ -19,7 +20,7 @@ Page({
     location_icon: app.globalData.address_url,
     userInfo: {},
     jobList: ['职业','学生','自由职业者','其他'],
-    companyList: ['公司类别','1','2'],
+    companyList: ['公司类别','互联网公司','制造业公司','餐饮公司','咨询公司'],
     index1: 0,
     index2: 0,
     state: false,
@@ -82,17 +83,17 @@ Page({
     })
     this.data.enterpriseType = e.detail.value
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-    wx.navigateTo({
-      url: './../main/main',
-    })
-  },
+  // getUserInfo: function(e) {
+  //   console.log(e)
+  //   app.globalData.userInfo = e.detail.userInfo
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   })
+  //   wx.navigateTo({
+  //     url: './../main/main',
+  //   })
+  // },
   translateRight: function(){
     this.setData({
       translateLeft: '',
@@ -107,15 +108,15 @@ Page({
           method: 'get',
           data: { 
             code: res.code,
-            user_type:1
+            user_type:0
             },
           success: function (res) {
             console.log(res.data)
             if(res.data.result){
               app.globalData.userInfo.user_type = res.data.result.user_type;
               app.globalData.userInfo.user_id = res.data.result.user_id;
-              app.globalData.user_name=res.data.result.user_name;
-              app.globalData.user_image=res.data.result.user_image;
+              app.globalData.userInfo.user_name=res.data.result.user_name;
+              app.globalData.userInfo.user_image=res.data.result.user_image;
               wx.setStorage({
                 key: 'user',
                 data: {
@@ -124,10 +125,13 @@ Page({
                   user_name : res.data.result.user_name,
                   user_image : res.data.result.user_image,
                 },
+                
               })
-              wx.navigateTo({
-                url: './../main/main'
-              })
+              if(app.globalData.user_id){
+                wx.navigateTo({
+                  url: './../main/main'
+                })
+              }
             }
           }
         })
@@ -148,17 +152,27 @@ Page({
             method: 'get',
             data: {
               code: res.code,
-              user_type: 0
+              user_type: 1
             },
             success: function (res) {
               console.log(res.data)
               if (res.data.result) {
                 app.globalData.userInfo.user_type = res.data.result.user_type;
                 app.globalData.userInfo.user_id = res.data.result.user_id;
-                app.globalData.user_name = res.data.result.user_name;
-                app.globalData.user_image = res.data.result.user_image;
-                wx.navigateTo({
-                  url: './../main/main'
+                app.globalData.userInfo.user_name = res.data.result.user_name;
+                app.globalData.userInfo.user_image = res.data.result.user_image;
+                wx.setStorage({
+                  key: 'user',
+                  data: {
+                    user_type: res.data.result.user_type,
+                    user_id: res.data.result.user_id,
+                    user_name: res.data.result.user_name,
+                    user_image: res.data.result.user_image,
+                  },
+                })
+                console.log(app.globalData.userInfo)
+                wx.redirectTo({
+                  url: './../main/main',
                 })
               }
             }
@@ -217,6 +231,15 @@ Page({
         title: '请输入单位',
         icon: 'none'
       })
+    }else if(!this.data.individualPhone){
+      wx.showToast({
+        title: '请输入电话',
+        icon: 'none'
+      })
+    } else {
+      this.setData({
+        state: true
+      })
     }
   },
   checkEnterpriseInfo: function () {
@@ -233,49 +256,82 @@ Page({
         icon: 'none'
       })
     }else{
-      this.data.state = true
+      this.setData({
+        state : true
+      })
     }
   },
   submitIndividualInfo: function(e){
-    var that = this
+    var that = this;
+    var image='';
     if(this.data.state)
-      console.log(e.detail.value)
-    wx.request({
-      url: config.service.regs_individual,
-      method: 'get',
-      data: {
-        individual_name: e.detail.value.individualName,
-        individual_job: e.detail.value.individualJob,
-        individual_corporation: e.detail.value.individualCompany,
-        individual_id: e.detail.value.individualPhone
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res){
-        console.log(res.data)
-      } 
-    })
+    {
+      console.log(e.detail.value);
+      wx.getUserInfo({
+        success: res => {
+          image=res.userInfo.avatar_img;
+        }
+      }),
+      wx.login({
+        success: function (res) {
+          console.log(res.code);
+          wx.request({
+            url: config.service.regs_individual,
+            method: 'get',
+            data: {
+              code: res.code,
+              individual_name: e.detail.value.individualName,
+              individual_job: e.detail.value.individualJob,
+              individual_corporation: e.detail.value.individualCompany,
+              individual_id: e.detail.value.individualPhone,
+              image:app.globalData.userInfo.image
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              wx.showToast({
+                title: res.data.result,
+              })
+            }
+          })
+        }
+      })
+    }
   },
   submitEnterpriseInfo: function(e){
     var that = this
     if(this.data.state)
+    {
       console.log(e.detail.value)
-    wx.request({
-      url: config.service.regs_company,
-      method: 'get',
-      data: {
-        company_name: e.detail.value.enterpriseName,
-        company_type: e.detail.value.enterpriseType,
-        company_id: e.detail.value.enterprisePhone,
-        company_address: e.detail.value.enterpriseAddress
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res){
-        console.log(res.data)
-      } 
-    })
+      wx.getUserInfo({
+        success: res => {
+          image = res.userInfo.avatar_img;
+        }
+      }),
+        wx.login({
+          success: function (res) {
+            console.log(res.code);
+            wx.request({
+              url: config.service.regs_company,
+              method: 'get',
+              data: {
+                code: res.code,
+                company_name: e.detail.value.enterpriseName,
+                company_type: e.detail.value.enterpriseType,
+                company_id: e.detail.value.enterprisePhone,
+                company_address: e.detail.value.enterpriseAddress,
+                image: image
+              },
+              header: {
+                'content-type': 'application/json'
+              },
+              success: function (res) {
+                console.log(res.data)
+              }
+            })
+          }
+        })
+    }
   }
 })

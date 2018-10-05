@@ -1,5 +1,6 @@
 // pages/createCommunity/createCommunity.js
 var config = require('./../../config.js')
+const app=getApp();
 Page({
 
   /**
@@ -77,8 +78,8 @@ Page({
     wx.request({
       url: config.service.regs_community,
       data:{
-        user_type: 0,
-        user_id: "18211949725",
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
         community_name: e.detail.value.communityName,
         community_type: that.data.communityType[that.data.index],
         community_introduce: e.detail.value.communityIntroduce

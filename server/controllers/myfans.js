@@ -19,25 +19,29 @@ module.exports = async (ctx, next) => {
     for (var i = 0; i < myfans.length; i++) {
       if (myfans[i].fans_type == 0) {
         var r = await DB.select('*').from('individual').where('individual_id', myfans[i].fans_id);
-        result[i].fans_type = 0;
-        result[i].fans_id = myfans[i].fans_id;
-        result[i].fans_name = r[0].individual_name;
-        result[i].fans_image = r[0].image;
-        result[i].answer_num = r[0].answer_num;
-        result[i].project_num = r[0].project_num;
-        result[i].community_num = r[0].setcommunity_num + r[0].joincommunity_num;
-        result[i].fans_num = r[0].fans_num;
+        result[i]={
+          fans_type: 0,
+          fans_id: myfans[i].fans_id,
+          fans_name: r[0].individual_name,
+          fans_image: r[0].image,
+          answer_num: r[0].answer_num,
+          project_num: r[0].project_num,
+          community_num: r[0].setcommunity_num + r[0].joincommunity_num,
+          fans_num: r[0].fans_num,
+        }
       }
       else {
         var r = await DB.select('*').from('company').where('company_id', myfans[i].fans_id);
-        result[i].fans_type = 1;
-        result[i].fans_id = myfans[i].fans_id;
-        result[i].fans_name = r[0].company_name;
-        result[i].fans_image = r[0].image;
-        result[i].answer_num = r[0].answer_num;
-        result[i].project_num = r[0].project_num;
-        result[i].community_num = r[0].setcommunity_num + r[0].joincommunity_num;
-        result[i].fans_num = r[0].fans_num;
+        result[i]={
+          fans_type: 1,
+          fans_id: myfans[i].fans_id,
+          fans_name: r[0].company_name,
+          fans_image: r[0].image,
+          answer_num: r[0].answer_num,
+          project_num: r[0].project_num,
+          community_num: r[0].setcommunity_num + r[0].joincommunity_num,
+          fans_num: r[0].fans_num,
+        }
       }
     }
   }
