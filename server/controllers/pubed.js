@@ -21,7 +21,7 @@ module.exports = async (ctx, next) => {
       result[i] = {
         answer_id:answer[i].answer_id,
         answer_info:answer[i].answer_info,
-        answer_time:anaswer[i].answer_time,
+        answer_time:answer[i].answer_time,
         object_type:0,
         object_id:answer[i].object_id,
         object_title:project[0].project_title

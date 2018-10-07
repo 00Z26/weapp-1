@@ -69,10 +69,13 @@ Page({
       method: 'get',
       data: {
         object_id: id,
+        object_type: 1,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
       },
       success: function (res) {
         console.log(res);
-        let result = res.data.result[0]
+        let result = res.data.result
         let answer = res.data.answer
         if (!result) {
           wx.navigateBack({
@@ -85,7 +88,7 @@ Page({
         }
         that.setData({
           questionTitle: result.question_title,
-          userName: result.user_id,
+          userName: result.user_name,
           pubTime: timeCalc(new Date(result.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
           questionInfo: result.question_info,
           answerNum: result.answernum,
@@ -136,8 +139,8 @@ Page({
       wx.request({
         url: config.service.praise,
         data: {
-          user_type: app.globalData.userInofo.user_type,
-          user_id: app.globalData.userInofo.user_id,
+          user_type: app.globalData.userInfo.user_type,
+          user_id: app.globalData.userInfo.user_id,
           object_type: 0,
           object_id: object_id
         },
@@ -232,8 +235,8 @@ Page({
     wx.request({
       url: config.service.answer,
       data: {
-        user_type: app.globalData.userInofo.user_type,      //app.globalData.user_type,
-        user_id: app.globalData.userInofo.user_id,   //app.globalData.user_id,
+        user_type: app.globalData.userInfo.user_type,      //app.globalData.user_type,
+        user_id: app.globalData.userInfo.user_id,   //app.globalData.user_id,
         answer_info: e.detail.value.answerInfo,
         object_type: 1,
         object_id: this.data.object_id

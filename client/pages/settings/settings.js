@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: app.globalData.userInfo.user_image,
+    avatarUrl: '',
+    //app.globalData.userInfo.user_image,
     publishedUrl: app.globalData.pubed_url,
     followerUrl: app.globalData.befocused_url,
     followingUrl: app.globalData.focus_url,
@@ -33,7 +34,8 @@ Page({
    */
   onShow: function () {
     this.setData({
-      userName: app.globalData.userInfo.user_name
+      userName: app.globalData.userInfo.user_name,
+      avatarUrl: app.globalData.userInfo.user_image
     })
   },
 

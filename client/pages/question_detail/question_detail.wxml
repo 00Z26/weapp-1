@@ -57,7 +57,7 @@
 
 <view class='commentAws' style='bottom:{{commentAwsPos}}'>
   <form bindsubmit='submitAns'>
-    <textarea auto-focus='true' placeholder='回答@{{user_id}}' name='answerInfo'></textarea>
+    <textarea auto-focus='true' placeholder='回答@{{userName}}' name='answerInfo'></textarea>
     <button form-type='submit'>发送</button>
   </form>
 </view>

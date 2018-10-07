@@ -57,7 +57,7 @@ Page({
         that.setData({
           projectArray: res.data.project,
           questionArray: res.data.question,
-          answeredArray: res.data.answer,
+          answerList: res.data.answer,
         })
         console.log(res.data)
       }

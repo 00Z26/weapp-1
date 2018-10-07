@@ -68,11 +68,13 @@ Page({
       method: 'get',
       data: {
         object_id: id,
-        object_type: 0
+        object_type: 0,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
       },
       success: function (res) {
         console.log(res);
-        let result = res.data.result[0]
+        let result = res.data.result
         let answer = res.data.answer
         if (!result) {
           wx.navigateBack({
@@ -85,7 +87,7 @@ Page({
         }
         that.setData({
           projectTitle: result.project_title,
-          userName: result.user_id,
+          userName: result.user_name,
           pubTime: timeCalc(new Date(result.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
           projectInfo: result.project_require,
           projectType: result.project_type,
@@ -171,8 +173,8 @@ Page({
     wx.request({
       url: config.service.answer,
       data: {
-        user_type: app.globalData.userInofo.user_type,
-        user_id: app.globalData.userInofo.user_id,  
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,  
         answer_info: e.detail.value.answerInfo,
         object_type: 0,
         object_id: this.data.objectId

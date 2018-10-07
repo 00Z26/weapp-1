@@ -106,7 +106,7 @@ App({
         image: ''
       },
       jobList: ['本科生','硕士','博士'],
-      typeList: ['公司类别', '互联网公司', '制造业公司', '餐饮公司', '咨询公司'],
+      typeList: ['公司类别', '互联网公司', '制造业公司', '餐饮公司', '咨询公司'], 
       phone_url: 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538531303107-IptVFBQ0J.png',
       focus_url: 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538531342563-EjYYvDPBJ.png',
       befocused_url:'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538532078771-xN9so0dR8.png',

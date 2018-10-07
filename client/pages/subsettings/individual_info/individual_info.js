@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl:app.globalData.userInfo.user_image,
+    avatarUrl: app.globalData.userInfo.user_image,
     back_url: app.globalData.back_url,
     userName: app.globalData.userInfo.user_name,
     sex: '男',
@@ -25,7 +25,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
   },
 
   /**
@@ -39,6 +38,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      userName: app.globalData.userInfo.user_name,
+      avatarUrl: app.globalData.userInfo.user_image
+    })
     var that = this
     wx.request({
       url: config.service.my_message,
@@ -59,7 +62,6 @@ Page({
             company: info.individual_corporation,
             introduce: info.individual_introduce,
             jobRange: app.globalData.jobList,
-            userName: app.globalData.userInfo.user_name
           })
         }else{
           that.setData({

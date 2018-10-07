@@ -50,9 +50,11 @@ Page({
       },
       success: function(res){
         console.log(res.data)
+        var i=0;
         for(var item of res.data.result){
           item.comment_time = new Date(item.comment_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
-          item.comment_time = timeCalc(item.comment_time)
+          item.comment_time.comment_time = timeCalc(item.comment_time);
+          i=i+1;
         } 
         that.setData({
           commentList: res.data.result
