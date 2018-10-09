@@ -47,57 +47,46 @@ page{
 
 #container{
   position: relative;
+
 }
-#question{
+#joinedCom{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+
 }
-.publishedQuestion{
+.community{
   background-color: #fff;
-  height: 154rpx;
   transition: transform 0.2s;
   border: rgba(217, 217, 217, 1) solid 2rpx;
+  height: 200rpx;
 }
-.questionTitle{
-  padding:14rpx 30rpx;
-  padding-top: 26rpx;
-  display:block;  
-  font-size: 30rpx;
-  line-height: 45rpx;
+.community image{
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 20rpx;
+  vertical-align: top;
+  float:left;
 }
-.questionSocialInfo{
-  color: rgba(128, 128, 128, 1);
-	font-size: 26rpx;
-	line-height: 39rpx;
-  padding:0 30rpx;
-  display:block;  
+.community text{
+  display: inline-block;
+}
+.comName{
+  margin-top: 20rpx;
+  font-size: 36rpx;
+  line-height: 54rpx;
+  margin-right:200rpx;
+}
+.comInfo{
+  font-size: 32rpx;
+  line-height: 48rpx;
 }
 
-#project{
+#establishedCom{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-}
-.publishedProject{
-  background-color: #fff;
-  height: 154rpx;
-  transition: transform 0.2s;
-  border: rgba(217, 217, 217, 1) solid 2rpx;
-}
-.projectTitle{
-  padding:14rpx 30rpx;
-  padding-top: 26rpx;
-  display:block;  
-  font-size: 30rpx;
-  line-height: 45rpx;
-}
-.projectSocialInfo{
-  color: rgba(128, 128, 128, 1);
-	font-size: 26rpx;
-	line-height: 39rpx;
-  padding:0 30rpx;
-  display:block;  
+  
 }

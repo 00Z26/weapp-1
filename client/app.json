@@ -1,10 +1,14 @@
 {
   "pages": [
-  "pages/home/home",
-    "pages/index/index",
+      "pages/home/home",
+        "pages/subsettings/community/community",
+        "pages/index/index",
+        "pages/main/main",
+
+
     "pages/regc/regc",
     "pages/community/community",
-    "pages/main/main",
+
     "pages/notice/notice",
     "pages/comment/comment",
     "pages/member/member",  
@@ -15,7 +19,7 @@
     "pages/subsettings/published/published",
     "pages/subsettings/followers/followers",
     "pages/subsettings/following/following",
-    "pages/subsettings/community/community",
+
     "pages/pub_project/pub_project",
     "pages/pub_question/pub_question",
     "pages/question_detail/question_detail",

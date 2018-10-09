@@ -34,16 +34,16 @@ Page({
 
     var that = this
     wx.request({
-      url: config.service.focus,
+      url: config.service.defocus,
       data:{ 
-        focus_type:'user',//user关注用户，other关注问题/项目
+        focus_type: 'other',   //user取消关注用户，other取消关注问题/项目
         object_type: 0,
-        object_id: '18211949729',
-        user_type: 1, 
-        user_id: '18367722588', 
+        object_id: 1,
+        user_type: 0, 
+        user_id: '18211949725', 
       },
       success:function(res){
-        console.log(res.data) //result的值为长度为0数组，则成功
+        console.log(res.data) //result的值返回非0则成功，0则失败
       }
     })
     },

@@ -140,6 +140,9 @@ router.get('/apply', controllers.apply)
 //判断是否关注
 router.get('/focus_state', controllers.focus_state)
 
+//取消关注
+router.get('/defocus', controllers.defocus)
+
 
 
 

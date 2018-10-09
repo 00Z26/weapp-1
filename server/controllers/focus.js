@@ -16,7 +16,7 @@ module.exports = async (ctx, next) => {
   var data = ctx.query;
   var date = new Date();
   var result='关注成功';
-  if(data.focus_type = 'user'){
+  if(data.focus_type == 'user'){
     //存储关注关系
     result = await DB('user_user').insert({ fans_type: data.user_type, fans_id: data.user_id, idol_type: data.object_type, idol_id: data.object_id, time: date });
     //粉丝关注数更新

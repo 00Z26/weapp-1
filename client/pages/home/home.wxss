@@ -25,7 +25,7 @@ page{
   display: inline-block;
   height:170rpx;
   margin-top:32rpx;
-  margin-right: 350rpx;
+  margin-right: 300rpx;
 }
 .follow,.unfollow{
   display: inline-block;

@@ -16,7 +16,19 @@
 </view>
 
 <view class='container'>
-  <view class='joinedCom' ></view>
+  <view class='joinedCom' style='z-index:{{z1}}'>
+    <view class='community' wx:for='{{joinedComList}}' wx:key='{{item.community_id}}' style='transform:translateX({{transform1}}' bindtap='jumpToCom' id='{{item.community_id}}'>
+      <image src='{{item.image}}' />
+      <text class='comName'>#{{item.community_name}}#\n</text>
+      <text class='comInfo'>问答{{item.questionnum}}·{{item.projectnum}}·圈友{{item.usernum}}</text>
+    </view>
+  </view>
 
-  <view class='establishedCom'></view>
+  <view class='establishedCom' style='z-index:{{z2}}'>
+    <view class='community' wx:for='{{establishedComList}}' wx:key='{{item.community_id}}' style='transform:translateX({{transform2}}' bindtap='jumpToCom' id='{{item.community_id}}'>
+        <image src='{{item.image}}' />
+        <text class='comName'>{{item.community_name}}</text>
+        <text class='comInfo'>问答{{item.questionnum}}·项目{{item.projectnum}}·圈友{{item.usernum}}</text>
+    </view>
+  </view>
 </view>

@@ -1,4 +1,5 @@
 const app = getApp()
+var config = require("./../../../config.js")
 Page({
 
   /**
@@ -14,13 +15,59 @@ Page({
     transform2: '100%',
     z1: '2',
     z2: '1',
+    joinedComList: [],
+    establishedComList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this
+    wx.request({
+      url: config.service.mycommunity_join,
+      data:{
+        user_type: 0,//app.globalData.userInfo.user_type,
+        user_id: "18211949725", //app.globalData.userInfo.user_id
+      },
+      success: function(res){
+        console.log(res.data)
+        that.setData({
+          joinedComList: res.data.result
+        })
+        wx.request({
+          url: config.service.mycommunity_set,
+          data:{
+            user_type: app.globalData.userInfo.user_type,
+            user_id: app.globalData.userInfo.user_id
+          },
+          success: function (res) {
+            console.log(res.data)
+            that.setData({
+              establishedComList: res.data.result
+            })
+          },
+          fail: function () {
+            wx.showToast({
+              title: '加载失败',
+              icon: 'none'
+            })
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      },
+      fail: function(){
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none'
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    })
   },
 
   /**
@@ -106,6 +153,12 @@ Page({
   back: function () {
     wx.navigateBack({
       delta: 1
+    })
+  },
+  jumpToCom: function(e){
+    console.log(e)
+    wx.navigateTo({
+      url: './../../community/community?community_id=' + e.currentTarget.id,
     })
   }
 })

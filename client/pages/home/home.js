@@ -26,8 +26,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    var userType = 0//options.userType
-    var userId = "15827576787"//options.userId
+    var userType = options.userType
+    var userId = options.userId
     wx.request({
       url: config.service.home,
       data: {
@@ -51,6 +51,32 @@ Page({
           userId : userId,
           userType: userType
         })
+      },fail: function(){
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none'
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    })
+    wx.request({
+      url: config.service.focus_state,
+      data:{
+        focus_type: 'user',
+        object_type: userType,
+        object_id: userId,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
+      },
+      success: function(res){
+        if(res.data.result){
+          that.setData({
+            unfollowing: 'none',
+            following: 'inline-block'
+          })
+        }
       }
     })
   },
@@ -105,7 +131,7 @@ Page({
   },
   jumpToPub: function(){
     wx.navigateTo({
-      url: './../subsettings/published/published?id=' + this.data.userId,
+      url: './../subsettings/published/published?id=' + this.data.userId + "&type=" + this.data.userType,
     })
   },
   jumpToFollowing: function () {
@@ -128,11 +154,49 @@ Page({
       following: "inline-block",
       unfollowing: "none"
     })
+    wx.request({
+      url: config.service.focus,
+      data:{
+        focus_type: 'user',
+        object_type: userType,
+        object_id: userId,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
+      }
+    })
   },
   unfollow: function(){
     this.setData({
       following: "none",
       unfollowing: "inline-block"
+    })
+    wx.request({
+      url: config.service.defocus,
+      data:{
+        focus_type: 'user',
+        object_type: userType,
+        object_id: userId,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
+      },
+      success: function(res){
+        if(res.data.result){
+          wx.showToast({
+            title: '取消成功',
+            icon: 'none'
+          })
+        }else{
+          wx.showToast({
+            title: '取消失败',
+            icon: 'none'
+          })
+        }
+      },fail: function(){
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      }
     })
   }
   

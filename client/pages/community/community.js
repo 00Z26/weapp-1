@@ -181,8 +181,8 @@ Page({
     wx.request({
       url: config.service.myfans,
       data:{
-        user_type: 0, //app.globalData.userInfo.user_type,
-        user_id: '18211949725'  // app.globalData.userInfo.user_id
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
       },
       success: function(res){
         console.log(res.data)
@@ -192,8 +192,8 @@ Page({
         wx.request({
           url: config.service.myidol,
           data: {
-            user_type: 0,//app.globalData.userInfo.user_type,
-            user_id: "18211949725"  //app.globalData.userInfo.user_id
+            user_type: app.globalData.userInfo.user_type,
+            user_id: app.globalData.userInfo.user_id
           },
           success: function (res) {
             console.log(res.data)
@@ -292,6 +292,11 @@ Page({
           icon: 'none'
         })
       }
+    })
+  },
+  back: function(){
+    wx.navigateBack({
+      delta: 1
     })
   }
 })
