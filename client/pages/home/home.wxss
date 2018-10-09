@@ -25,7 +25,24 @@ page{
   display: inline-block;
   height:170rpx;
   margin-top:32rpx;
+  margin-right: 350rpx;
 }
+.follow,.unfollow{
+  display: inline-block;
+  border: 2rpx solid;
+  border-radius: 10rpx;
+  vertical-align: top;
+  margin-top: 50rpx;
+  font-size: 36rpx;
+  padding: 2rpx 10rpx;
+}
+.follow{
+  color:blue;
+}
+.unfollow{
+  color: rgba(0, 0, 0, 0.5);
+}
+
 
 .socialInfo{
   background-color: #fff;

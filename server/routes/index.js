@@ -137,6 +137,9 @@ router.get('/invite', controllers.invite)
 //申请加圈
 router.get('/apply', controllers.apply)
 
+//判断是否关注
+router.get('/focus_state', controllers.focus_state)
+
 
 
 

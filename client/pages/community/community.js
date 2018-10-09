@@ -67,7 +67,9 @@ Page({
     communityImage: 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png',
     allArray: {},
     communityId: '',
-    inviteList: '',
+    selectedIndex: [],
+    inviteList: {},
+    selectedList: {},
     translateY: '100%'
   },
 
@@ -97,14 +99,14 @@ Page({
           result = res.data.result1.concat(res.data.result2)
           /**按热度排序**/
           result = quickSort(result)
-          console.log(result)
+          //console.log(result)
         } else {
           wx.showToast({
             title: '暂无动态',
             icon: 'none'
           })
         }
-        console.log(res)
+        //console.log(res)
         that.setData({
           communityName: res.data.community_name,
           questionNum: res.data.questionnum,
@@ -175,6 +177,7 @@ Page({
   invite: function(){
     var that = this
     var list
+    var flag = false
     wx.request({
       url: config.service.myfans,
       data:{
@@ -184,41 +187,115 @@ Page({
       success: function(res){
         console.log(res.data)
         that.setData({
-          inviteLlist : res.data.result
+          inviteList : res.data.result
+        })
+        wx.request({
+          url: config.service.myidol,
+          data: {
+            user_type: 0,//app.globalData.userInfo.user_type,
+            user_id: "18211949725"  //app.globalData.userInfo.user_id
+          },
+          success: function (res) {
+            console.log(res.data)
+            list = that.data.inviteList.concat(res.data.result)
+            that.setData({
+              inviteList: list
+            })
+            
+          },
+          complete: function(){
+            for (var item in that.data.inviteList) {
+              flag = true
+            }
+            if (!flag) {
+              wx.showToast({
+                title: '暂无可邀请用户',
+                icon: 'none'
+              })
+            } else {
+              that.setData({
+                translateY: 0,
+              })
+            }
+          }
         })
       }
     })
-    wx.request({
-      url: config.service.myidols,
-      data: {
-        user_type: app.globalData.userInfo.user_type,
-        user_id: app.globalData.userInfo.user_id
-      },
-      success: function (res) {
-        console.log(res.data)
-        list = res.data.result
-        if(list){
-          list = that.data.inviteList.concat(list)
-          that.setData({
-            inviteList: list
-          })
-        }
-      }
-    })
-    if(!that.data.inviteList){
-      wx.showToast({
-        title: '暂无可邀请用户',
-        icon: 'none'
-      })
-    }else{
-      that.setData({
-        translateY: 0,
-      })
-    }
+   
   },
   cancel: function(){
     this.setData({
-      translateY: 0
+      translateY: '100%'
+    })
+  },
+  checkboxChange: function(e){
+    console.log(Object.keys(e.detail.value))
+    if(e.detail.value){
+      this.setData({
+        selected: true,
+        selectedIndex: Object.keys(e.detail.value)
+      })
+    }else{
+      console.log('a')
+      this.setData({
+
+        selected: false
+      })
+    }
+  },
+  done: function(){
+    var that = this
+    var i =0
+     for(var item of that.data.selectedIndex){
+       console.log(item)
+       if (that.data.inviteList[item].hasOwnProperty('fans_id')){
+         console.log("fan")
+         let obj = {
+           guest_type: that.data.inviteList[item].fans_type,
+           guest_id: that.data.inviteList[item].fans_id
+         }
+         that.data.selectedList[i] = obj
+       }else{
+         console.log("idol")
+         let obj = {
+           guest_type: that.data.inviteList[item].idol_type,
+           guest_id: that.data.inviteList[item].idol_id
+         }
+         console.log(obj)
+         that.data.selectedList[i] = obj
+       }
+       i++
+
+       }
+
+    wx.request({
+      url: config.service.invite,
+      data:{
+        host_type: 1,//app.globalData.userInfo.user_type,
+        host_id: "400123456",//app.globalData.userInfo.user_id,
+        invite_type: 'C',
+        invite_id: 1,//that.data.communityId,
+        guest: that.data.selectedList
+      },
+      success: function(res){
+        console.log(res.data)
+        that.setData({
+          translateY: '100%'
+        })
+        wx.showToast({
+          title: '邀请成功',
+        })
+      },
+      fail: function(){
+        wx.showToast({
+          title: '网络错误，邀请失败',
+          icon: 'none'
+        })
+      }
     })
   }
 })
+
+
+//邀请回答项目/问题、圈子,传递数据举例{host_type: 0, host_id: '18211949725', invite_type: 'P'/'Q'/'C', invite_id: 圈子id/项目id/问题id,guest:[{guest_type:0,guest_id:'18211949725'},{}]}
+// invite: `${host}/weapp/invite`,

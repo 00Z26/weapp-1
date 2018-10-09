@@ -46,22 +46,43 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    wx.request({
-      url: config.service.pubed,
-      data: {
-        user_type: app.globalData.userInfo.user_type,
-        user_id: app.globalData.userInfo.user_id
-      },
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          projectArray: res.data.project,
-          questionArray: res.data.question,
-          answerList: res.data.answer,
-        })
-        console.log(res.data)
-      }
-    })
+    if(options.id != undefined){
+      let userId = options.id
+      let userType = options.type
+      wx.request({
+        url: config.service.pubed,
+        data: {
+          user_type: userType,
+          user_id: userId
+        },
+        success: function (res) {
+          console.log(res.data)
+          that.setData({
+            projectArray: res.data.project,
+            questionArray: res.data.question,
+            answerList: res.data.answer,
+          })
+          console.log(res.data)
+        }
+      })
+    }else{
+      wx.request({
+        url: config.service.pubed,
+        data: {
+          user_type: app.globalData.userInfo.user_type,
+          user_id: app.globalData.userInfo.user_id
+        },
+        success: function (res) {
+          console.log(res.data)
+          that.setData({
+            projectArray: res.data.project,
+            questionArray: res.data.question,
+            answerList: res.data.answer,
+          })
+          console.log(res.data)
+        }
+      })
+    }
   },
     /*
     wx.request({

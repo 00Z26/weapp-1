@@ -94,7 +94,7 @@ project text{
 }
 .inviteHeader{
   height: 46rpx;
-  padding-bottom:20rpx;
+  padding:20rpx;
   border-bottom:2rpx solid rgba(0,0,0,0.3);
 }
 .inviteHeader text{
@@ -107,4 +107,31 @@ project text{
 }
 .inviteTitle{
   margin-left: 185rpx;
+}
+.done{
+  margin-left: 150rpx;
+}
+
+
+.memberList{
+  margin: 10rpx;
+}
+checkbox{
+  display: block;
+  width:100%;
+  margin: 10rpx;
+}
+.item{
+  width:650rpx;
+  border-bottom:2rpx solid rgba(0,0,0,0.3);
+}
+checkbox image{
+  width:60rpx;
+  height:60rpx;
+  border-radius:10rpx;
+  vertical-align: top;
+  margin: 10rpx;
+}
+.inviteUserName{
+  line-height:90rpx;
 }

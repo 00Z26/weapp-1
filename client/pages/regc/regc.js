@@ -24,16 +24,26 @@ Page({
   },
   //获取用户输入的密码
   loginBtnClick: function (e) {
+    var guest=[];
+    guest[0]={
+      guest_type: 0, guest_id: '18211949726'
+    };
+    guest[1] = {
+      guest_type: 0, guest_id: '18211949726'
+    }
+
     var that = this
-    /*
     wx.request({
-      url: config.service.pubed,
+      url: config.service.focus,
       data:{ 
-        user_type:0,
-        user_id:'18211949726'
+        focus_type:'user',//user关注用户，other关注问题/项目
+        object_type: 0,
+        object_id: '18211949729',
+        user_type: 1, 
+        user_id: '18367722588', 
       },
       success:function(res){
-        console.log(res.data)
+        console.log(res.data) //result的值为长度为0数组，则成功
       }
     })
     },
@@ -77,6 +87,7 @@ Page({
   },
   */
     //index.js
+    /*
     //获取应用实例
     var that=this
     wx.getUserInfo({
@@ -109,6 +120,7 @@ Page({
             image: that.data.imgUrl
           },
           */
+          /*
           url: config.service.home_page, //接口地址         
           data: { 
             user_type:0,
@@ -125,7 +137,7 @@ Page({
         })
       }
     })
-  },
+    */
   // 用户点击右上角分享
   onShareAppMessage: function () {
 

@@ -16,7 +16,9 @@ Page({
     pubedNum: 0,
     fansNum: 0,
     focusNum: 0,
-    comNum: 0
+    comNum: 0,
+    following: "none",
+    unfollowing: "inline-block"
   },
 
   /**
@@ -24,13 +26,13 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    userType = options.userType
-    userId = options.userId
+    var userType = 0//options.userType
+    var userId = "15827576787"//options.userId
     wx.request({
       url: config.service.home,
       data: {
-        user_type: app.globalData.userInfo.user_type,
-        user_id: app.globalData.userInfo.user_id
+        user_type: userType,
+        user_id: userId
       },
       success: function(res){
         console.log(res.data)
@@ -45,7 +47,9 @@ Page({
           pubedNum: res.data.result.pubednum,
           fansNum: res.data.result.fans_num,
           focusNum: res.data.result.focusnum,
-          comNum: res.data.result.communitynum
+          comNum: res.data.result.communitynum,
+          userId : userId,
+          userType: userType
         })
       }
     })
@@ -101,22 +105,34 @@ Page({
   },
   jumpToPub: function(){
     wx.navigateTo({
-      url: './../subsettings/published/published?user_id=' + this.data.userId,
+      url: './../subsettings/published/published?id=' + this.data.userId,
     })
   },
   jumpToFollowing: function () {
     wx.navigateTo({
-      url: './../subsettings/following/following?user_id=' + this.data.userId,
+      url: './../subsettings/following/following?id=' + this.data.userId + "&type=" + this.data.userType,
     })
   },
   jumpToFollower: function () {
     wx.navigateTo({
-      url: './../subsettings/followers/followers?user_id=' + this.data.userId,
+      url: './../subsettings/followers/followers?id=' + this.data.userId + "&type=" + this.data.userType,
     })
   },
   jumpToCommunity: function () {
     wx.navigateTo({
-      url: './../subsettings/community/community?user_id=' + this.data.userId,
+      url: './../subsettings/community/community?id=' + this.data.userId + "&type=" + this.data.userType,
+    })
+  },
+  follow: function(){
+    this.setData({
+      following: "inline-block",
+      unfollowing: "none"
+    })
+  },
+  unfollow: function(){
+    this.setData({
+      following: "none",
+      unfollowing: "inline-block"
     })
   }
   

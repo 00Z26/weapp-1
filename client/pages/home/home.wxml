@@ -3,6 +3,8 @@
   <view class='ilb'>  
     <text class='userName'>{{userName}}</text>
   </view>
+  <view class='follow' bindtap='follow' style='display: {{unfollowing}}'>关注</view>
+  <view class='unfollow' bindtap='unfollow' style='display: {{following}}'>取消关注</view>
 </view>
 
 <view class='socialInfo'>

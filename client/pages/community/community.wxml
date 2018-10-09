@@ -62,12 +62,15 @@
       <view class='inviteHeader'>
         <text class='cancel' bindtap='cancel'>取消</text>
         <text class='inviteTitle'>邀请新成员</text>
+        <text class='done' wx:if='{{selected}}' bindtap='done'>完成</text>
       </view>
       <view class='memberList'>
         <checkbox-group bindchange='checkboxChange'>
-          <checkbox wx:for='{{inviteList}}' wx:key='{{item.user_id}}'>
-            <image src='{{item.user_image}}' />
-            <text class='inviteUserName'>{{item.user_name}}</text>
+          <checkbox wx:for='{{inviteList}}' wx:key='{{item.fans_id}}{{item.idol_id}}'>
+            <view class='item'>
+              <image src='https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538668823965-NS_FEAa-H.jpg' />
+              <text class='inviteUserName'>{{item.fans_name}}{{item.idol_name}}</text>
+            </view>
           </checkbox>
         </checkbox-group>
       </view>

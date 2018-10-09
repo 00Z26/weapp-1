@@ -22,6 +22,7 @@ Page({
     questionArray: '',
     projectArray: '',
     idolArray: '',
+    entrance: true
   },
 
   /**
@@ -29,21 +30,43 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    wx.request({
-      url: config.service.myfocus,
-      method: 'get',
-      data: {
-        user_type: app.globalData.userInfo.user_type,
-        user_id: app.globalData.userInfo.user_id
-      },
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          projectArray: res.data.project,
-          questionArray: res.data.question
-        })
-      }
-    })
+    if(options.id != undefined){
+      let userType = options.type
+      let userId = options.id
+      wx.request({
+        url: config.service.myfocus,
+        method: 'get',
+        data: {
+          user_type: userType,
+          user_id: userId
+        },
+        success: function (res) {
+          console.log(res)
+          that.setData({
+            projectArray: res.data.project,
+            questionArray: res.data.question,
+            entrance: false
+          })
+        }
+      })
+    }else{
+      wx.request({
+        url: config.service.myfocus,
+        method: 'get',
+        data: {
+          user_type: app.globalData.userInfo.user_type,
+          user_id: app.globalData.userInfo.user_id
+        },
+        success: function (res) {
+          console.log(res)
+          that.setData({
+            projectArray: res.data.project,
+            questionArray: res.data.question
+          })
+        }
+      })
+    }
+    
     
   },
 

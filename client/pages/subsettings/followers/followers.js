@@ -7,7 +7,9 @@ Page({
    */
   data: {
     back_url: app.globalData.back_url,
-    followerList: ''
+    followerList: '',
+    title: "关注我的人",
+    entrance: true
   },
 
   /**
@@ -15,19 +17,40 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    wx.request({
-      url: config.service.myfans,
-      data: {
-        user_type: app.globalData.userInfo.user_type,
-        user_id: app.globalData.userInfo.user_id
-      },
-      success: function(res){
-        that.setData({
-          followerList: res.data.result
-        })
-        console.log(res.data)
-      }
-    })
+    if(options.id != undefined){
+      let userId = options.userId
+      let userType = options.userType
+      wx.request({
+        url: config.service.myfans,
+        data: {
+          user_type: userType,
+          user_id: userId
+        },
+        success: function (res) {
+          that.setData({
+            followerList: res.data.result,
+            entrance: false,
+            title: "关注ta的人"
+          })
+          console.log(res.data)
+        }
+      })
+    }else{
+      wx.request({
+        url: config.service.myfans,
+        data: {
+          user_type: app.globalData.userInfo.user_type,
+          user_id: app.globalData.userInfo.user_id
+        },
+        success: function (res) {
+          that.setData({
+            followerList: res.data.result
+          })
+          console.log(res.data)
+        }
+      })
+    }
+    
   },
 
   /**

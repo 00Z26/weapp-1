@@ -132,8 +132,9 @@ var config = {
       invite: `${host}/weapp/invite`,
 
       //申请加圈，传递数据举例{user_type: 0, user_id: '18211949725', community_id:1 }
-      apply: `${host}/weapp/apply`
-        
+      apply: `${host}/weapp/apply`,
+      //判断是否关注
+      focus_state: `${host}/weapp/focus_state`
     }
 };
 
