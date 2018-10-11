@@ -9,7 +9,7 @@ page{
   box-shadow: 0rpx 2rpx 2rpx 0rpx rgba(0, 0, 0, 0.5);
 }
 .avatar{
-
+  border-radius:50%;
   width: 104rpx;
   height: 104rpx;
   margin:32rpx 34rpx;

@@ -55,7 +55,9 @@ Page({
     commentAwsPos: '-100%',
     user_id: '',
     answer_id: '',
-    object_id: ''
+    object_id: '',
+    following: "none",
+    unfollowing: ""
   },
 
   /**

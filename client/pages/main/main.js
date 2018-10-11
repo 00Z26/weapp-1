@@ -128,11 +128,15 @@ Page({
     wx.request({
       url: config.service.home_page,
       method: 'get',
+      data:{
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
+      },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-        //console.log(res.data)
+        console.log(res.data)
         /*加载问题*/
         if (res.data) {
           for (var item of res.data.result1) {
@@ -210,6 +214,11 @@ Page({
     wx.request({
       url: config.service.home_page,
       method: 'get',
+      data: {
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
+        need: 'name'
+      },
       header: {
         'content-type': 'application/json'
       },
@@ -273,6 +282,11 @@ Page({
       method: 'get',
       header: {
         'content-type': 'application/json'
+      },
+      data: {
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id,
+        need: 'name'
       },
       success: function (res) {
         //console.log(res.data)
@@ -343,6 +357,12 @@ Page({
             icon: 'none'
           })
         }
+      },
+      fail: function(){
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none'
+        })
       }
     })
     this.setData({
@@ -388,7 +408,9 @@ Page({
     wx.request({
       url: config.service.community_PQ,
       data: {
-        community_id: e.target.id
+        community_id: e.target.id,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
       },
       success: function(res){
         console.log(res)
@@ -424,6 +446,10 @@ Page({
       method: 'get',
       header: {
         'content-type': 'application/json'
+      },
+      data:{
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
       },
       success: function (res) {
         //console.log(res.data)

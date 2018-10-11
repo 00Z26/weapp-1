@@ -85,16 +85,18 @@ Page({
     this.data.enterpriseType = e.detail.value
   },
   getUserInfo: function(e) {
+    var detail = JSON.parse(e.detail.rawData)
     var gender
-    if (e.detail.rawData.gender == 0){
+    if (detail.gender == 0){
       gender = '未知'
-    } else if (e.detail.rawData.gender == 1){
+    } else if (detail.gender == 1){
       gender = '男'
     } else{
       gender = '女'
     } 
     console.log(e)
     app.globalData.userInfo.user_sex = gender
+    app.globalData.userInfo.user_image = detail.avatarUrl
   },
   translateRight: function(){
     this.setData({
@@ -248,13 +250,13 @@ Page({
     if(this.data.state1)
     {
       console.log(e.detail.value);
-      wx.getUserInfo({
-        success: function(res){
-          console.log(res.data)
-          image=res.userInfo.avatar_img;
-          //app.globalData.userInfo.user_sex = res.userInfo.gender
-        }
-      }),
+      // wx.getUserInfo({
+      //   success: function(res){
+      //     console.log(res.data)
+      //     image=res.userInfo.avatar_img;
+      //     //app.globalData.userInfo.user_sex = res.userInfo.gender
+      //   }
+      // }),
       wx.login({
         success: function (res) {
           console.log(res.code);
@@ -267,7 +269,7 @@ Page({
               individual_job: e.detail.value.individualJob,
               individual_corporation: e.detail.value.individualCompany,
               individual_id: e.detail.value.individualPhone,
-              image:app.globalData.userInfo.image,
+              image:app.globalData.userInfo.user_image,
               individual_sex: app.globalData.userInfo.user_sex
             },
             header: {
