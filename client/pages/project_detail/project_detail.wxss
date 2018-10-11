@@ -50,6 +50,21 @@ page{
 .projectTitle{
     font-size: 36rpx;
 }
+.follow,.unfollow{
+  border: 2rpx solid;
+  border-radius: 10rpx;
+  vertical-align: top;
+  font-size: 36rpx;
+  padding: 2rpx 10rpx;
+  float: right;
+  margin-right:40rpx; 
+}
+.follow{
+  color:blue;
+}
+.unfollow{
+  color: rgba(0, 0, 0, 0.5);
+}
 .userInfo{
     margin-top: 10rpx;
     margin-bottom: 20rpx;

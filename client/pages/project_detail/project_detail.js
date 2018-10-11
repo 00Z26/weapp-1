@@ -85,17 +85,45 @@ Page({
             icon: 'none'
           })
         }
-        that.setData({
-          projectTitle: result.project_title,
-          userName: result.user_name,
-          pubTime: timeCalc(new Date(result.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
-          projectInfo: result.project_require,
-          projectType: result.project_type,
-          projectPeriod: result.project_finish.slice(0,10),
-          projectRequire: result.project_require,
-          answerNum: result.answernum,
-          answerList: answer,
-          objectId: result.project_id
+        wx.request({
+          url: config.service.focus_state,
+          data: {
+            focus_type: 'other',
+            object_type: 0,
+            object_id: id,
+            user_type: app.globalData.userInfo.user_type,
+            user_id: app.globalData.userInfo.user_id
+          }, success: function (res) {
+            if (res.data.result) {
+              that.setData({
+                questionTitle: result.question_title,
+                userName: result.user_name,
+                pubTime: timeCalc(new Date(result.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
+                questionInfo: result.question_info,
+                answerNum: result.answernum,
+                answerList: answer,
+                object_id: id,
+                following: '',
+                unfollowing: 'none'
+              })
+            } else {
+              that.setData({
+                questionTitle: result.question_title,
+                userName: result.user_name,
+                pubTime: timeCalc(new Date(result.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
+                questionInfo: result.question_info,
+                answerNum: result.answernum,
+                answerList: answer,
+                object_id: id
+              })
+            }
+          }
+        })
+      },
+      fail: function(){
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none'
         })
       }
     })
@@ -177,7 +205,7 @@ Page({
         user_id: app.globalData.userInfo.user_id,  
         answer_info: e.detail.value.answerInfo,
         object_type: 0,
-        object_id: this.data.objectId
+        object_id: this.data.object_id
       },
       success: function () {
         wx.showToast({
@@ -192,4 +220,62 @@ Page({
       url: "./../comment/comment?answer_id=" + e.target.dataset.answerid
     })
   },
+  follow: function () {
+    var that = this
+    wx.request({
+      url: config.service.focus,
+      data: {
+        focus_type: 'other',
+        object_type: 0,
+        object_id: that.data.object_id,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          following: "",
+          unfollowing: "none"
+        })
+        wx.showToast({
+          title: '关注成功',
+          icon: 'none'
+        })
+      }, fail: function () {
+        wx.showToast({
+          title: '关注失败',
+          icon: "none"
+        })
+      }
+    })
+  },
+  unfollow: function () {
+    var that = this
+    wx.request({
+      url: config.service.defocus,
+      data: {
+        focus_type: 'other',
+        object_type: 0,
+        object_id: that.data.object_id,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          following: "none",
+          unfollowing: ""
+        })
+        wx.showToast({
+          title: '取消关注成功',
+          icon: 'none'
+        })
+      }, fail: function () {
+        wx.showToast({
+          title: '取消关注失败',
+          icon: "none"
+        })
+      }
+    })
+  }
 })

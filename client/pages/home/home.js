@@ -36,21 +36,52 @@ Page({
       },
       success: function(res){
         console.log(res.data)
-        that.setData({
-          userImage: res.data.result.image,
-          userName: res.data.result.individual_name,
-          userSex: res.data.result.individual_sex,
-          userJob: res.data.result.individual_job,
-          userCompany: res.data.result.individual_corporation,
-          userState: res.data.result.individual_state,
-          userIntroduce: res.data.result.individual_introduce,
-          pubedNum: res.data.result.pubednum,
-          fansNum: res.data.result.fans_num,
-          focusNum: res.data.result.focusnum,
-          comNum: res.data.result.communitynum,
-          userId : userId,
-          userType: userType
+        wx.request({
+          url: config.service.focus_state,
+          data:{
+            focus_type: 'other',
+            object_type: userType,
+            object_id: userId,
+            user_type: app.globalData.userInfo.user_type,
+            user_id: app.globalData.userInfo.user_id
+          }
         })
+        if(!res.data.result){
+          that.setData({
+            userImage: res.data.result.image,
+            userName: res.data.result.individual_name,
+            userSex: res.data.result.individual_sex,
+            userJob: res.data.result.individual_job,
+            userCompany: res.data.result.individual_corporation,
+            userState: res.data.result.individual_state,
+            userIntroduce: res.data.result.individual_introduce,
+            pubedNum: res.data.result.pubednum,
+            fansNum: res.data.result.fans_num,
+            focusNum: res.data.result.focusnum,
+            comNum: res.data.result.communitynum,
+            userId: userId,
+            userType: userType
+          })
+        }else{
+          that.setData({
+            userImage: res.data.result.image,
+            userName: res.data.result.individual_name,
+            userSex: res.data.result.individual_sex,
+            userJob: res.data.result.individual_job,
+            userCompany: res.data.result.individual_corporation,
+            userState: res.data.result.individual_state,
+            userIntroduce: res.data.result.individual_introduce,
+            pubedNum: res.data.result.pubednum,
+            fansNum: res.data.result.fans_num,
+            focusNum: res.data.result.focusnum,
+            comNum: res.data.result.communitynum,
+            userId: userId,
+            userType: userType,
+            following: "inline-block",
+            unfollowing: "none"
+          })
+        }
+
       },fail: function(){
         wx.showToast({
           title: '加载失败',
