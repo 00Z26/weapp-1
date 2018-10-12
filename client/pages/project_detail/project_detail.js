@@ -197,6 +197,7 @@ Page({
     })
   },
   submitAns: function (e) {
+    var that = this
     //回答问题，传输数据举例{user_type: 0/1, user_id:18211949726, answer_info: '你好，我也好',object_type:0,object_id:1}
     wx.request({
       url: config.service.answer,
@@ -210,6 +211,16 @@ Page({
       success: function () {
         wx.showToast({
           title: '回答成功！',
+          icon: 'none'
+        })
+        that.setData({
+          commentAwsPos: "-100%",
+          maskOpacity: "0",
+          mask_z_index: -1
+        })
+      },fail: function(){
+        wx.showToast({
+          title: '回答失败',
           icon: 'none'
         })
       }

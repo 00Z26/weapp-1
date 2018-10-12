@@ -19,8 +19,9 @@ Page({
     z1: '2',
     z2: '1',
     z3: '1',
-    questionArray: '',
-    projectArray: '',
+    questionList: [],
+    projectList: [],
+    idolList: [],
     idolArray: '',
     entrance: true
   },
@@ -43,8 +44,9 @@ Page({
         success: function (res) {
           console.log(res)
           that.setData({
-            projectArray: res.data.project,
-            questionArray: res.data.question,
+            projectList: res.data.project,
+            questionList: res.data.question,
+            idolList: res.data.idol,
             entrance: false
           })
         }
@@ -60,8 +62,9 @@ Page({
         success: function (res) {
           console.log(res)
           that.setData({
-            projectArray: res.data.project,
-            questionArray: res.data.question
+            projectList: res.data.project,
+            questionList: res.data.question,
+            idolList: res.data.idol
           })
         }
       })
@@ -172,9 +175,18 @@ Page({
     })
   },
   jumpToDetail: function (e) {
-    console.log(e)
     wx.navigateTo({
       url: './../../question_detail/question_detail?id=' + e.currentTarget.id + '&type=' + e.currentTarget.dataset.type,
+    })
+  },
+  jumpToIndividualHome: function(e){
+    wx.navigateTo({
+      url: './../../home/home?userType=0&userId=' + e.currentTarget.id,
+    })
+  },
+  jumpToCompanyHome: function (e) {
+    wx.navigateTo({
+      url: './../../home/home?userType=1&UserId=' + e.currentTarget.id,
     })
   }
 })

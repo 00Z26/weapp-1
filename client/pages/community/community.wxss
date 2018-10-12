@@ -12,8 +12,8 @@ page{
   border-bottom:2rpx solid rgba(0,0,0,0.3);
 }
 .header image{
-  width: 46rpx;
-  height: 38rpx;
+  width: 40rpx;
+  height: 40rpx;
   margin-top: 22rpx;
   margin-left: 16rpx;
   margin-right: 13rpx;

@@ -7,8 +7,8 @@ page{
   padding-bottom:20rpx;
 }
 .header image{
-  width: 22rpx;
-  height: 38rpx;
+  width: 40rpx;
+  height: 40rpx;
   margin-top: 22rpx;
   margin-left: 16rpx;
   margin-right: 13rpx;
@@ -21,7 +21,7 @@ page{
   font-size: 40rpx;
 }
 .button{
-  width: 220rpx;
+  width: 230rpx;
   display: inline-block;
 }
 .title{

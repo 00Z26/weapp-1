@@ -4,7 +4,7 @@
     <image src='{{back_url}}'></image>
   </view>
   <text class='Title' >
-    我的圈子
+    圈子
   </text>
   <text class='invite' bindtap='invite'>邀请</text>
 </view>

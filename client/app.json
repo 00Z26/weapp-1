@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/subsettings/following/following",
+
     "pages/home/home",
     "pages/subsettings/community/community",
     "pages/main/main",
@@ -15,7 +17,7 @@
     "pages/subsettings/individual_info/individual_info",
     "pages/subsettings/published/published",
     "pages/subsettings/followers/followers",
-    "pages/subsettings/following/following",
+
     "pages/pub_project/pub_project",
     "pages/pub_question/pub_question",
     "pages/question_detail/question_detail",

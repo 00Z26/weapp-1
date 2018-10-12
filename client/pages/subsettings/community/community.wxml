@@ -1,7 +1,7 @@
 <view class='header' >
   <view class='button' bindtap='back' >
     <image src='{{back_url}}'></image>
-    <text>个人中心</text>
+    <text wx:if='{{entrance}}'>个人中心</text>
   </view>
   <text class='title' >
     我的圈子

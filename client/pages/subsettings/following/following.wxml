@@ -18,19 +18,33 @@
 
 <view id='container'>
   <view id='question' style='z-index:{{z1}}'>
-    <view wx:for='{{questionArray}}' wx:key='{{item.question_id}}' class='publishedQuestion' style='transform:translateX({{transform1}})'bindtap='jumpToDetail' data-type = '1' id='{{item.question_id}}'>
+    <view wx:for='{{questionList}}' wx:key='{{item.question_id}}' class='publishedQuestion' style='transform:translateX({{transform1}})'bindtap='jumpToDetail' data-type = '1' id='{{item.question_id}}'>
       <text class='questionTitle'>{{item.question_title}}</text>
       <text class='questionSocialInfo'>{{item.answernum}}个回答· {{item.focus_num}}人关注</text>
   </view>
   </view>
   <view id='project' style='z-index:{{z2}}'>
-    <view wx:for='{{projectArray}}' wx:key='{{item.project_id}}' class='publishedProject' style='transform:translateX({{transform2}})'>
+    <view wx:for='{{projectList}}' wx:key='{{item.project_id}}' class='publishedProject' style='transform:translateX({{transform2}})'>
     <text class='projectTitle'>{{item.project_title}}</text>
     <text class='projectSocialInfo'>{{item.answernum}}个回答· {{item.focus_num}}人关注</text>
   </view>
   </view>
-  <view id='answer' style='z-index:{{z3}}'>
-    <view wx:for='{{answeredArray}}' wx:key='{{item.question_id}}+{{item.project_id}}' class='myAnswer' style='transform:translateX({{transform3}})'>
+  <view id='idol' style='z-index:{{z3}}'>
+    <view wx:for='{{idolList}}' wx:key='{{item.individual_id}}{{item.company_id}}' style='transform:translateX({{transform3}});transition: transform 0.2s;'>
+      <view wx:if='{{item.individual_id}}'  class='myIdol' bindtap='jumpToIndividualHome' id='{{item.individual_id}}'>
+        <image class='avatar' src='{{item.image}}'/>
+        <view class='ilb'>  
+          <text class='userName'>{{item.individual_name}}</text>
+          <text class='tip'>问答{{item.answer_num}}·项目{{item.project_num}}·圈子{{item.community_num}}·粉丝{{item.fans_num}}</text>
+        </view>
+      </view>
+      <view wx:if='{{item.company_id}}'  class='myIdol' bindtap='jumpToCompanyHome' id='{{item.company_id}}'> 
+        <image class='avatar' src='{{item.image}}'/>
+        <view >  
+          <text class='userName'>{{item.company_name}}</text>
+          <text class='tip'>问答{{item.answer_num}}·项目{{item.project_num}}·圈子{{item.community_num}}·粉丝{{item.fans_num}}</text>
+        </view>
+      </view>
   </view>
-  </view>
+</view>
 </view>

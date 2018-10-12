@@ -8,8 +8,8 @@ page{
   padding-bottom:20rpx;
 }
 .header image{
-  width: 22rpx;
-  height: 38rpx;
+  width: 40rpx;
+  height: 40rpx;
   margin-top: 22rpx;
   margin-left: 16rpx;
   margin-right: 13rpx;
@@ -22,7 +22,7 @@ page{
   font-size: 40rpx;
 }
 .button{
-  width: 220rpx;
+  width: 230rpx;
   display: inline-block;
 }
 .title{
@@ -101,4 +101,42 @@ page{
 	line-height: 39rpx;
   padding:0 30rpx;
   display:block;  
+}
+
+#idol{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.myIdol{
+  background-color: #fff;
+  height: 154rpx;
+
+  border: rgba(217, 217, 217, 1) solid 2rpx;
+}
+.avatar{
+  border-radius: 50%;
+  width: 104rpx;
+  height: 104rpx;
+  margin:32rpx 34rpx;
+  vertical-align:top;
+}
+.userName{
+  float: left;
+  line-height:54rpx;
+  font-size:36rpx;
+
+}
+.tip{
+  float: left;
+  clear: left;
+  font-size: 28rpx;
+  line-height: 42rpx;
+  color: rgba(153, 153, 153, 1);
+}
+.ilb{
+  display: inline-block;
+  height:170rpx;
+  margin-top:32rpx;
 }

@@ -68,12 +68,10 @@ Page({
     var that = this
     wx.request({
       url: config.service.detail,
-      method: 'get',
+      method: 'get', 
       data: {
         object_id: id,
-        object_type: 1,
-        user_type: app.globalData.userInfo.user_type,
-        user_id: app.globalData.userInfo.user_id,
+        object_type: 1
       },
       success: function (res) {
         console.log(res);
@@ -100,6 +98,8 @@ Page({
             if(res.data.result){
               that.setData({
                 questionTitle: result.question_title,
+                userType: result.user_type,
+                userId: result.user_id,
                 userName: result.user_name,
                 pubTime: timeCalc(new Date(result.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
                 questionInfo: result.question_info,
@@ -353,6 +353,16 @@ Page({
           icon: "none"
         })
       }
+    })
+  },
+  jumpToHome: function(e){
+    wx.navigateTo({
+      url: './../home/home?userType=' + this.data.userType + '&userId=' + this.data.userId,
+    })
+  },
+  jumpToOthers: function(e){
+    wx.navigateTo({
+      url: './../home/home?userType=' + e.target.dataset.type + '&userId=' + e.target.currentTarget.id,
     })
   }
 })

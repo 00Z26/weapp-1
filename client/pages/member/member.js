@@ -6,7 +6,8 @@ Page({
    */
   data: {
     memberList: {},
-    communityName: ''
+    communityName: '',
+    back_url: getApp().globalData.back_url
   },
 
   /**
@@ -76,5 +77,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  back: function(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+  jumpToHome: function(e){
+    wx.navigateTo({
+      url: './../home/home?userType=' + e.target.dataset.type + '&userId=' + e.currentTarget.id,
+    })
   }
 })

@@ -68,7 +68,7 @@ Page({
     "pubquestion_url": app.globalData.pub_q_url,
     "pubProject_url":app.globalData.pub_p_url,
     "pullDown_url": app.globalData.pullDown_url,
-    "communityHeight": 52,
+    "communityHeight": 58,
     "pullDownCommunityState": true,
     "iconRotate": 0,
     "pubBoxPosition": "-100%",
@@ -397,7 +397,7 @@ Page({
       })
     }else{
       that.setData({
-        communityHeight: '52',
+        communityHeight: '58',
         pullDownCommunityState: true,
         iconRotate: 0
       })

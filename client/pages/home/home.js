@@ -46,7 +46,7 @@ Page({
             user_id: app.globalData.userInfo.user_id
           }
         })
-        if(!res.data.result){
+        if(res.data.result){
           that.setData({
             userImage: res.data.result.image,
             userName: res.data.result.individual_name,
@@ -60,7 +60,9 @@ Page({
             focusNum: res.data.result.focusnum,
             comNum: res.data.result.communitynum,
             userId: userId,
-            userType: userType
+            userType: userType,
+            following: "none",
+            unfollowing: "inline-block"
           })
         }else{
           that.setData({
@@ -181,44 +183,60 @@ Page({
     })
   },
   follow: function(){
-    this.setData({
-      following: "inline-block",
-      unfollowing: "none"
-    })
+    var that = this
     wx.request({
       url: config.service.focus,
       data:{
         focus_type: 'user',
-        object_type: userType,
-        object_id: userId,
-        user_type: app.globalData.userInfo.user_type,
-        user_id: app.globalData.userInfo.user_id
-      }
-    })
-  },
-  unfollow: function(){
-    this.setData({
-      following: "none",
-      unfollowing: "inline-block"
-    })
-    wx.request({
-      url: config.service.defocus,
-      data:{
-        focus_type: 'user',
-        object_type: userType,
-        object_id: userId,
+        object_type: that.data.userType,
+        object_id: that.data.userId,
         user_type: app.globalData.userInfo.user_type,
         user_id: app.globalData.userInfo.user_id
       },
       success: function(res){
         if(res.data.result){
+          that.setData({
+            following: "inline-block",
+            unfollowing: "none"
+          })
           wx.showToast({
-            title: '取消成功',
+            title: '关注成功',
             icon: 'none'
           })
         }else{
           wx.showToast({
-            title: '取消失败',
+            title: '关注失败',
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
+  unfollow: function(){
+    var that = this
+    wx.request({
+      url: config.service.defocus,
+      data:{
+        focus_type: 'user',
+        object_type: that.data.userType,
+        object_id: that.data.userId,
+        user_type: app.globalData.userInfo.user_type,
+        user_id: app.globalData.userInfo.user_id
+      },
+      success: function(res){
+        console.log(res)
+        if(res.data.result){
+          wx.showToast({
+            title: '取消关注成功',
+            icon: 'none'
+          })
+          that.setData({
+            following: "none",
+            unfollowing: "inline-block"
+          })
+        }else{
+          wx.showToast({
+            title: '取消关注失败',
             icon: 'none'
           })
         }

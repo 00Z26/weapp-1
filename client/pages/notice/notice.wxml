@@ -18,7 +18,7 @@
 
 <view id='container'>
   <view id='praise' style='z-index:{{z1}}'>
-    <view class='noNewPraise' style='transform:translateX({{transform1}}'>还没有获得新的赞哦</view>	
+    <view class='noNewPraise' style='transform:translateX({{transform1}}' wx:if='{{praiseList.length==0}}'>还没有获得新的赞哦</view>	
     <view wx:for='{{praiseList}}' wx:key='{{item.answer_id}}{{item.comment_id}}' class='praise' style='transform:translateX({{transform1}})'>
       <view wx:if='{{item.object_type == 1}}' bindtap='jumpToQuestion' data-id='{{item.object_id}}'>
         <image src='{{item.user_image}}' />
@@ -41,7 +41,7 @@
   </view>
   </view>
   <view id='invite' style='z-index:{{z2}}'>
-    <view class='noNewInvite' style='transform:translateX({{transform2}}'>暂时没有新的邀请信息</view>	
+    <view class='noNewInvite' style='transform:translateX({{transform2}}' wx:if='{{inviteList.length==0}}'>暂时没有新的邀请信息</view>	
     <view wx:for='{{inviteList}}' wx:key='{{item.project_id}}{{item.question_id}}{{item.community_id}}' class='invite' style='transform:translateX({{transform2}})'>
       <view wx:if='{{item.question_id}}' bindtap='jumpToQuestion' data-id='{{item.question_id}}'>
         <image src='{{item.user_image}}' />
@@ -65,14 +65,14 @@
       <view wx:if='{{item.apply_id}}'>
         <image src='{{item.user_image}}' />
         <text class='userName'>{{item.user_name}}申请加入圈子</text>
-        <view class='agree' bindtap='agreeJoin' data-id='{{item.community_id}}' data-userId='{{item.user_id}}'>同意</view>
+        <view class='agree' bindtap='agreeJoin' data-id='{{item.community_id}}' data-userId='{{item.user_id.length==0}}'>同意</view>
         <view class='time'>{{item.time}}</view>
         <view class='inviteDetail' bindtap='jumpToCommunity' data-id='{{item.community_id}}'>#{{item.community_name}}#</view>     
       </view>
     </view>
   </view>
   <view id='reply' style='z-index:{{z3}}'>
-    <view class='noNewReply' style='transform:translateX({{transform3}})'>暂时没有新回复</view>	
+    <view class='noNewReply' style='transform:translateX({{transform3}})' wx:if='{{replyList}}'>暂时没有新回复</view>	
     <view wx:for='{{replyList}}' wx:key='{{item.question_id}}{{item.project_id}}{{item.comment_id}}' class='reply' style='transform:translateX({{transform3}})'>
       <view wx:if='{{item.question_id}}' bindtap='jumpToQuestion' data-id='{{item.question_id}}'>
         <image src='{{item.user_image}}' />

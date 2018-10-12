@@ -9,7 +9,7 @@
 </view>
 
 <view class='followers'>
-  <view class='follower' wx:for='{{memberList}}' wx:key='{{item.user_id}}'>
+  <view class='follower' wx:for='{{memberList}}' wx:key='{{item.user_id}}' id='{{item.user_id}}' data-type='{{item.user_type}}' bindtap='jumpToHome'>
     <image class='avatar' src='{{item.user_image}}'/>
     <view class='ilb'>  
       <text class='userName'>{{item.user_name}}</text>
