@@ -54,7 +54,9 @@ Page({
     answerNum: '',
     projectTitle: '',
     answerList: '',
-    objectId: ''
+    objectId: '',
+    following: 'none',
+    unfollowing: ''
   },
 
   /**
@@ -96,10 +98,12 @@ Page({
           }, success: function (res) {
             if (res.data.result) {
               that.setData({
-                questionTitle: result.question_title,
+                projectTitle: result.project_title,
                 userName: result.user_name,
-                pubTime: timeCalc(new Date(result.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
-                questionInfo: result.question_info,
+                pubTime: timeCalc(new Date(result.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
+                projectInfo: result.project_info,
+                projectType: result.project_type,
+                projectBudget: result.project_budget,
                 answerNum: result.answernum,
                 answerList: answer,
                 object_id: id,
@@ -108,13 +112,17 @@ Page({
               })
             } else {
               that.setData({
-                questionTitle: result.question_title,
+                projectTitle: result.project_title,
                 userName: result.user_name,
-                pubTime: timeCalc(new Date(result.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
+                pubTime: timeCalc(new Date(result.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
                 questionInfo: result.question_info,
+                projectType: result.project_type,
+                projectBudget: result.project_budget,
                 answerNum: result.answernum,
                 answerList: answer,
-                object_id: id
+                object_id: id,
+                following: 'none',
+                unfollowing: ''
               })
             }
           }

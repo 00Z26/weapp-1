@@ -84,6 +84,7 @@ Page({
     })
   },
   jumpToHome: function(e){
+    console.log(e)
     wx.navigateTo({
       url: './../home/home?userType=' + e.target.dataset.type + '&userId=' + e.currentTarget.id,
     })

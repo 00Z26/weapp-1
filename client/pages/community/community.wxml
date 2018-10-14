@@ -68,7 +68,7 @@
         <checkbox-group bindchange='checkboxChange'>
           <checkbox wx:for='{{inviteList}}' wx:key='{{item.fans_id}}{{item.idol_id}}'>
             <view class='item'>
-              <image src='https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538668823965-NS_FEAa-H.jpg' />
+              <image src='{{item.idol_image}}{{item.fans_image}}' />
               <text class='inviteUserName'>{{item.fans_name}}{{item.idol_name}}</text>
             </view>
           </checkbox>

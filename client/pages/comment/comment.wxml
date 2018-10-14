@@ -11,10 +11,10 @@
 <view class="comments">
     <view wx:for="{{commentList}}" wx:key="{{item.comment_id}}">
         <view class="comment">
-            <image class="avatar" src="{{item.user_image}}" />
+            <image class="avatar" src="{{item.user_image}}" id='{{item.user_id}}' data-type='{{item.user_type}}' bindtap='jumpToHome' />
             <view class="commentInfo">
                 <text class="name">{{item.user_name}}</text>
-                <view class="praise">
+                <view class="praise" bindtap='like' data-id='{{item.comment_id}}'>
                     <image class="praiseIcon" src="{{praise_url}}" />
                     <text>{{item.praisenum}}</text>
                 </view>

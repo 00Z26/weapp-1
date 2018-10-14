@@ -4,14 +4,14 @@
     <text wx:if='{{entrance}}'>个人中心</text>
   </view>
   <text class='title' >
-    我的圈子
+    圈子
   </text>
 </view>
 
 <view class='tabs'>
   <ul>
-    <li style='color:{{isActive1}}; border-bottom:{{border1}}' bindtap='chooseTab1'>我加入的圈子</li>
-    <li style='color:{{isActive2}}; border-bottom:{{border2}}' bindtap='chooseTab2'>我创建的圈子</li>
+    <li style='color:{{isActive1}}; border-bottom:{{border1}}' bindtap='chooseTab1'>加入的圈子</li>
+    <li style='color:{{isActive2}}; border-bottom:{{border2}}' bindtap='chooseTab2'>创建的圈子</li>
   </ul>
 </view>
 

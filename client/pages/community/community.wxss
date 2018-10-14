@@ -33,7 +33,7 @@ page{
   display: inline-block;
 }
 .invite{
-  margin-left:160rpx;
+  margin-left:230rpx;
 }
 
 .communityInfo{
@@ -44,7 +44,7 @@ page{
 .communityImage{
   width: 230rpx;
   height: 230rpx;
-  margin-right: 60rpx;
+  margin-right: 0 30rpx;
 }
 .detail{
   font-size: 30rpx;
@@ -58,6 +58,7 @@ page{
   width: 45rpx;
   margin:0 4rpx;
   height: 45rpx;
+  border-radius: 50%;
 }
 
 .main{

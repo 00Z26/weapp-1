@@ -360,9 +360,10 @@ Page({
       url: './../home/home?userType=' + this.data.userType + '&userId=' + this.data.userId,
     })
   },
-  jumpToOthers: function(e){
+  jumpToOtherHome: function(e){
+    console.log(e)
     wx.navigateTo({
-      url: './../home/home?userType=' + e.target.dataset.type + '&userId=' + e.target.currentTarget.id,
+      url: './../home/home?userType=' + e.target.dataset.type + '&userId=' + e.currentTarget.id,
     })
   }
 })

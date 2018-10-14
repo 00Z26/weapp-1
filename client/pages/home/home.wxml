@@ -13,7 +13,7 @@
       <view>{{pubedNum}}</view>
       <text>发布</text>
     </li>
-    <li bindtap='jumpTofollowing'>
+    <li bindtap='jumpToFollowing'>
       <view>{{focusNum}}</view>
       关注
     </li>

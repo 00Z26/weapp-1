@@ -62,9 +62,9 @@ Page({
     memberNum: 0,
     rightArrow: app.globalData.rightArrow_url,
     back_url: app.globalData.back_url,
-    communityMember: ['https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png', 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png'],
+    communityMember: [],
     communityIntroduce: '',
-    communityImage: 'https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538551134881-Gau4HdGvF.png',
+    communityImage: '',
     allArray: {},
     communityId: '',
     selectedIndex: [],
@@ -107,16 +107,55 @@ Page({
           })
         }
         //console.log(res)
-        that.setData({
-          communityName: res.data.community_name,
-          questionNum: res.data.questionnum,
-          projectNum: res.data.projectnum,
-          memberNum: res.data.membernum,
-          communityMember: res.data.communityMember,
-          communityIntroduce: res.data.communityIntroduce,
-          allArray: result,
-          communityId : options.community_id
+        wx.request({
+          url: config.service.community_member,
+          data: {
+            community_id: id   //options.communityId
+          },
+          success: function (e) {
+            console.log(e)
+            console.log(res)
+            let imageList = []
+            if(e.data.result.length >= 6){
+              for(var i = 0;i < 6;i++){
+                imageList[i] = e.data.result[i].user_image
+              }
+              that.setData({
+                communityMember: imageList,
+                communityImage: res.data.community.community_image,
+                communityName: res.data.community.community_name,
+                questionNum: res.data.community.questionnum,
+                projectNum: res.data.community.projectnum,
+                memberNum: res.data.community.usernum,
+                communityIntroduce: res.data.community.community_introduce,
+                allArray: result,
+                communityId: options.community.community_id
+              })
+            }else{
+              for (var i = 0; i < e.data.result.length; i++) {
+                imageList[i] = e.data.result[i].user_image
+              }
+              that.setData({
+                communityMember: imageList,
+                communityName: res.data.community.community_name,
+                communityImage: res.data.community.community_image,
+                questionNum: res.data.community.questionnum,
+                projectNum: res.data.community.projectnum,
+                memberNum: res.data.community.usernum,
+                communityIntroduce: res.data.community.community_introduce,
+                allArray: result,
+                communityId: options.community_id
+              })
+            }
+          },
+          fail: function(){
+            wx.showToast({
+              title: '加载失败',
+              icon: 'none'
+            })
+          }
         })
+
       }
     })
   },

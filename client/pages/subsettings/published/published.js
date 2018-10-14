@@ -218,6 +218,7 @@ Page({
     })
   },
   jumpToProject: function (e) {
+    console.log(e)
     wx.navigateTo({
       url: './../../project_detail/project_detail?id=' + e.currentTarget.id,
     })

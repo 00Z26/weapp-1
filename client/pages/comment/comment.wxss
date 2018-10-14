@@ -8,7 +8,7 @@ page{
     padding-bottom:20rpx;
   }
   .header image{
-    width: 22rpx;
+    width: 40rpx;
     height: 38rpx;
     margin-top: 22rpx;
     margin-left: 16rpx;
@@ -22,7 +22,7 @@ page{
     font-size: 40rpx;
   }
   .button{
-    width: 220rpx;
+    width: 230rpx;
     display: inline-block;
   }
   .title{
@@ -41,6 +41,8 @@ page{
     width: 90rpx;
     height: 90rpx;
     vertical-align: top;
+    border-radius:50%;
+    margin:20rpx;
   }
   .praise{
     float:right;
@@ -50,12 +52,12 @@ page{
     line-height: 39rpx;    
   }
   .praiseIcon{
-    width: 25rpx;
-    height: 25rpx;
+    width: 40rpx;
+    height: 40rpx;
   }
   .commentInfo{
     display: inline-block;
-    width: 660rpx;
+    width: 620rpx;
     border-bottom:2rpx solid rgba(193, 193, 193, 1);
     padding: 18rpx 0;
   }
