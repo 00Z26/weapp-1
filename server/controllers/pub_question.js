@@ -17,7 +17,7 @@ module.exports = async (ctx, next) => {
   var date = new Date();
   var power = JSON.parse(data.power);
   var result='发布成功';
-  var question_id = await DB('question').returning('question_id').insert({user_type:data.user_type, user_id:data.user_id, question_title:data.question_title, question_info:data.question_info, question_time:date, answernum:0, power:power.object_power, hot:100,focus_num:0});
+  var question_id = await DB('question').returning('question_id').insert({ image: data.image,user_type:data.user_type, user_id:data.user_id, question_title:data.question_title, question_info:data.question_info, question_time:date, answernum:0, power:power.object_power, hot:100,focus_num:0});
   if (power.detail_power.length > 0) {
     var i = 0;
     for (; i < power.detail_power.length; i++) {

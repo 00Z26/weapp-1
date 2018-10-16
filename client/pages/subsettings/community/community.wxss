@@ -20,12 +20,15 @@ page{
   line-height: 30rpx;
   font-size: 40rpx;
 }
+.createCommunity{
+  margin-left:125rpx;
+}
 .button{
   width: 230rpx;
   display: inline-block;
 }
 .title{
-  margin-left: 75rpx;
+  margin-left: 112rpx;
   display: inline-block;
 }
 

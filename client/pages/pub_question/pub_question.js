@@ -1,5 +1,6 @@
 // pages/pub_question/pub_question.js
 var config = require('../../config')
+var util = require('../../utils/util.js')
 const app=getApp();
 Page({
 
@@ -50,7 +51,8 @@ Page({
         user_id: app.globalData.userInfo.user_id,
         power: that.data.power,
         question_title: that.data.question_title,
-        question_info: that.data.question_info
+        question_info: that.data.question_info,
+        image: that.data.upload_icon,
       },
       success: function (res) {
         console.log(res.data);
@@ -80,11 +82,37 @@ Page({
        }
     })
   },
-  uploadPic: function(){
-    wx.uploadFile({
-      url: '',
-      filePath: '',
-      name: '',
+  uploadPic: function(e){
+    var that=this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        util.showBusy('正在上传')
+        var filePath = res.tempFilePaths[0]
+        // 上传图片
+        wx.uploadFile({
+          url: config.service.uploadUrl,
+          filePath: filePath,
+          name: 'file',
+          success: function (res) {
+            util.showSuccess('上传图片成功')
+            console.log(res)
+            res = JSON.parse(res.data)
+            console.log(res)
+            that.setData({
+              upload_icon: res.data.imgUrl
+            })
+          },
+          fail: function (e) {
+            util.showModel('上传图片失败')
+          }
+        })
+      },
+      fail: function (e) {
+        console.error(e)
+      }
     })
   }
 

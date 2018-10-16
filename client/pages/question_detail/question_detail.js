@@ -53,7 +53,8 @@ Page({
     questionTitle: '',
     answerList: '',
     commentAwsPos: '-100%',
-    user_id: '',
+    userId: '',
+    userType: '',
     answer_id: '',
     object_id: '',
     following: "none",
@@ -96,10 +97,11 @@ Page({
             user_id: app.globalData.userInfo.user_id
           },success: function(res){
             if(res.data.result){
+              console.log(res)
               that.setData({
                 questionTitle: result.question_title,
-                userType: result.user_type,
-                userId: result.user_id,
+                userType: res.data.result.user_type,
+                userId: res.data.result.user_id,
                 userName: result.user_name,
                 pubTime: timeCalc(new Date(result.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))),
                 questionInfo: result.question_info,
@@ -356,14 +358,16 @@ Page({
     })
   },
   jumpToHome: function(e){
+    var that=this;
     wx.navigateTo({
-      url: './../home/home?userType=' + this.data.userType + '&userId=' + this.data.userId,
+      url: './../home/home?userType=' + that.data.userType + "&userId=" + that.data.userId,
     })
   },
   jumpToOtherHome: function(e){
+
     console.log(e)
     wx.navigateTo({
-      url: './../home/home?userType=' + e.target.dataset.type + '&userId=' + e.currentTarget.id,
+      url: './../home/home?userType=' + e.currentTarget.dataset.type + '&userId=' + e.currentTarget.id,
     })
   }
 })

@@ -11,7 +11,7 @@
 <view class='communityInfo'>
   <image class='communityImage' src='{{communityImage}}'></image>
   <view class='detail'>
-    <text class='comName'>{{communityName}}</text>
+    <text class='comName'>{{communityName}}\n</text>
     <text>问题{{questionNum}} 项目{{projectNum}} 圈友{{memberNum}}\n</text>
     <text>圈友:</text>
     <view class='members'>

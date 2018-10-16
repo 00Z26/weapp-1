@@ -19,7 +19,7 @@ module.exports = async (ctx, next) => {
   var y = await DB.select('community_name').from('community').where('community_name', data.community_name);
   if(y==0){
     //如果圈名不重复，则将圈子信息插入并获取自增id
-    var community_id = await DB('community').returning('community_id').insert({ user_type: data.user_type, user_id: data.user_id, community_name: data.community_name, community_type: data.community_type, community_introduce: data.community_introduce, community_time: date, questionnum: 0, projectnum: 0, usernum: 1 })
+    var community_id = await DB('community').returning('community_id').insert({ user_type: data.user_type, user_id: data.user_id, community_name: data.community_name, community_image:data.community_image, community_type: data.community_type, community_introduce: data.community_introduce, community_time: date, questionnum: 0, projectnum: 0, usernum: 1 })
     //将信息存储在圈子-用户的关系表中
     var result_community_user = await DB('community_user').insert({ community_id: community_id, user_type: data.user_type, user_id: data.user_id, time: date });
   }

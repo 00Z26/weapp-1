@@ -4,15 +4,7 @@ function timeCalc(time) {
   var now = new Date()
   //var timeDiff = parseInt((now - time) / 1000) - 28800    //单位为秒
   if (time.getFullYear() == now.getFullYear()) {
-    if (time.getMonth() == now.getMonth()) {
-      if (now.getDate() == time.getDate()) {
-        return (Array(2).join('0') + time.getHours()).slice(-2) + ":" + (Array(2).join('0') + time.getMinutes()).slice(-2)
-      } else {
-        return time.getMonth() + "-" + time.getDate()
-      }
-    } else {
       return time.getMonth() + "-" + time.getDate()
-    }
   } else {
     return time.getFullYear() + "-" + time.getMonth() + "-" + time.getDate()
   }
@@ -74,6 +66,10 @@ Page({
         },
         success: function (res) {
           console.log(res.data)
+          for (var item of res.data.answer) {
+            item.answer_time = new Date(item.answer_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.answer_time = timeCalc(item.answer_time);
+          }
           that.setData({
             projectArray: res.data.project,
             questionArray: res.data.question,

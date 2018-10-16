@@ -4,6 +4,8 @@ page{
 }
 #container{
   height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 .header{
   background-color: #fff;
@@ -36,6 +38,10 @@ page{
   margin-left:230rpx;
 }
 
+.comName{
+  font-size: 36rpx;
+  line-height:100rpx;
+}
 .communityInfo{
   background-color: #fff;
   height: 300rpx;
@@ -87,7 +93,6 @@ project text{
 #inviteList{
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
   background-color: #fff;
   height: 100%;

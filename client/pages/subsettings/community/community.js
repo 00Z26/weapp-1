@@ -160,5 +160,10 @@ Page({
     wx.navigateTo({
       url: './../../community/community?community_id=' + e.currentTarget.id,
     })
+  },
+  createCommunity: function(){
+    wx.navigateTo({
+      url: './../../createCommunity/createCommunity',
+    })
   }
 })

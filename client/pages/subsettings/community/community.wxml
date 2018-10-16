@@ -6,6 +6,7 @@
   <text class='title' >
     圈子
   </text>
+  <text bindtap='createCommunity' class='createCommunity'>创建圈子</text>
 </view>
 
 <view class='tabs'>

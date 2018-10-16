@@ -75,7 +75,7 @@ Page({
         user_id: app.globalData.userInfo.user_id,
       },
       success: function (res) {
-        console.log(res);
+        console.log(res.data);
         let result = res.data.result
         let answer = res.data.answer
         if (!result) {

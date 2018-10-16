@@ -269,7 +269,7 @@ Page({
   },
   checkboxChange: function(e){
     console.log(Object.keys(e.detail.value))
-    if(e.detail.value){
+    if(e.detail.value.length>0){
       this.setData({
         selected: true,
         selectedIndex: Object.keys(e.detail.value)

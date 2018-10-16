@@ -1,5 +1,6 @@
 // pages/pub_project/pub_project.js
 var config = require('../../config')
+var util = require('../../utils/util.js')
 const app=getApp();
 Page({
   /**
@@ -17,6 +18,7 @@ Page({
     project_type:'',
     project_budget:'',
     project_require:'',
+    imgUrl:'',
     power:{
       object_power: 1,
       detail_power: []
@@ -64,6 +66,42 @@ Page({
       url: '../power/power?userJson='+userJson,
     })
   },
+  upload:function(e){
+    var that=this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        util.showBusy('正在上传')
+        var filePath = res.tempFilePaths[0]
+
+        // 上传图片
+        wx.uploadFile({
+          url: config.service.uploadUrl,
+          filePath: filePath,
+          name: 'file',
+          success: function (res) {
+            util.showSuccess('上传图片成功')
+            console.log(res)
+            res = JSON.parse(res.data)
+            console.log(res)
+            that.setData({
+              imgUrl: res.data.imgUrl
+            })
+          },
+
+          fail: function (e) {
+            util.showModel('上传图片失败')
+          }
+        })
+
+      },
+      fail: function (e) {
+        console.error(e)
+      }
+    })
+  },
   //发布项目
   pub:function(e){
     var that=this;
@@ -79,6 +117,7 @@ Page({
         project_finish: that.data.project_finish,
         project_budget: that.data.project_budget,
         project_require: that.data.project_require,
+        image: that.data.imgUrl
       },
       success: function (res) {
         console.log(res.data);

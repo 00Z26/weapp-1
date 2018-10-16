@@ -17,7 +17,7 @@ module.exports = async (ctx, next) => {
   var date=new Date();
   var power = JSON.parse(data.power);
   var result='发布成功';
-  var project_id = await DB('project').returning('project_id').insert({ user_type: data.user_type, user_id: data.user_id, project_title: data.project_title, project_type: data.project_type, project_finish: data.project_finish, project_budget: data.project_budget, project_time: date, project_require: data.project_require, answernum: 0, power: power.object_power, hot: 100, focus_num: 0});
+  var project_id = await DB('project').returning('project_id').insert({ image:data.image,user_type: data.user_type, user_id: data.user_id, project_title: data.project_title, project_type: data.project_type, project_finish: data.project_finish, project_budget: data.project_budget, project_time: date, project_require: data.project_require, answernum: 0, power: power.object_power, hot: 100, focus_num: 0});
   if (power.detail_power.length>0){
     var i=0;
     for(;i<power.detail_power.length;i++){

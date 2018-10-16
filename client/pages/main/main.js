@@ -142,7 +142,8 @@ Page({
           for (var item of res.data.result1) {
             item.project_time = new Date(item.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
             item.project_time = timeCalc(item.project_time)
-            item.project_finish = item.project_finish.slice(0,10)
+            item.project_finish = new Date(item.project_finish.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.project_finish = item.project_finish.getFullYear() + "-" + item.project_finish.getMonth() + "-" + item.project_finish.getDate();
           }
           for (var item of res.data.result2) {
             item.question_time = new Date(item.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
@@ -227,6 +228,8 @@ Page({
           for (var item of res.data.result1) {
             item.project_time = new Date(item.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
             item.project_time = timeCalc(item.project_time)
+            item.project_finish = new Date(item.project_finish.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.project_finish = item.project_finish.getFullYear() + "-" + item.project_finish.getMonth() + "-" + item.project_finish.getDate();
           }
           for (var item of res.data.result2) {
             item.question_time = new Date(item.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
@@ -295,7 +298,8 @@ Page({
           for (var item of res.data.result1) {
             item.project_time = new Date(item.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
             item.project_time = timeCalc(item.project_time)
-            item.project_finish = item.project_finish.slice(0, 10)
+            item.project_finish = new Date(item.project_finish.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.project_finish = item.project_finish.getFullYear() + "-" + item.project_finish.getMonth() + "-" + item.project_finish.getDate();
           }
           for (var item of res.data.result2) {
             item.question_time = new Date(item.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
@@ -338,7 +342,8 @@ Page({
           for (var item of res.data.project) {
             item.project_time = new Date(item.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
             item.project_time = timeCalc(item.project_time)
-            item.project_finish = item.project_finish.slice(0, 10)
+            item.project_finish = new Date(item.project_finish.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.project_finish = item.project_finish.getFullYear() + "-" + item.project_finish.getMonth() + "-" + item.project_finish.getDate();
           }
           for (var item of res.data.question) {
             item.question_time = new Date(item.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
@@ -418,6 +423,8 @@ Page({
           for (var item of res.data.result1) {
             item.project_time = new Date(item.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
             item.project_time = timeCalc(item.project_time)
+            item.project_finish = new Date(item.project_finish.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.project_finish = item.project_finish.getFullYear() + "-" + item.project_finish.getMonth() + "-" + item.project_finish.getDate();
           }
           for (var item of res.data.result2) {
             item.question_time = new Date(item.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
@@ -458,7 +465,8 @@ Page({
           for (var item of res.data.result1) {
             item.project_time = new Date(item.project_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
             item.project_time = timeCalc(item.project_time)
-            item.project_finish = item.project_finish.slice(0, 10)
+            item.project_finish = new Date(item.project_finish.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))
+            item.project_finish = item.project_finish.getFullYear() + "-" + item.project_finish.getMonth() + "-" + item.project_finish.getDate();
           }
           for (var item of res.data.result2) {
             item.question_time = new Date(item.question_time.replace(/T/, " ").replace(/Z/, "").replace(/-/g, "/"))

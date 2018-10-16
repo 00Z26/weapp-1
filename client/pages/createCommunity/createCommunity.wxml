@@ -1,30 +1,49 @@
-<view class='header' >
-  <view class='button' bindtap='back' >
-    <image src='https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538531908463-gb0Gt8Xys.png'></image>
-    <text>我的圈子</text>
+<view id='container'>
+  <view class='header' >
+    <view class='button' bindtap='back' >
+      <image src='https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538531908463-gb0Gt8Xys.png'></image>
+      <text>我的圈子</text>
+    </view>
+    <text class='title' >
+      建立圈子
+    </text>
+    <text class='inviteFriend' bindtap='invite'>邀请圈友</text>
   </view>
-  <text class='title' >
-    建立圈子
-  </text>
-  <text class='inviteFriend'>邀请圈友</text>
-</view>
 
-<form bindsubmit='createCommunity'>
-  <view>
-    <label for='communityName'>圈子名称:</label>
-    <input name='communityName' />
-  </view>
-  <view>
-    <label>圈子类别:</label>
-    <picker range='{{communityType}}'  bindchange='typeChange'name='communityType' >{{communityType[index]}}</picker>
-  </view>
-  <view>
-    <label class='label' >圈子介绍:</label>
-    <textarea name='communityIntroduce' ></textarea>
-  </view>
-  <view class='uploadPic' style='background-image: url("https://qcloudtest-1257116845.cos.ap-guangzhou.myqcloud.com/1538531671441-2Jzzfebl8.png")'><text>上传封面</text></view>
-  <button class='create' form-type='submit'>新建圈子</button>
+
+  <form bindsubmit='createCommunity' bindsubmit='submit'>
+    <view>
+      <label for='communityName'>圈子名称:</label>
+      <input name='communityName' wx:if='{{translateY}}'/>
+    </view>
+    <view>
+      <label>圈子类别:</label>
+      <picker range='{{communityType}}'  bindchange='typeChange'name='communityType' >{{communityType[index]}}</picker>
+    </view>
+    <view>
+      <label class='label' >圈子介绍:</label>
+      <textarea name='communityIntroduce' ></textarea>
+    </view>
+    <view class='uploadPic' style='background-image: url("{{communityImage}}")' bindtap='uploadPic'><text>上传封面</text></view>
+    <button class='create' form-type='submit'>新建圈子</button>
 </form>
 
-
+    <view id='inviteList' style='transform: translateY({{translateY}})'>
+      <view class='inviteHeader'>
+        <text class='cancel' bindtap='cancel'>取消</text>
+        <text class='inviteTitle'>邀请新成员</text>
+        <text class='done' wx:if='{{selected}}' bindtap='done'>完成</text>
+      </view>
+      <view class='memberList'>
+        <checkbox-group bindchange='checkboxChange'>
+          <checkbox wx:for='{{inviteList}}' wx:key='{{item.fans_id}}{{item.idol_id}}'>
+            <view class='item'>
+              <image src='{{item.idol_image}}{{item.fans_image}}' />
+              <text class='inviteUserName'>{{item.fans_name}}{{item.idol_name}}</text>
+            </view>
+          </checkbox>
+        </checkbox-group>
+      </view>
+    </view>
+</view>
 

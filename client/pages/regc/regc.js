@@ -34,11 +34,11 @@ Page({
 
     var that = this
     wx.request({
-      url: config.service.defocus,
+      url: config.service.home,
       data:{ 
-        focus_type: 'other',   //user取消关注用户，other取消关注问题/项目
-        object_type: 0,
-        object_id: 1,
+        // focus_type: 'other',   //user取消关注用户，other取消关注问题/项目
+        // object_type: 0,
+        // object_id: 1,
         user_type: 0, 
         user_id: '18211949725', 
       },

@@ -21,8 +21,6 @@ module.exports = async (ctx, next) => {
   var result2=[];
   var community_id = await DB.select('community_id').from('community_user').where({user_type:data.user_type,user_id:data.user_id});
   //没有圈子的情况
-  if(community_id.length==0)
-  {
     result1 = await DB.select('*').from('project').where('project_time', '>', date.getTime() - 15 * 24 * 60 * 60 * 1000).andWhere('power', power).orderBy('project_time', 'desc');
     result2 = await DB.select('*').from('question').where('question_time', '>', date.getTime() - 15 * 24 * 60 * 60 * 1000).andWhere('power', power).orderBy('question_time', 'desc');
     var length1 = result1.length;
@@ -51,10 +49,12 @@ module.exports = async (ctx, next) => {
         result2[i].user_image = information[0].image;
       }
     }
-  }
+  count1=length1;
+  count2=length2;
   //有圈子
-  else{
+   if (community_id.length != 0) {
     var object_info = await DB.select('object_id', 'object_type').from('PQ_community').where('community_id', 'in', community_id).andWhere('power', power).andWhere('time', '>', date.getTime() - 15 * 24 * 60 * 60 * 1000).orderBy('time', 'desc');
+    
     for(var i=0;i<object_info.length;i++){
       //对应的是项目
       if(object_info[i].object_type==0){

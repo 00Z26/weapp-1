@@ -16,7 +16,7 @@ module.exports = async (ctx, next) => {
   var result={};
   if(data.user_type==0){
     var information = await DB.select('*').from('individual').where('individual_id', data.user_id);
-    result.focusnum=information[0].idol_num+information[0].questionfocus_num+information[0].projectfocus_num;
+    result.focusnum=parseInt(information[0].idol_num) + parseInt(information[0].questionfocus_num) + parseInt(information[0].projectfocus_num);
     result.pubednum=information[0].answer_num+information[0].question_num+information[0].project_num;
     result.communitynum=information[0].setcommunity_num+information[0].joincommunity_num;
     result.fans_num=information[0].fans_num;
@@ -30,7 +30,7 @@ module.exports = async (ctx, next) => {
   }
   else{
     var information = await DB.select('*').from('company').where('company_id', data.user_id);
-    result.focusnum = information[0].idol_num + information[0].questionfocus_num + information[0].projectfocus_num;
+    result.focusnum = parseInt(information[0].idol_num) + parseInt(information[0].questionfocus_num) + parseInt(information[0].projectfocus_num);
     result.pubednum = information[0].answer_num + information[0].question_num + information[0].project_num;
     result.communitynum = information[0].setcommunity_num + information[0].joincommunity_num;
     result.fans_num = information[0].fans_num;
@@ -45,10 +45,4 @@ module.exports = async (ctx, next) => {
   ctx.body={
     result:result
   }
-  
-  
-  
-  
-  
-  
   }

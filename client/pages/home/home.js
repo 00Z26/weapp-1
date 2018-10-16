@@ -26,7 +26,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    var userType = options.userType
+    var userType = options.userType;
     var userId = options.userId
     wx.request({
       url: config.service.home,
