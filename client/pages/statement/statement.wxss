@@ -1,0 +1,5 @@
+/* pages/statement/statement.wxss */
+text{
+  font-size:32rpx;
+  line-height:48rpx;
+}

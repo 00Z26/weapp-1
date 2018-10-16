@@ -175,9 +175,16 @@ Page({
     })
   },
   jumpToDetail: function (e) {
-    wx.navigateTo({
-      url: './../../question_detail/question_detail?id=' + e.currentTarget.id + '&type=' + e.currentTarget.dataset.type,
-    })
+    if(e.currentTarget.dataset.type == 1){
+      wx.navigateTo({
+        url: './../../question_detail/question_detail?id=' + e.currentTarget.id,
+      })
+    }else{
+      wx.navigateTo({
+        url: './../../project_detail/project_detail?id=' + e.currentTarget.id,
+      })
+    }
+
   },
   jumpToIndividualHome: function(e){
     wx.navigateTo({

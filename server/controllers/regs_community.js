@@ -15,6 +15,7 @@ module.exports = async (ctx, next) => {
   var data = ctx.query;
   var date = new Date();
   var result='建圈成功';
+  var community_id = 0
   var x = await DB.select('company_id').from('company').where('company_id', data.user_id);    //获取建圈的人的类型
   var y = await DB.select('community_name').from('community').where('community_name', data.community_name);
   if(y==0){
@@ -37,6 +38,6 @@ module.exports = async (ctx, next) => {
 
   ctx.body = {
     result:result,
+    communityId: community_id
   }
-
 }

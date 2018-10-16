@@ -48,11 +48,11 @@ page{
   font-size: 30rpx;
 }
 
-#container{
+.container{
   position: relative;
 
 }
-#joinedCom{
+.joinedCom{
   position: absolute;
   top: 0;
   left: 0;
@@ -86,7 +86,7 @@ page{
   line-height: 48rpx;
 }
 
-#establishedCom{
+.establishedCom{
   position: absolute;
   top: 0;
   left: 0;

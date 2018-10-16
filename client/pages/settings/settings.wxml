@@ -30,3 +30,4 @@
     </li>
   </ul>
 </view>
+<view class='statement' bindtap='statement'><text>免责声明</text></view>

@@ -18,13 +18,13 @@
 
 <view id='container'>
   <view id='question' style='z-index:{{z1}}'>
-    <view wx:for='{{questionList}}' wx:key='{{item.question_id}}' class='publishedQuestion' style='transform:translateX({{transform1}})'bindtap='jumpToDetail' data-type = '1' id='{{item.question_id}}'>
+    <view wx:for='{{questionList}}' wx:key='{{item.question_id}}' class='publishedQuestion' style='transform:translateX({{transform1}})'bindtap='jumpToDetail' id='{{item.question_id}}'>
       <text class='questionTitle'>{{item.question_title}}</text>
       <text class='questionSocialInfo'>{{item.answernum}}个回答· {{item.focus_num}}人关注</text>
   </view>
   </view>
   <view id='project' style='z-index:{{z2}}'>
-    <view wx:for='{{projectList}}' wx:key='{{item.project_id}}' class='publishedProject' style='transform:translateX({{transform2}})'>
+    <view wx:for='{{projectList}}' wx:key='{{item.project_id}}' class='publishedProject' style='transform:translateX({{transform2}})' bindtap='jumpToDetail'  id='{{item.project_id}}'>
     <text class='projectTitle'>{{item.project_title}}</text>
     <text class='projectSocialInfo'>{{item.answernum}}个回答· {{item.focus_num}}人关注</text>
   </view>

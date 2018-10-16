@@ -102,5 +102,10 @@ Page({
     wx.navigateTo({
       url: './../notice/notice',
     })
+  },
+  statement: function(){
+    wx.navigateTo({
+      url: './../statement/statement',
+    })
   }
 })

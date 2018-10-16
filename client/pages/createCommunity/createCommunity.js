@@ -169,6 +169,9 @@ Page({
       i++
 
     }
+    this.setData({
+      translateY: '100%'
+    })
 
     
   },
@@ -178,6 +181,7 @@ Page({
     })
   },
   submit: function(e){
+    var that= this
     console.log(e)
     if(!e.detail.value.communityName){
       wx.showToast({
@@ -207,32 +211,46 @@ Page({
           community_image: that.data.communityImage
         },
         success: function(res){
-          wx.request({
-            url: config.service.invite,
-            data: {
-              host_type: app.globalData.userInfo.user_type,
-              host_id: app.globalData.userInfo.user_id,
-              invite_type: 'C',
-              invite_id: res.data.communityId,
-              guest: that.data.selectedList
-            },
-            success: function (res) {
-              console.log(res.data)
-              that.setData({
-                communityId: res.data.communityId,
-                translateY: '100%'
-              })
-              wx.showToast({
-                title: '创建成功',
-              })
-            },
-            fail: function () {
-              wx.showToast({
-                title: '圈子创建成功，邀请失败，请重试',
-                icon: 'none'
-              })
-            }
-          })
+          console.log(res)
+          var id = res.data.communityId[0]
+          console.log(id)
+          if(res.data.result == "建圈成功"){
+            wx.request({
+              url: config.service.invite,
+              data: {
+                host_type: app.globalData.userInfo.user_type,
+                host_id: app.globalData.userInfo.user_id,
+                invite_type: 'C',
+                invite_id: id,
+                guest: that.data.selectedList
+              },
+              success: function (res) {
+                that.setData({
+                  communityId: id,
+                  translateY: '100%'
+                })
+                wx.navigateBack({
+                  delta: 1
+                })
+                wx.showToast({
+                  title: '创建成功',
+                  icon: 'none'
+                })
+              },
+              fail: function () {
+                wx.showToast({
+                  title: '圈子创建成功，邀请失败，请重试',
+                  icon: 'none'
+                })
+              }
+            })
+          }else{
+            wx.showToast({
+              title: res.data.result,
+              icon: 'none'
+            })
+          }
+
         },
         fail: function(){
           wx.showToast({
@@ -245,6 +263,7 @@ Page({
   },
   uploadPic: function(){
     var that = this
+    var token
     wx.chooseImage({
       success: function(res) {
         var tempFilePaths = res.tempFilePaths
@@ -252,22 +271,64 @@ Page({
           tempFilePath: tempFilePaths[0],
           success: function(res){
             var savedFilePath = res.savedFilePath
-            wx.uploadFile({
-              url: config.service.uploadUrl,
-              filePath: savedFilePath,
-              name: 'community' + that.data.communityId + 'Image',  //圈子头像对应的键为'community*Image' (*为community_id)
-              success: function(){
-                that.setData({
-                  communityImage: savedFilePath
-                })
+            // wx.request({
+            //   url: config.service.uploadUrl,
+            //   data: savedFilePath,
+            //   success: function(res){
+            //     console.log(res.data)
+            //     that.setData({
+            //       communityImage: res.data
+            //     })
+            //   }
+            // })
+            wx.request({
+              url: 'https://sl5hr478.qcloud.la/token',
+              method: 'POST',
+              data: {},
+              header:{
+                'content-type': 'application/x-www-form-urlencoded'
               },
-              fail: function(){
-                wx.showToast({
-                  title: '上传失败',
-                  icon: 'none'
+              success: function (res) {
+
+                token = res.data; //默认返回一个token，赋值给已经有的token属性。这里只是示例，具体根据需求可自行设定。
+                wx.uploadFile({
+                  url: config.service.uploadUrl,
+                  filePath: savedFilePath,
+                  name: 'file',  //圈子头像对应的键为'community*Image' (*为community_id)
+                  formData: {
+                    'token': token,
+                    'key': 'community' + that.data.communityId + 'Image'
+                  },
+                  success: function (r) {
+                    var data = r.data;//七牛会返回一个包含hash值和key的JSON字符串
+                    console.log(r)
+                    if (typeof data === 'string'){
+                      data = JSON.parse(data.trim());//解压缩
+                      that.setData({
+                        communityImage: data.imgUrl
+                      }) 
+                    } 
+                    console.log(data)
+                      
+                  },
+                  fail: function () {
+                    wx.showToast({
+                      title: '上传失败',
+                      icon: 'none'
+                    })
+                  }
                 })
+
+              },
+
+              fail: function (res) {
+
+                console.log(res)
+
               }
+
             })
+
           }
         })
       },

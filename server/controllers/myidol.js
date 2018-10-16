@@ -21,7 +21,7 @@ module.exports = async (ctx, next) => {
         var idol = await DB.select('*').from('individual').where('individual_id', myidol[i].idol_id);
         result[i] = {
           idol_type: 0,
-          idol_id: myidol[i].individual_id,
+          idol_id: myidol[i].idol_id,
           idol_name: idol[0].individual_name,
           idol_image: idol[0].image,
           answer_num: idol[0].answer_num,
@@ -34,7 +34,7 @@ module.exports = async (ctx, next) => {
         var idol = await DB.select('*').from('company').where('company_id', myidol[i].idol_id);
         result[i] = {
           idol_type: 1,
-          idol_id: myidol[i].company_id,
+          idol_id: myidol[i].idol_id,
           idol_name: idol[0].company_name,
           idol_image: idol[0].image,
           answer_num: idol[0].answer_num,
